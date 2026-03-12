@@ -1,0 +1,83 @@
+main{
+    font-family: Titulo, sans-serif;
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+    }
+    
+    #tituloPainel{
+    text-align: left;
+    margin-bottom: 20px;
+    }
+    
+    .card{
+    
+    background-color: #d9e7ec;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+    
+    }
+    
+    .card h2{
+    
+    background-color: #cfdde2;
+    padding: 10px 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    
+    }
+    
+    .conteudoCard{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: Corpo, sans-serif;
+    
+    }
+    
+    .infoUsuario{
+    width: 20%;
+    }
+    
+    .descricao{
+    width: 40%;
+    }
+    
+    .pontuacao{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    }
+    
+    .itemPontuacao{
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    
+    }
+    
+    .icone{
+    font-size: 30px;
+    }
+    
+    .fotoPsicologo{
+    
+    width: 120px;
+    height: 120px;
+    background-color: #cfd8dc;
+    border-radius: 15px;
+    
+    }
+    
+    .infoPsicologo{
+    width: 25%;
+    }
+    
