@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Corpo';
-    src: url(Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
+    src: url(../Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
 
 }
 @font-face {
     font-family: 'Titulo';
-    src: url(Fontes/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
+    src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 
 
