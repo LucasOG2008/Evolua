@@ -1,7 +1,7 @@
 const psicologos = [
 
 {
-foto: "",
+foto: "../Imagens/Home_page/fim.png",
 descricao: "Dr. João Silva - Especialista em ansiedade."
 },
 

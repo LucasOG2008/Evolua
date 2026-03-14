@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-image: linear-gradient(to bottom, #FF9100, #FEFCF3 60%);
+    background-image: linear-gradient(to bottom, #ff9100a6, #FEFCF3 60%);
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -73,7 +73,7 @@ header {
 }
 
 footer {
-    background-image: linear-gradient(to bottom, #FEFCF3 ,#FF9100 60%);
+    background-image: linear-gradient(to bottom, #FEFCF3 ,#ff9100a6 60%);
     display: flex;
     text-align: center;
     font-family: Corpo, sans-serif;
