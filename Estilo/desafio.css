@@ -46,12 +46,18 @@ main{
 }
 
 #caixaResposta{
+    margin-right: 20px;
     margin-top: 20px;
     text-align: left;
 }
 
 #caixaResposta label{
     font-family: Corpo, sans-serif;
+}
+
+#reflexao #botao {
+    margin-top: 10px;
+    margin-left: 90%;
 }
 
 #resposta{
