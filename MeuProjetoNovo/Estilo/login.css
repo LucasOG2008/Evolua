@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Corpo';
+    src: url(Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
+
+}
+
+#acesso {
+    position: relative; 
+    width: 100%;
+    height: 530px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  #acesso::before {
+    content: "";
+    background-image: url('../Imagens/login/FundoSemFundo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.1; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  input{
+    font-family: Corpo, sans-serif;
+    border: none;
+    background-color: #FEFCF3;
+    margin-left: 15px;
+  }
+  
+
+  label{
+    font-family: Corpo, sans-serif;
+    background-image: linear-gradient(to right, #BFE0EF, #FEFCF3);
+  }
+
+  button{
+    font-family: Corpo, sans-serif;
+  }
+
+  .campo{
+    display: flex;
+    border: solid;
+    border-width: 1px;
+    background-color: #FEFCF3;
+  }
