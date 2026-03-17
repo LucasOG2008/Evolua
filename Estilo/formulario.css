@@ -46,6 +46,8 @@ section > p{
 
 textarea{
     margin-top: 0px;
+    margin-left: 11%;
+    margin-right: 11%;
     width: 1000px;
     height: 400px;
     resize: none; /*Remove o puxador que muda o tamanho do espaço para texto*/
@@ -54,9 +56,10 @@ textarea{
     font-family: Corpo, sans-serif;
     background-color: #FEFCF3;
     display: block;
+    border: solid 0.5px;
 }
 
-button{
+#botao{
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -64,6 +67,20 @@ button{
 label{
     display: block;
     background-color: #FEFCF3;
-    width: 1000px;
+    color: black;
+    width: 1004px;
     margin-bottom: 0px;
+    margin-left: 11%;
+    margin-right: 11%;
+    border: solid 0.5px;
+    padding: 10px 0px;
+}
+
+label > p {
+    color: #2D2D2D;
+}
+
+.Finalizar{
+    height: 35px;
+    margin-bottom: 30px;
 }

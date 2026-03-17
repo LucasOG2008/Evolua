@@ -23,11 +23,14 @@
             <p>Sua evolução começa com honestidade. Este diagnóstico é 100% confidencial e analisado apenas por nossa equipe clínica.</p>
             <form id="meuFormulario" method="post">
                 <div id="Inicial">
-                    <label for="pergInicial">Primeira questão</label>
+                    <label for="pergInicial">
+                        Primeira questão 
+                        <br> 
+                        <br> 
+                        <p>Faça um breve resumo sobre você para que possamos te conhecer melhor</p>
+                    </label>
                     <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
-                    <br>
-                    <button type="button" class="prox" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
                     <label for="segPerg">Segunda questão</label>
@@ -51,7 +54,7 @@
                     <label for="quinPerg">Quinta questão</label>
                     <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
-                    <button type="submit" id="botao" disabled>Finalizar</button>
+                    <button type="submit" id="botao" class="Finalizar" disabled>Finalizar</button>
                 </div>
             </form>
         </section>
