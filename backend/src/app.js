@@ -1,5 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+const userRoutes = require('./routes/userRoutes');
+const desafioRoutes = require('./routes/desafioRoutes');
+
+app.use('/users', userRoutes);
+app.use('/desafios', desafioRoutes);
 
 const authRoutes = require('./routes/authRoutes');
 
