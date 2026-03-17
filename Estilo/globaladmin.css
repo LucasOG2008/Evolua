@@ -109,3 +109,11 @@ footer img {
 hr {
     margin-top: 100px;
 }
+
+.botao {
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #073B4C;
+    color: white;
+}

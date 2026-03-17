@@ -1,0 +1,17 @@
+.perfil{
+
+    display: flex;
+
+    background-color: #ff9100a6 ;
+    border-radius: 10px;
+    margin: 50px;
+    padding-bottom: 5px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    background-image: linear-gradient(to right, #ff9100a6  5px,#BFE0EF 100px );
+    
+    border: 1px solid #000000;
+    }
+
+    .lupa{
+        width: 20px;
+    }
