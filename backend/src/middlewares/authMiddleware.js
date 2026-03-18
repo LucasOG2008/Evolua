@@ -8,7 +8,7 @@ const autenticar = (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({ message: 'Token não fornecido' });
-    }   
+    }
 
     try {
         const payload = jwt.verify(token, secret);

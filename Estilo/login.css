@@ -5,16 +5,16 @@
 }
 
 #acesso {
-    position: relative; 
+    position: relative;
     width: 100%;
     height: 530px;
-    overflow: hidden; 
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
 
   #acesso::before {
     content: "";
@@ -22,7 +22,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    opacity: 0.1; 
+    opacity: 0.1;
     position: absolute;
     top: 0;
     left: 0;
@@ -37,11 +37,15 @@
     background-color: #FEFCF3;
     margin-left: 15px;
   }
-  
+
 
   label{
     font-family: Corpo, sans-serif;
-    background-image: linear-gradient(to right, #BFE0EF, #FEFCF3);
+    background: linear-gradient(to right, #BFE0EF 35%, #FEFCF3 100%);
+  }
+
+  input:focus {
+    outline: none;
   }
 
   button{
