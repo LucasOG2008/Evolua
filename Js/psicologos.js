@@ -60,7 +60,7 @@ document.getElementById("proximo").onclick = function(){
 indice++;
 
 if(indice >= psicologos.length){
-indice = 0;
+    indice = 0;
 }
 
 atualizar();
@@ -72,7 +72,7 @@ document.getElementById("anterior").onclick = function(){
 indice--;
 
 if(indice < 0){
-indice = psicologos.length - 1;
+    indice = psicologos.length - 1;
 }
 
 atualizar();
