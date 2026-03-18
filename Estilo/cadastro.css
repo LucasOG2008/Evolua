@@ -37,20 +37,24 @@
     background-color: #FEFCF3;
     margin-left: 15px;
   }
-  
+
+  input:focus {
+    outline: none;
+  }
+
 
   label{
     font-family: Corpo, sans-serif;
-    background-image: linear-gradient(to right, #FF9100, #FEFCF3);
   }
 
   button{
     font-family: Corpo, sans-serif;
   }
 
-  .campo{
+  .campo {
     display: flex;
-    border: solid;
-    border-width: 1px;
-    background-color: #FEFCF3;
+    border: solid 1px;
+    background: linear-gradient(to right, #FF9100 1px, #FEFCF3 60px);
+    border-radius: 10px;
+    padding: 5px;
   }

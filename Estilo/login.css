@@ -1,7 +1,6 @@
 @font-face {
     font-family: 'Corpo';
     src: url(../Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
-
 }
 
 #acesso {
@@ -14,7 +13,6 @@
     align-items: center;
     justify-content: center;
   }
-
 
   #acesso::before {
     content: "";
@@ -31,17 +29,15 @@
     z-index: -1;
   }
 
-  input{
+  input {
     font-family: Corpo, sans-serif;
     border: none;
-    background-color: #FEFCF3;
-    margin-left: 15px;
+    background-color: #a3a19600;
+    margin-left: 5px;
   }
-
 
   label{
     font-family: Corpo, sans-serif;
-    background: linear-gradient(to right, #BFE0EF 35%, #FEFCF3 100%);
   }
 
   input:focus {
@@ -52,9 +48,10 @@
     font-family: Corpo, sans-serif;
   }
 
-  .campo{
+  .campo {
     display: flex;
-    border: solid;
-    border-width: 1px;
-    background-color: #FEFCF3;
+    border: solid 1px;
+    background: linear-gradient(to right, #BFE0EF 1px, #FEFCF3 60px);
+    border-radius: 10px;
+    padding: 5px;
   }
