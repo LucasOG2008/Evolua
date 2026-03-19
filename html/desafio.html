@@ -12,19 +12,23 @@
 
 <body>
 
-<header>
-
-    <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-
-    <nav>
-        <a href="Index.html">Evolua+</a>
-        <a href="#">Mapeamento Evolua+</a>
-        <a href="#">Psicólogos</a>
-        <a href="#">Desafio Diário</a>
-        <a href="#">Meu Painel</a>
-    </nav>
-
-</header>
+    <header>
+        <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+        
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="navMenu" class="nav-menu">
+            <a href="Index.html">Evolua+</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Desafio Diário</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Meu Painel</a>
+        </nav>
+    </header>
 
 
 <main>
@@ -103,6 +107,12 @@
     </div>
 
 </footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+</script>
 
 </body>
 </html>
