@@ -7,7 +7,7 @@
 #acesso {
     position: relative; 
     width: 100%;
-    height: 530px;
+    height: 900px;
     overflow: hidden; 
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@
 
   #acesso::before {
     content: "";
-    background-image: url('Imagens/login/FundoSemFundo.png');
+    background-image: url('../../Imagens/Login/FundoSemFundo.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
