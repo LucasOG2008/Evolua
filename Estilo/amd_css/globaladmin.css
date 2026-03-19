@@ -85,10 +85,21 @@ footer img {
     margin-bottom: 0px;
 }
 
+hr {
+    margin-top: 50px;
+    width: 100%;
+    height: 0.1px;
+    background-color: #000000;
+}
+
 #rodape {
     margin-top: 100px;
     margin-bottom: 30px;
-    margin-left: 300px;
+    margin-left: 400px;
+    text-align: right;
+    bottom: 30px;   
+    right: 10px;    
+    direction: rtl;
     text-align: right;
 }
 

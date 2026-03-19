@@ -111,7 +111,10 @@ footer img {
 }
 
 hr {
-    margin-top: 100px;
+    margin-top: 50px;
+    width: 100%;
+    height: 0.1px;
+    background-color: #000000;
 }
 
 #botao {
