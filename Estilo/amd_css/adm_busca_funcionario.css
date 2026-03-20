@@ -9,11 +9,18 @@
     font-family:Corpo, sans-serif;
     border: 1px solid #000000;
     margin-left: 10px;
+    cursor:pointer;
 }
 
 .perfil p{
-    margin-left: 69px;
+    margin-left: 75px;
+    color: #000000;
 }
+
+.perfil, .perfil p {
+    text-decoration: none;
+  }
+
 
 .lupa {
   width: 40px;
@@ -83,8 +90,9 @@ padding:10px 20px;
 margin-right:800px;
 border: 1px solid #000000;
 border-radius:10px;
-background-color:#ff9100;
+background-color:#09204b;
 color:white;
 cursor:pointer;
 font-family:Corpo, sans-serif;
 }
+

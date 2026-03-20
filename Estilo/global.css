@@ -88,12 +88,12 @@ footer img {
 #rodape {
     margin-top: 100px;
     margin-bottom: 30px;
-    margin-left: 400px;
+    margin-left: 250px;
     text-align: right;
     bottom: 30px;   
     right: 10px;    
     direction: rtl;
-    text-align: right;
+    text-align: left;
 }
 
 #pag nav {
@@ -107,6 +107,7 @@ footer img {
 }
 
 #pag {
+    text-align: left;
     margin-left: 300px ;
 }
 
