@@ -36,6 +36,7 @@
     border: none;
     background-color: #FEFCF3;
     margin-left: 15px;
+    position: cen;
   }
 
   input:focus {
@@ -51,10 +52,17 @@
     font-family: Corpo, sans-serif;
   }
 
+  .container {
+    display: flex;
+  }
+  
   .campo {
     display: flex;
+    margin-left: 10px;
+    max-width: 250px;
+    width: 100%;
     border: solid 1px;
     background: linear-gradient(to right, #FF9100 1px, #FEFCF3 60px);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 5px;
   }
