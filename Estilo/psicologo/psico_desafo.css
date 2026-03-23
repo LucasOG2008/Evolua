@@ -65,8 +65,20 @@ main{
     height: 200px;
     margin-top: 10px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    background-color: white;
     padding: 10px;
     font-family: Corpo, sans-serif;
     resize: none;
+}
+
+h1 #resposta{
+    color: black;
+}
+
+#botaoval {
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background-color: #ef476eb9;
+    color: white;
 }
