@@ -8,6 +8,11 @@
     src: url(Fontes/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
 }
 
+html, body{
+    overscroll-behavior-y: none;
+}
+
+
 body {
     background-color: #FEFCF3;
     margin: 0px;
@@ -73,42 +78,42 @@ header {
 }
 
 footer {
-    background-image: linear-gradient(to bottom, #FEFCF3 ,#ff9100 60%);
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-image: linear-gradient(to bottom, #FEFCF3 ,#ff91007b 60%);
+    flex-wrap: wrap;
     text-align: center;
     font-family: Corpo, sans-serif;
 }
 
-footer img {
+footer img{
     height: 300px;
     width: auto;
     margin-bottom: 0px;
 }
 
-#rodape {
-    margin-top: 100px;
-    margin-bottom: 30px;
-    margin-left: 250px;
-    text-align: right;
-    bottom: 30px;   
-    right: 10px;    
-    direction: rtl;
-    text-align: left;
-}
-
 #pag nav {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    text-align: justify; 
 }
 
-#pag > h4 {
-    margin-top: 130px;
+#pag h4 {
+    text-align: center;
 }
 
-#pag {
-    text-align: left;
-    margin-left: 300px ;
+#rodape {
+    text-align: center;
+}
+
+#rodape {
+    text-align: justify;
+}
+
+#rodape > h4, h5 {
+    text-align: center;
 }
 
 hr {

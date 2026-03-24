@@ -8,6 +8,10 @@
     src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 
+body{
+    overscroll-behavior-y: none;
+}
+
 header > nav{
     padding-top: 80px;
     padding-left: 275px;
@@ -108,15 +112,4 @@ article{
     border-radius: 10px;
 }
 
-footer{
-    background-image: linear-gradient(to bottom, #FEFCF3 ,#BFE0EF 60%);
-    display: flex;
-    text-align: center;
-    font-family: Corpo, sans-serif;
-}
 
-footer img{
-    height: 300px;
-    width: auto;
-    margin-bottom: 0px;
-}
