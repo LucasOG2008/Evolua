@@ -8,6 +8,10 @@
     src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 
+html, body{
+    overscroll-behavior-y: none;
+}
+
 body {
     background-color: #FEFCF3;
     margin: 0px;
@@ -73,41 +77,49 @@ header {
 }
 
 footer {
-    background-image: linear-gradient(to bottom, #FEFCF3 ,#BFE0EF 60%);
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-image: linear-gradient(to bottom, #FEFCF3 ,#BFE0EF 60%); 
+    flex-wrap: wrap;
     text-align: center;
     font-family: Corpo, sans-serif;
 }
 
-footer img {
+footer img{
     height: 300px;
     width: auto;
     margin-bottom: 0px;
 }
 
-#rodape {
-    margin-top: 100px;
-    margin-bottom: 30px;
-    margin-left: 300px;
-    text-align: right;
-}
-
 #pag nav {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    text-align: justify; 
 }
 
-#pag > h4 {
-    margin-top: 130px;
+#pag h4 {
+    text-align: center;
 }
 
-#pag {
-    margin-left: 300px ;
+#rodape {
+    text-align: center;
+}
+
+#rodape {
+    text-align: justify;
+}
+
+#rodape > h4, h5 {
+    text-align: center;
 }
 
 hr {
-    margin-top: 100px;
+    margin-top: 50px;
+    width: 100%;
+    height: 0.1px;
+    background-color: #000000;
 }
 
 #botao {
@@ -117,4 +129,3 @@ hr {
     background-color: #073B4C;
     color: white;
 }
-

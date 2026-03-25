@@ -3,25 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfis</title>
+    <title>Adm Buscar</title>
 
-    <link rel="stylesheet" href="../../Estilo/globaladmin.css">
-    <link rel="stylesheet" href="../../Estilo/adm_busca_funcionario.css">
+    <link rel="stylesheet" href="../../Estilo/amd_css/globaladmin.css">
+    <link rel="stylesheet" href="../../Estilo/amd_css/adm_busca_funcionario.css">
 </head>
 
 <body>
 
     <header>
-        <img src="../../Imagens/Home_page/logotipoSemfundo.png" id="logoEvolua">
-        <a class="botao" href="adm_cadastro.html">Cadastrar Funcionário</a>
+        <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+        
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="navMenu" class="nav-menu">
+            <a href="adm_index.html">Evolua+</a>
+            <a href="adm_cadastro.html">Cadastrar</a>
+            <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
+        </nav>
     </header>
 
     <main>
         <h1>Perfis</h1>
-
+        <a class="botaoc" href="adm_cadastro.html">Cadastrar Funcionário</a>
         <div>
-            <button onclick="mostrarFuncionarios()" class="botao">Funcionários</button>
-            <button onclick="mostrarPsicologos()" class="botao">Psicólogos</button>
+            <button onclick="mostrarFuncionarios()" id="botao">Funcionários</button>
+            <button onclick="mostrarPsicologos()" id="botao">Psicólogos</button>
         </div>
 
         <div class="container">
@@ -30,30 +41,27 @@
 
                 <div class="barraBusca">
                     <input type="text" placeholder="Buscar funcionário">
-                    <button >
-                        <img src="../../Imagens/Home_page/64673.png" class="lupa">
+                    <button class="lupa">
+                        <img src="../../Imagens/Home_page/64673.png" alt="lupa">
                     </button>
                   
                 </div>
 
-                <div class="perfil">
+                <a href="adm_visualizar_perfil.html" class="perfil">
                     <p>Carlos Eduardo Malheiro De Oliveira Almeida</p>
-                    <button class="remover">-</button>
+                </a>
+
+                <div class="perfil">
+                    <p>Fulano</p>
+                    
                 </div>
 
                 <div class="perfil">
                     <p>Fulano</p>
-                    <button class="remover">-</button>
                 </div>
 
                 <div class="perfil">
                     <p>Fulano</p>
-                    <button class="remover">-</button>
-                </div>
-
-                <div class="perfil">
-                    <p>Fulano</p>
-                    <button class="remover">-</button>
                 </div>
 
             </section>
@@ -63,29 +71,29 @@
 
                 <div class="barraBusca">
                     <input type="text" placeholder="Buscar psicólogo">
-                    <button >
-                            <img src="../../Imagens/Home_page/64673.png" class="lupa">
+                    <button class="lupa">
+                        <img src="../../Imagens/Home_page/64673.png" alt="lupa">
                     </button>
                 </div>
 
                 <div class="perfil">
                     <p>Dr. João Silva</p>
-                    <button class="remover">-</button>
+                    
                 </div>
 
                 <div class="perfil">
                     <p>Dra. Maria Santos</p>
-                    <button class="remover">-</button>
+                    
                 </div>
 
                 <div class="perfil">
                     <p>Dr. Carlos Mendes</p>
-                    <button class="remover">-</button>
+                    
                 </div>
 
                 <div class="perfil">
                     <p>Dra. Ana Costa</p>
-                    <button class="remover">-</button>
+                 
                 </div>
 
             </section>
@@ -93,7 +101,42 @@
         </div>
     </main>
 
+    <hr>
+
+    <footer>
+        <img src="../../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
+
+        <div id="pag">
+            <h4>Veja mais:</h4>
+            <nav>
+                <a href="adm_index.html">Evolua+</a>
+                <a href="adm_cadastro.html">Cadastrar</a>
+                <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
+            </nav>
+    
+        </div>
+
+        <div id="rodape">
+            <h4>Feito Por:</h4>
+            <h5>Next Gen Devs</h5>
+            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+                Lucas Oliveira Gomes <br/>
+                Murilo Miranda de Castro Silva <br/>
+                Geovani Oshiro Correa
+            </p>
+        </div>
+
+    </footer>
+
     <script src="../../JS/perfis.js"></script>
+
+    <script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+    </script>
+
+    
 
 </body>
 </html>

@@ -11,8 +11,21 @@
 <body>
 
     <header>
-        <img src="../Imagens/Formulario/logotipoSemfundo.png" alt="Logotipo sem fundo" id="logoEvolua">
-
+        <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+        
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="navMenu" class="nav-menu">
+            <a href="Index.html">Evolua+</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Desafio Diário</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Meu Painel</a>
+        </nav>
     </header>
 
     <main>
@@ -23,35 +36,39 @@
             <p>Sua evolução começa com honestidade. Este diagnóstico é 100% confidencial e analisado apenas por nossa equipe clínica.</p>
             <form id="meuFormulario" method="post">
                 <div id="Inicial">
-                    <label for="pergInicial">
+                    <label for="pergInicial" class="Borda">
                         Primeira questão 
-                        <br> 
-                        <br> 
                         <p>Faça um breve resumo sobre você para que possamos te conhecer melhor</p>
                     </label>
+                    <br>
                     <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
+                <br>
                 <div class="Secundaria">
-                    <label for="segPerg">Segunda questão</label>
+                    <label for="segPerg" class="Borda">Segunda questão</label>
+                    <br>
                     <textarea name="questaoDois" id="segPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="terPerg">Terceira questão</label>
+                    <label for="terPerg" class="Borda">Terceira questão</label>
+                    <br>
                     <textarea name="questaoTres" id="terPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="quarPerg">Quarta questão</label>
+                    <label for="quarPerg" class="Borda">Quarta questão</label>
+                    <br>
                     <textarea name="questaoQuatro" id="quarPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="quinPerg">Quinta questão</label>
+                    <label for="quinPerg" class="Borda">Quinta questão</label>
+                    <br>
                     <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="submit" id="botao" class="Finalizar" disabled>Finalizar</button>
@@ -64,16 +81,16 @@
     <hr>
 
     <footer>
-        <img src="../Imagens/Formulario/mascote_sem_fundo.png" alt="mascote">
+        <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
 
         <div id="pag">
             <h4>Veja mais:</h4>
             <nav>
-                <a href="#">Evolua+</a>
-                <a href="#">Mapemaneto Evolua+</a>
-                <a href="#">Psicólogos</a>
-                <a href="#">Desafio Diario</a>
-                <a href="#">Meu Painel</a>
+                <a href="Index.html">Evolua+</a>
+                <a href="escolher_psiocologo.html">Psicólogos</a>
+                <a href="desafio.html">Desafio Diário</a>
+                <a href="Formulario.html">Formulario</a>
+                <a href="painel.html">Meu Painel</a>
             </nav>
     
         </div>
@@ -91,5 +108,12 @@
     </footer>
     
     <script src="../Js/formulario.js"></script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+        }
+    </script>
+
 </body>
 </html>

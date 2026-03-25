@@ -12,19 +12,23 @@
 
 <body>
 
-<header>
-
-    <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-
-    <nav>
-        <a href="Index.html">Evolua+</a>
-        <a href="#">Mapeamento Evolua+</a>
-        <a href="#">Psicólogos</a>
-        <a href="#">Desafio Diário</a>
-        <a href="#">Meu Painel</a>
-    </nav>
-
-</header>
+    <header>
+        <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+        
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav id="navMenu" class="nav-menu">
+            <a href="Index.html">Evolua+</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Desafio Diário</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Meu Painel</a>
+        </nav>
+    </header>
 
 
 <main>
@@ -33,22 +37,14 @@
 
         <h1>Momento Evolua</h1>
 
-        <h3>Tema Do Dia</h3>
+        <h3>Conteudo de Apoio</h3>
 
         <div id="tema">
             <p id="temaTexto">
                 A importância de cuidar da saúde mental no ambiente de trabalho.
             </p>
         </div>
-
-        <div id="conteudo">
-            <h3>Conteúdo De Apoio</h3>
-
-            <p>
-                Refletir sobre nossas emoções e experiências no trabalho nos ajuda a
-                desenvolver mais equilíbrio emocional. Pequenas pausas para reflexão
-                podem melhorar nossa produtividade e bem-estar.
-            </p>
+        <br>
         </div>
 
     </section>
@@ -78,31 +74,37 @@
 <hr>
 
 <footer>
-
-    <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="Mascote">
+    <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
 
     <div id="pag">
+        <h4>Veja mais:</h4>
         <nav>
-            <a href="#">Mapeamento Evolua+</a>
-            <a href="#">Psicólogos</a>
-            <a href="#">Desafio Diário</a>
-            <a href="#">Meu Painel</a>
+            <a href="Index.html">Evolua+</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Desafio Diário</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Meu Painel</a>
         </nav>
+
     </div>
 
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-
-        <p>
-            Carlos Eduardo Malheiro de Oliveira Almeida <br>
-            Lucas Oliveira Gomes <br>
-            Murilo Miranda de Castro Silva <br>
+        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+            Lucas Oliveira Gomes <br/>
+            Murilo Miranda de Castro Silva <br/>
             Geovani Oshiro Correa
         </p>
     </div>
 
 </footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,68 @@
+html, body {
+    overscroll-behavior-y: none; 
+  }
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 150px;
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+
+.pacientes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid 1px;
+    width: 300px;
+    height: 500px;
+    min-height: 300px;
+    border-radius: 15px;
+}
+
+.Vizualizar{
+    width: 300px;
+    margin-top: 20px;
+    border-top: 1px solid ;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 20px;
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Vizualizar img{
+    width: 50px;
+    height: 50px;
+}
+
+.icone {
+    display: flex;          /* Faz o ícone e o texto ficarem lado a lado */
+    align-items: center;    /* Alinha o ícone verticalmente com o texto */
+    gap: 10px;              /* Espaço entre o ícone e o texto */
+    text-decoration: none;
+    color: #333;
+  }
+
+  .botao {
+    margin-top: 10px;
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background-color: #ef476eb9;
+    color: white;
+}

@@ -13,19 +13,19 @@
 
     <header>
         <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-
+        
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
+        
         <nav id="navMenu" class="nav-menu">
             <a href="Index.html">Evolua+</a>
-            <a href="#">Mapeamento Evolua+</a>
-            <a href="#">Psicólogos</a>
-            <a href="#">Desafio Diário</a>
-            <a href="#">Meu Painel</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Desafio Diário</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Meu Painel</a>
         </nav>
     </header>
 
@@ -44,6 +44,7 @@
                 <div class="psicologo principal" id="psicologoAtual">
                     <div class="foto"></div>
                     <div class="descricao"></div>
+                    <button id="botao">Curtir</button>
                 </div>
 
                 <div class="psicologo pequeno" id="psicologoProximo">
@@ -59,27 +60,30 @@
     <hr>
 
     <footer>
-        <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="Mascote">
+        <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
 
         <div id="pag">
+            <h4>Veja mais:</h4>
             <nav>
-                <a href="#">Mapeamento Evolua+</a>
-                <a href="#">Psicólogos</a>
-                <a href="#">Desafio Diário</a>
-                <a href="#">Meu Painel</a>
+                <a href="Index.html">Evolua+</a>
+                <a href="escolher_psiocologo.html">Psicólogos</a>
+                <a href="desafio.html">Desafio Diário</a>
+                <a href="Formulario.html">Formulario</a>
+                <a href="painel.html">Meu Painel</a>
             </nav>
+    
         </div>
 
         <div id="rodape">
             <h4>Feito Por:</h4>
             <h5>Next Gen Devs</h5>
-            <p>
-                Carlos Eduardo Malheiro de Oliveira Almeida <br>
-                Lucas Oliveira Gomes <br>
-                Murilo Miranda de Castro Silva <br>
+            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+                Lucas Oliveira Gomes <br/>
+                Murilo Miranda de Castro Silva <br/>
                 Geovani Oshiro Correa
             </p>
         </div>
+
     </footer>
 
     <script>
@@ -88,6 +92,12 @@
         }
     </script>
     <script src="../JS/psicologos.js"></script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+        }
+    </script>
 
 </body>
 

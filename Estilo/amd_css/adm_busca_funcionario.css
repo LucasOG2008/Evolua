@@ -1,0 +1,98 @@
+.perfil{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    margin-bottom:20px;
+    background: linear-gradient(to right, #ff9100 5%, #bfe0ef 20%);
+    border-radius:10px;
+    font-family:Corpo, sans-serif;
+    border: 1px solid #000000;
+    margin-left: 10px;
+    cursor:pointer;
+}
+
+.perfil p{
+    margin-left: 75px;
+    color: #000000;
+}
+
+.perfil, .perfil p {
+    text-decoration: none;
+  }
+
+
+.lupa {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #bfe0ef;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  padding-left: 6px;
+
+  border: 1px solid #000000;
+}
+
+.lupa img {
+  width: 30px;
+  height: 20px;
+  object-fit: contain;
+}
+
+main{
+    width:80%;
+    margin:auto;
+    margin-top:40px;
+    font-family:Titulo, sans-serif;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+
+.container{
+    display:flex;
+    gap:40px;
+    transition:0.3s;
+}
+
+.metade{
+    flex:1;
+    transition:0.3s;
+}
+
+.barraBusca{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:30px;
+    
+}
+
+.barraBusca input{
+    flex:1;
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    background-color: #bfe0ef;
+    border: 1px solid #000000;
+}
+
+.botaoc{
+margin-bottom:20px;
+padding:10px 20px;
+margin-right:800px;
+border: 1px solid #000000;
+border-radius:10px;
+background-color:#09204b;
+color:white;
+cursor:pointer;
+font-family:Corpo, sans-serif;
+}
+
