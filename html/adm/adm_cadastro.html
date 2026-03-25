@@ -129,4 +129,46 @@
     </main>
 
 </body>
+<script>
+    const form = document.getElementById("acesso");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // evita recarregar a página
+
+        // pegando os dados
+        const dados = {
+            nome: document.getElementById("usuario").value,
+            cargo: document.getElementById("cargo").value,
+            setor: document.getElementById("setor").value,
+            email: document.getElementById("email").value,
+            telefone: document.getElementById("telefone").value,
+            cpf: document.getElementById("cpf").value,
+            senha: document.getElementById("senha").value
+        };
+
+        try {
+            const resposta = await fetch("http://localhost:3000/usuarios", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await resposta.json();
+
+            if (resposta.ok) {
+                alert("Usuário cadastrado com sucesso!");
+                form.reset();
+            } else {
+                alert("Erro: " + resultado.message);
+            }
+
+        } catch (erro) {
+            console.error("Erro:", erro);
+            alert("Erro ao conectar com o servidor");
+        }
+    });
+</script>
+
 </html>
