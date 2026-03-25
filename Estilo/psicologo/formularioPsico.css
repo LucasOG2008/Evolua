@@ -17,30 +17,6 @@ body{
     display: none;
 }
 
-#pergInicial{
-    border-radius: 10px;
-}
-
-#segPerg{
-    border-radius: 10px;
-}
-
-#terPerg{
-    border-radius: 10px;
-}
-
-#quarPerg{
-    border-radius: 10px;
-}
-
-#quinPerg{
-    border-radius: 10px;
-}
-
-.Borda{
-
-    border-radius: 100px;
-}
 
 #Perguntas div.ativa {
     display: block;
@@ -52,7 +28,7 @@ main{
 }
 
 section{
-    background-color: #bfe0efa8;
+    background-color: #ef476e6e;
     margin-left: 100px;
     margin-right: 100px;
     border-radius: 25px;

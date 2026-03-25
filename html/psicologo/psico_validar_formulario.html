@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psicologo Validar Formulario+</title>
     <link rel="shortcut icon" href="../../Imagens/Formulario/mascote_sem_fundo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../../Estilo/formulario.css">
-    <link rel="stylesheet" href="../../Estilo/global.css">
+    <link rel="stylesheet" href="../../Estilo/psicologo/formularioPsico.css">
+    <link rel="stylesheet" href="../../Estilo/psicologo/globalpsico.css">
 </head>
 <body>
 
@@ -21,10 +21,8 @@
         
         <nav id="navMenu" class="nav-menu">
             <a href="psico_index.html">Evolua+</a>
-            <a href="escolher_psiocologo.html">Psicólogos</a>
-            <a href="desafio.html">Desafio Diário</a>
-            <a href="Formulario.html">Formulario</a>
-            <a href="painel.html">Meu Painel</a>
+            <a href="psicoPacientes.html">Pacientes</a>
+            <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
         </nav>
     </header>
 
@@ -37,37 +35,38 @@
             <form id="meuFormulario" method="post">
                 <div id="Inicial">
                     <label for="pergInicial">
-                        Primeira questão 
-                        <br> 
-                        <br> 
+                        Primeira questão
+                        <br>
+                        <br>
                         <p>Faça um breve resumo sobre você para que possamos te conhecer melhor</p>
                     </label>
-                    <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui"></textarea>
+                    <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui" readonly></textarea>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
                     <label for="segPerg">Segunda questão</label>
-                    <textarea name="questaoDois" id="segPerg" required placeholder="Digite sua resposta aqui"></textarea>
+                    <textarea name="questaoDois" id="segPerg" required placeholder="Digite sua resposta aqui"1></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
                     <label for="terPerg">Terceira questão</label>
-                    <textarea name="questaoTres" id="terPerg" required placeholder="Digite sua resposta aqui"></textarea>
+                    <textarea name="questaoTres" id="terPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
                     <label for="quarPerg">Quarta questão</label>
-                    <textarea name="questaoQuatro" id="quarPerg" required placeholder="Digite sua resposta aqui"></textarea>
+                    <textarea name="questaoQuatro" id="quarPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
                     <label for="quinPerg">Quinta questão</label>
-                    <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui"></textarea>
+                    <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
-                    <button type="submit" id="botao" class="Finalizar" disabled>Finalizar</button>
+                    <button type="submit" id="botao" class="Finalizar" disabled>Validar</button>
+                    <button type="submit" id="botao" class="Finalizar" disabled>Invalidar</button>
                 </div>
             </form>
         </section>
@@ -82,11 +81,9 @@
         <div id="pag">
             <h4>Veja mais:</h4>
             <nav>
-                <a href="Index.html">Evolua+</a>
-                <a href="escolher_psiocologo.html">Psicólogos</a>
-                <a href="desafio.html">Desafio Diário</a>
-                <a href="Formulario.html">Formulario</a>
-                <a href="painel.html">Meu Painel</a>
+                <a href="psico_index.html">Evolua+</a>
+                <a href="psicoPacientes.html">Pacientes</a>
+                <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
             </nav>
     
         </div>
@@ -110,6 +107,8 @@
             document.getElementById("navMenu").classList.toggle("show");
         }
     </script>
+
+    <script src="../../Js/formularioPsico.js"></script>
 
 </body>
 </html>
