@@ -1,78 +1,86 @@
-async function mostrarFuncionarios() {
-    const res = await fetch("http://localhost:3000/funcionarios");
-    const dados = await res.json();
+function mostrarBotaoSalvar() {
+    const botao = document.getElementById("btnSalvarDescricao");
+    if (botao) botao.style.display = "block";
+}
 
-    const container = document.getElementById("funcionarios");
+document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
     
-    container.innerHTML = `
-        <div class="barraBusca">
-            <input type="text" id="buscaFuncionario" placeholder="Buscar funcionário">
-            <button onclick="buscarFuncionario()">Buscar</button>
-        </div>
-    `;
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
 
-    dados.forEach(f => {
-        const div = document.createElement("div");
-        div.classList.add("perfil");
-        div.innerHTML = `<p>${f.nome}</p>`;
-        container.appendChild(div);
-    });
-}
+    try {
+        const res = await fetch("http://localhost:3000/users/perfil", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
 
-async function mostrarPsicologos() {
-    const res = await fetch("http://localhost:3000/psicologos");
-    const dados = await res.json();
+        if (res.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+            return;
+        }
+        
+        const data = await res.json();
+        console.log("Dados carregados:", data);
 
-    const container = document.getElementById("psicologos");
+        document.getElementById("nome").innerText = data.nome || data.Nome || "Não informado";
+        document.getElementById("cargo").innerText = data.cargo || data.Cargo || "Não informado";
+        document.getElementById("setor").innerText = data.setor || data.Setor || "Não informado";
+        
+        if (document.getElementById("pontuacaoValor")) {
+            document.getElementById("pontuacaoValor").innerText = data.pontos || data.Pontos || 0;
+        }
+        
+        const campoDescricao = document.getElementById("descricaoUsuario");
+        if (campoDescricao) {
+            campoDescricao.value = data.descricao || data.Descricao || "";
+            document.getElementById("btnSalvarDescricao").style.display = "none";
+        }
 
-    container.innerHTML = `
-        <div class="barraBusca">
-            <input type="text" id="buscaPsicologo" placeholder="Buscar psicólogo">
-            <button onclick="buscarPsicologo()">Buscar</button>
-        </div>
-    `;
+        const secaoPsicologo = document.getElementById("secaoPsicologo");
+        const avisoSemPsi = document.getElementById("avisoSemPsi");
 
-    dados.forEach(p => {
-        const div = document.createElement("div");
-        div.classList.add("perfil");
-        div.innerHTML = `<p>${p.nome}</p>`;
-        container.appendChild(div);
-    });
-}
+        if (data.psi_nome || data.Psi_nome) {
+            if (secaoPsicologo) secaoPsicologo.style.display = "block";
+            if (avisoSemPsi) avisoSemPsi.style.display = "none";
+            document.getElementById("psiNome").innerText = data.psi_nome || data.Psi_nome;
+            document.getElementById("psiEmail").innerText = data.psi_email || data.Psi_email || "Não informado";
+            document.getElementById("psiNumero").innerText = data.psi_telefone || data.Psi_telefone || "Não informado";
+            document.getElementById("psiDescricao").innerText = data.psi_descricao || data.Psi_descricao || "Sem descrição.";
+        } else {
+            if (secaoPsicologo) secaoPsicologo.style.display = "none";
+            if (avisoSemPsi) avisoSemPsi.style.display = "block";
+        }
 
-async function buscarFuncionario() {
-    const nome = document.getElementById("buscaFuncionario").value;
+    } catch (error) {
+        console.error("Erro ao buscar perfil:", error);
+    }
+});
 
-    const res = await fetch(`http://localhost:3000/funcionarios/busca?nome=${nome}`);
-    const dados = await res.json();
+async function salvarDescricao() {
+    const descricao = document.getElementById("descricaoUsuario").value;
+    const token = localStorage.getItem("token");
+    const botao = document.getElementById("btnSalvarDescricao");
 
-    const container = document.getElementById("funcionarios");
+    try {
+        const res = await fetch("http://localhost:3000/users/perfil/descricao", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ descricao })
+        });
 
-    container.innerHTML = "";
-
-    dados.forEach(f => {
-        const div = document.createElement("div");
-        div.classList.add("perfil");
-        div.innerHTML = `<p>${f.nome}</p>`;
-        container.appendChild(div);
-    });
-}
-
-
-async function buscarPsicologo() {
-    const nome = document.getElementById("buscaPsicologo").value;
-
-    const res = await fetch(`http://localhost:3000/psicologos/busca?nome=${nome}`);
-    const dados = await res.json();
-
-    const container = document.getElementById("psicologos");
-
-    container.innerHTML = "";
-
-    dados.forEach(p => {
-        const div = document.createElement("div");
-        div.classList.add("perfil");
-        div.innerHTML = `<p>${p.nome}</p>`;
-        container.appendChild(div);
-    });
+        if (res.ok) {
+            alert("Descrição salva!");
+            if (botao) botao.style.display = "none"; 
+        } else {
+            alert("Erro ao salvar.");
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+    }
 }

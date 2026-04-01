@@ -12,16 +12,15 @@
 </head>
 
 <body>
-
     <header>
         <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-        
+       
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        
+       
         <nav id="navMenu" class="nav-menu">
             <a href="Index.html">Evolua+</a>
             <a href="escolher_psiocologo.html">Psicólogos</a>
@@ -31,83 +30,68 @@
         </nav>
     </header>
 
+    <main>
+        <section id="momento">
+            <h1>Momento Evolua</h1>
 
-<main>
+            <h3>Conteudo de Apoio</h3>
 
-    <section id="momento">
+            <div id="tema">
+                <p id="temaTexto">
+                    A importância de cuidar da saúde mental no ambiente de trabalho.
+                </p>
+            </div>
+            <br>
+        </section>
 
-        <h1>Momento Evolua</h1>
+        <section id="reflexao">
+            <h2>
+                Sua vez, faça uma breve reflexão sobre o assunto
+                com sua experiência de vida
+            </h2>
 
-        <h3>Conteudo de Apoio</h3>
+            <div id="caixaResposta">
+                <label for="resposta">Resposta</label>
+                <textarea id="resposta" placeholder="Digite sua reflexão aqui..."></textarea>
+            </div>
 
-        <div id="tema">
-            <p id="temaTexto">
-                A importância de cuidar da saúde mental no ambiente de trabalho.
+            <button id="botao">Enviar Resposta</button>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
+
+        <div id="pag">
+            <h4>Veja mais:</h4>
+            <nav>
+                <a href="Index.html">Evolua+</a>
+                <a href="escolher_psiocologo.html">Psicólogos</a>
+                <a href="desafio.html">Desafio Diário</a>
+                <a href="Formulario.html">Formulario</a>
+                <a href="painel.html">Meu Painel</a>
+            </nav>
+        </div>
+
+        <div id="rodape">
+            <h4>Feito Por:</h4>
+            <h5>Next Gen Devs</h5>
+            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+                Lucas Oliveira Gomes <br/>
+                Murilo Miranda de Castro Silva <br/>
+                Geovani Oshiro Correa
             </p>
         </div>
-        <br>
-        </div>
+    </footer>
 
-    </section>
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+        }
+    </script>
 
-
-    <section id="reflexao">
-
-        <h2>
-            Sua vez, faça uma breve reflexão sobre o assunto
-            com sua experiência de vida
-        </h2>
-
-        <div id="caixaResposta">
-
-            <label for="resposta">Resposta</label>
-
-            <textarea id="resposta" placeholder="Digite sua reflexão aqui..."></textarea>
-
-        </div>
-
-        <button id="botao">Enviar Resposta</button>
-
-    </section>
-
-</main>
-
-<hr>
-
-<footer>
-    <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
-
-    <div id="pag">
-        <h4>Veja mais:</h4>
-        <nav>
-            <a href="Index.html">Evolua+</a>
-            <a href="escolher_psiocologo.html">Psicólogos</a>
-            <a href="desafio.html">Desafio Diário</a>
-            <a href="Formulario.html">Formulario</a>
-            <a href="painel.html">Meu Painel</a>
-        </nav>
-
-    </div>
-
-    <div id="rodape">
-        <h4>Feito Por:</h4>
-        <h5>Next Gen Devs</h5>
-        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-            Lucas Oliveira Gomes <br/>
-            Murilo Miranda de Castro Silva <br/>
-            Geovani Oshiro Correa
-        </p>
-    </div>
-
-</footer>
-
-<script>
-    function toggleMenu() {
-        document.getElementById("navMenu").classList.toggle("show");
-    }
-</script>
-
-<script src="../Js/desafio.js"></script>
-
+    <script src="../Js/desafio.js"></script>
 </body>
 </html>

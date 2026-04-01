@@ -33,7 +33,6 @@ const respostaController = {
                 [idUsuario, id_pergunta, resposta]
             );
 
-            // Adiciona 10 pontos ao usuário por completar o desafio
             await db.execute(
                 'UPDATE usuarios SET Pontos = Pontos + 10 WHERE id = ?',
                 [idUsuario]

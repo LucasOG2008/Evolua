@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // Carrega o desafio do banco
     let desafioAtual = null;
 
     try {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const desafios = await res.json();
 
         if (desafios.length > 0) {
-            // Pega o primeiro desafio (ou pode ser aleatório)
             desafioAtual = desafios[0];
             document.getElementById("temaTexto").innerText = desafioAtual.titulo || desafioAtual.descricao;
         }
