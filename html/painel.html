@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Painel</title>
+    <title>Meu Painel - Evolua+</title>
     <link rel="stylesheet" href="../Estilo/global.css">
     <link rel="stylesheet" href="../Estilo/painel.css">
     <link rel="shortcut icon" href="../Imagens/Home_page/mascote_sem_fundo.png" type="image/x-icon">
@@ -35,20 +35,26 @@
         <h2>Usuário</h2>
         <div class="conteudoCard">
             <div class="infoUsuario">
-                <p><strong>Nome:</strong> Leandro</p>
-                <p><strong>Cargo:</strong> Desenvolvedor</p>
-                <p><strong>Setor:</strong> Tecnologia</p>
+                <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
+                <p><strong>Cargo:</strong> <span id="cargo">Carregando...</span></p>
+                <p><strong>Setor:</strong> <span id="setor">Carregando...</span></p>
             </div>
+
             <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <p>Infelizmente descobri a pouco tempo que tenho TDH, onde perco de forma recorrente a minha memoria, ultimamente esqueci de forma temporaria o nome da minha filha, e é algo que está me fazendo questionar algumas coisas</p>
+                <p><strong>Sua Descrição:</strong></p>
+                <textarea id="descricaoUsuario" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
+                
+                <button id="btnSalvarDescricao" onclick="salvarDescricao()" class="btn-acao" style="display: none; margin-top: 10px;">
+                    Salvar Alterações
+                </button>
             </div>
+
             <div class="pontuacao">
                 <div class="itemPontuacao">
                     <p>
                         <span class="numero">
-                            <img src="../Imagens/Chama.png" alt="">
-                            <span class="valor">100</span>
+                            <img src="../Imagens/Chama.png" alt="Ícone de Pontuação">
+                            <span class="valor" id="pontuacaoValor">0</span>
                         </span>
                         Pontuação
                     </p>
@@ -57,21 +63,26 @@
         </div>
     </section>
     
-    <section class="card">
+    <section class="card" id="secaoPsicologo" style="display: none;">
         <h2>Psicólogo</h2>
         <div class="conteudoCard">
-            <img src="../Imagens/Home_page/fim.png"  class="fotoPsicologo">
+            <img src="../Imagens/Home_page/fim.png" class="fotoPsicologo" alt="Foto do Psicólogo">
             <div class="infoPsicologo">
-                <p><strong>Nome:</strong> Dr. João Silva</p>
-                <p><strong>Email:</strong> psicologo@email.com</p>
-                <p><strong>Número:</strong> (11) 4002-8922</p>
+                <p><strong>Nome:</strong> <span id="psiNome"></span></p>
+                <p><strong>Email:</strong> <span id="psiEmail"></span></p>
+                <p><strong>Número:</strong> <span id="psiNumero"></span></p>
             </div>
             <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <p>Sei nao</p>
+                <p><strong>Sobre o Profissional:</strong></p>
+                <p id="psiDescricao"></p>
             </div>
         </div>
     </section>
+
+    <div id="avisoSemPsi" style="text-align: center; margin-top: 20px; display: none;">
+        <p>Você ainda não possui um psicólogo vinculado.</p>
+        <a href="escolher_psiocologo.html" class="btn-link" style="color: #4f46e5; font-weight: bold;">Escolher Psicólogo agora</a>
+    </div>
 </main>
 
 <hr>
@@ -88,7 +99,6 @@
             <a href="Formulario.html">Formulario</a>
             <a href="painel.html">Meu Painel</a>
         </nav>
-
     </div>
 
     <div id="rodape">
@@ -100,14 +110,16 @@
             Geovani Oshiro Correa
         </p>
     </div>
-
 </footer>
 
 <script>
+    // Função simples para o menu mobile
     function toggleMenu() {
         document.getElementById("navMenu").classList.toggle("show");
     }
 </script>
+
+<script src="../Js/perfis.js"></script>
 
 </body>
 </html>

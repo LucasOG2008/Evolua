@@ -1,82 +1,106 @@
-const psicologos = [
-
-{
-foto: "../Imagens/Home_page/fim.png",
-descricao: "Dr. João Silva - Especialista em ansiedade."
-},
-
-{
-foto: "",
-descricao: "Dra. Ana Costa - Terapia cognitivo comportamental."
-},
-
-{
-foto: "",
-descricao: "Dr. Marcos Lima - Desenvolvimento emocional."
-},
-
-{
-foto: "",
-descricao: "Dra. Juliana Alves - Psicologia clínica."
-}
-
-];
-
+let psicologos = [];
 let indice = 0;
 
 const atual = document.querySelector("#psicologoAtual");
 const anterior = document.querySelector("#psicologoAnterior");
 const proximo = document.querySelector("#psicologoProximo");
 
-function atualizar(){
+async function carregarPsicologos() {
+    const token = localStorage.getItem("token");
 
-let ant = indice - 1;
-let prox = indice + 1;
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
 
-if(ant < 0) ant = psicologos.length - 1;
-if(prox >= psicologos.length) prox = 0;
+    try {
+        const res = await fetch("http://localhost:3000/psicologos", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
 
-mostrar(atual, psicologos[indice]);
-mostrar(anterior, psicologos[ant]);
-mostrar(proximo, psicologos[prox]);
+        if (res.status === 401) {
+            window.location.href = "login.html";
+            return;
+        }
 
+        psicologos = await res.json();
+        console.log("DADOS DOS PSICÓLOGOS:", psicologos); // remova depois de testar
+
+        if (psicologos.length === 0) {
+            alert("Nenhum psicólogo encontrado.");
+            return;
+        }
+
+        atualizar();
+    } catch (error) {
+        console.error("Erro ao carregar psicólogos:", error);
+    }
 }
 
-function mostrar(elemento, dados){
+function atualizar() {
+    let ant = indice - 1;
+    let prox = indice + 1;
 
-const foto = elemento.querySelector(".foto");
-const descricao = elemento.querySelector(".descricao");
+    if (ant < 0) ant = psicologos.length - 1;
+    if (prox >= psicologos.length) prox = 0;
 
-foto.style.backgroundImage = `url(${dados.foto})`;
-foto.style.backgroundSize = "cover";
-foto.style.backgroundPosition = "center";
-
-descricao.textContent = dados.descricao;
-
+    mostrar(atual, psicologos[indice], true);
+    mostrar(anterior, psicologos[ant], false);
+    mostrar(proximo, psicologos[prox], false);
 }
 
-document.getElementById("proximo").onclick = function(){
+function mostrar(elemento, dados, mostrarBotao) {
+    const foto = elemento.querySelector(".foto");
+    const descricao = elemento.querySelector(".descricao");
 
-indice++;
+    if (dados.Foto) {
+        foto.style.backgroundImage = `url('${dados.Foto}')`;
+    } else {
+        foto.style.backgroundImage = `url('../Imagens/Home_page/fim.png')`;
+    }
+    foto.style.backgroundSize = "cover";
+    foto.style.backgroundPosition = "center";
 
-if(indice >= psicologos.length){
-    indice = 0;
+    descricao.textContent = `${dados.Nome} — ${dados.Descricao || 'Sem descrição'}`;
+
+    // ✅ Usa o botão .btn-curtir que está dentro do card
+    const btnCurtir = elemento.querySelector(".btn-curtir");
+    if (mostrarBotao && btnCurtir) {
+        btnCurtir.style.display = "block";
+        btnCurtir.onclick = () => curtirPsicologo(dados.ID, dados.Nome);
+    } else if (btnCurtir) {
+        btnCurtir.style.display = "none";
+    }
 }
 
-atualizar();
+async function curtirPsicologo(id, nome) {
+    const token = localStorage.getItem("token");
 
+    try {
+        const res = await fetch(`http://localhost:3000/psicologos/${id}/curtir`, {
+            method: "POST",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.ok) {
+            alert(`${nome} foi vinculado ao seu perfil! Ele aparecerá no seu painel.`);
+        } else {
+            const data = await res.json();
+            alert("Erro: " + data.erro);
+        }
+    } catch (error) {
+        console.error("Erro ao curtir:", error);
+    }
 }
 
-document.getElementById("anterior").onclick = function(){
+document.getElementById("proximo").onclick = function () {
+    indice = (indice + 1) % psicologos.length;
+    atualizar();
+};
 
-indice--;
+document.getElementById("anterior").onclick = function () {
+    indice = (indice - 1 + psicologos.length) % psicologos.length;
+    atualizar();
+};
 
-if(indice < 0){
-    indice = psicologos.length - 1;
-}
-
-atualizar();
-
-}
-
-atualizar();
+carregarPsicologos();

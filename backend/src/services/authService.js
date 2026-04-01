@@ -3,14 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const authService = {
+    async login(cpf, senha) {
+        const cpfLimpo = String(cpf).replace(/\D/g, ''); 
 
-    async login(cpf, senha){
+        const sql = `SELECT * FROM usuarios WHERE REPLACE(REPLACE(cpf, '.', ''), '-', '') = ?`;
+        const [rows] = await db.execute(sql, [cpfLimpo]);
 
-        const sql = `SELECT * FROM usuarios WHERE cpf = ?`;
-
-        const [rows] = await db.execute(sql, [cpf]);
-
-        if(rows.length === 0){
+        if (rows.length === 0) {
             throw new Error("Usuário não encontrado");
         }
 
@@ -18,14 +17,17 @@ const authService = {
 
         const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
-        if(!senhaValida){
+        if (!senhaValida) {
             throw new Error("Senha inválida");
         }
 
         const token = jwt.sign(
-            { id: usuario.id, cpf: usuario.cpf },
+            { 
+                id: usuario.ID || usuario.id, // 
+                cpf: cpfLimpo 
+            }, 
             process.env.JWT_SECRET,
-            { expiresIn: "1d" }
+            { expiresIn: "24h" }
         );
 
         return {
@@ -40,9 +42,10 @@ const authService = {
         };
     },
 
-    async cadastrar(usuario){
-
+    async cadastrar(usuario) {
         const senhaHash = await bcrypt.hash(usuario.senha, 10);
+        
+        const cpfLimpo = String(usuario.cpf).replace(/\D/g, '');
 
         const sql = `
             INSERT INTO usuarios
@@ -52,7 +55,7 @@ const authService = {
 
         const [result] = await db.execute(sql, [
             usuario.nome,
-            usuario.cpf,
+            cpfLimpo,
             usuario.email,
             senhaHash,
             usuario.cargo,
@@ -64,7 +67,6 @@ const authService = {
             id: result.insertId
         };
     }
-
 };
 
 module.exports = authService;

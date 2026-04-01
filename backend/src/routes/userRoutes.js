@@ -1,7 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const User = require('../models/User');
 
-router.get('/', userController.listar);
+router.get('/', authMiddleware, userController.listar);
+
+router.get('/perfil', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findFullProfileByCpf(req.user.cpf);
+
+        if (!user) {
+            return res.status(404).json({ erro: "Usuário não encontrado" });
+        }
+
+        res.json({
+            id: user.id,
+            nome: user.nome,
+            cargo: user.cargo,
+            setor: user.setor,
+            descricao: user.descricao,
+            Pontos: user.Pontos,
+            psi_nome: user.psi_nome,
+            psi_email: user.psi_email,
+            psi_telefone: user.psi_telefone,
+            psi_descricao: user.psi_descricao 
+        });
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
+    }
+});
+
+router.patch('/perfil/descricao', authMiddleware, userController.atualizarDescricao);
 
 module.exports = router;

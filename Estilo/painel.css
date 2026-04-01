@@ -104,4 +104,29 @@ main{
     .infoPsicologo{
     width: 25%;
 }
-    
+
+.descricao textarea {
+    background-color: #ffffff;
+    border: 1px solid #b0c4cc;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-top: 10px;
+    width: 100%;
+    height: 120px;
+}
+
+.descricao textarea:focus {
+    border-color: #4f46e5;
+}
+
+.descricao button {
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #073B4C;
+    color: white;
+}

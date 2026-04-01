@@ -80,3 +80,16 @@ background: none;
 border: none;
 cursor: pointer;
 }
+
+.btn-curtir {
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #073B4C;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-curtir:hover {
+    opacity: 0.8;
+}

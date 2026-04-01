@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const desafioController = require('../controllers/desafioController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
-router.get('/', desafioController.listar);
-router.post('/', desafioController.criar);
+router.get('/', authMiddleware, desafioController.listar);
+router.post('/', authMiddleware, desafioController.criar);
 
 module.exports = router;
