@@ -31,15 +31,15 @@
 
     <main>
 
-        <h1>Mapemamento Evolua+</h1>
+        <h1>Mapeamento Evolua+</h1>
 
         <section id="Perguntas">
             <p>Sua evolução começa com honestidade. Este diagnóstico é 100% confidencial e analisado apenas por nossa equipe clínica.</p>
             <form id="meuFormulario" method="post">
-                <div id="Inicial">
+                <div id="Inicial" class="ativa">
                     <label for="pergInicial" class="Borda">
-                        Primeira questão 
-                        <p>Faça um breve resumo sobre você para que possamos te conhecer melhor</p>
+                        Primeira questão: Conhecendo você
+                        <p>Faça um breve resumo sobre você, incluindo nome, idade, ocupação e o que te motivou a buscar acompanhamento psicológico.</p>
                     </label>
                     <br>
                     <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui"></textarea>
@@ -47,28 +47,40 @@
                 </div>
                 <br>
                 <div class="Secundaria">
-                    <label for="segPerg" class="Borda">Segunda questão</label>
+                    <label for="segPerg" class="Borda">
+                        Segunda questão: Saúde emocional
+                        <p>Como você tem avaliado seu estado emocional nas últimas semanas? Descreva sentimentos como ansiedade, tristeza, motivação ou estresse.</p>
+                    </label>
                     <br>
                     <textarea name="questaoDois" id="segPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="terPerg" class="Borda">Terceira questão</label>
+                    <label for="terPerg" class="Borda">
+                        Terceira questão: Relacionamentos
+                        <p>Como estão seus relacionamentos familiares, amorosos e de amizade? Sente que tem apoio emocional quando precisa?</p>
+                    </label>
                     <br>
                     <textarea name="questaoTres" id="terPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="quarPerg" class="Borda">Quarta questão</label>
+                    <label for="quarPerg" class="Borda">
+                        Quarta questão: Hábitos e rotina
+                        <p>Como estão seus hábitos de sono, alimentação e atividades físicas? Sente que sua rotina tem te ajudado ou prejudicado?</p>
+                    </label>
                     <br>
                     <textarea name="questaoQuatro" id="quarPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
                 <div class="Secundaria">
-                    <label for="quinPerg" class="Borda">Quinta questão</label>
+                    <label for="quinPerg" class="Borda">
+                        Quinta questão: Objetivos terapêuticos
+                        <p>Quais são seus principais objetivos com o acompanhamento psicológico? O que você espera alcançar ou melhorar em sua vida?</p>
+                    </label>
                     <br>
                     <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui"></textarea>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
