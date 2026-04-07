@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Painel</title>
+    <title>Painel Psicólogo</title>
     <link rel="stylesheet" href="../../Estilo/psicologo/globalpsico.css">
     <link rel="stylesheet" href="../../Estilo/psicologo/psico_painel.css">
-    <link rel="shortcut icon" href="../../Imagens/Home_page/mascote_sem_fundo.png" type="image/x-icon">
 </head>
 <body>
 
 <header>
-    <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+    <img src="../../Imagens/Home_page/logotipoSemfundo.png" id="logoEvolua">
     
     <div class="hamburger" onclick="toggleMenu()">
         <span></span>
@@ -20,10 +19,10 @@
     </div>
     
     <nav id="navMenu" class="nav-menu">
-            <a href="psico_index.html">Evolua+</a>
-            <a href="psicoPacientes.html">Pacientes</a>
-            <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
-            <a href="psico_painel.html">Painel</a>
+        <a href="psico_index.html">Evolua+</a>
+        <a href="psicoPacientes.html">Pacientes</a>
+        <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
+        <a href="psico_painel.html">Painel</a>
     </nav>
 </header>
 
@@ -33,19 +32,13 @@
     <section class="card">
         <h2>Usuário</h2>
         <div class="conteudoCard">
-            <div class="infoUsuario">
-                <p><strong>Nome:</strong> Leandro</p>
-                <p><strong>Cargo:</strong> Desenvolvedor</p>
-                <p><strong>Setor:</strong> Tecnologia</p>
-            </div>
-            <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <p>Infelizmente descobri a pouco tempo que tenho TDH, onde perco de forma recorrente a minha memoria, ultimamente esqueci de forma temporaria o nome da minha filha, e é algo que está me fazendo questionar algumas coisas</p>
-            </div>
-            <div class="pontuacao">
-                <div class="itemPontuacao">
-                </div>
-            </div>
+
+            <div class="infoUsuario" id="infoUsuario"></div>
+
+            <div class="descricao" id="descricaoUsuario"></div>
+
+            <div class="pontuacao" id="pontuacao"></div>
+
         </div>
     </section>
 </main>
@@ -53,35 +46,92 @@
 <hr>
 
 <footer>
-    <img src="../../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
+    <img src="../../Imagens/Home_page/mascote_sem_fundo.png">
 
     <div id="pag">
         <h4>Veja mais:</h4>
         <nav>
             <a href="psico_index.html">Evolua+</a>
             <a href="psicoPacientes.html">Pacientes</a>
-            <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
+            <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
             <a href="psico_painel.html">Painel</a>
         </nav>
-
     </div>
 
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+         <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
             Lucas Oliveira Gomes <br/>
             Murilo Miranda de Castro Silva <br/>
             Geovani Oshiro Correa
         </p>
     </div>
-
 </footer>
 
 <script>
-    function toggleMenu() {
-        document.getElementById("navMenu").classList.toggle("show");
+// MENU
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+// ==========================
+// BANCO
+// ==========================
+function getUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
+
+// ==========================
+// PEGAR ID
+// ==========================
+function getIdURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+}
+
+// ==========================
+// CARREGAR PAINEL
+// ==========================
+function carregarPainel() {
+    const usuarios = getUsuarios();
+    const id = getIdURL();
+
+    const usuario = usuarios.find(u => u.id == id);
+
+    if (!usuario) {
+        document.body.innerHTML = "<h1>Usuário não encontrado</h1>";
+        return;
     }
+
+    // ==========================
+    // USUÁRIO
+    // ==========================
+    document.getElementById("infoUsuario").innerHTML = `
+        <p><strong>Nome:</strong> ${usuario.nome}</p>
+        <p><strong>Email:</strong> ${usuario.email}</p>
+        <p><strong>Telefone:</strong> ${usuario.telefone}</p>
+    `;
+
+    document.getElementById("descricaoUsuario").innerHTML = `
+        <p><strong>Descrição:</strong></p>
+        <p>Paciente em acompanhamento psicológico</p>
+    `;
+
+    document.getElementById("pontuacao").innerHTML = `
+        <div class="itemPontuacao">
+            <p><strong>${Math.floor(Math.random()*100)}</strong> Pontuação</p>
+        </div>
+        <div class="itemPontuacao">
+            <p><strong>${Math.floor(Math.random()*7)}</strong> Dias Seguidos</p>
+        </div>
+    `;
+}
+
+// ==========================
+// INICIAR
+// ==========================
+window.onload = carregarPainel;
 </script>
 
 </body>

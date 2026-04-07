@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adm Visualizar Painel</title>
+    <title>Painel</title>
     <link rel="stylesheet" href="../../Estilo/amd_css/globaladmin.css">
     <link rel="stylesheet" href="../../Estilo/amd_css/adm_painel.css">
 </head>
 <body>
 
 <header>
-    <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
+    <img src="../../Imagens/Home_page/logotipoSemfundo.png" id="logoEvolua">
     
     <div class="hamburger" onclick="toggleMenu()">
         <span></span>
@@ -29,41 +29,33 @@
 <main>
     <h1 id="tituloPainel">Quadro Geral</h1>
     
+    <!-- USUÁRIO -->
     <section class="card">
         <h2>Usuário</h2>
         <div class="conteudoCard">
-            <div class="infoUsuario">
-                <p><strong>Cargo:</strong> Desenvolvedor</p>
-                <p><strong>Setor:</strong> Tecnologia</p>
-            </div>
-            <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <p>Sim</p>
-            </div>
-            <div class="pontuacao">
-                <div class="itemPontuacao">
-                    <p><strong>1</strong> Pontuação</p>
-                </div>
-                <div class="itemPontuacao">
-                    <p><strong>1</strong> Dias Seguidos</p>
-                </div>
-            </div>
+
+            <div class="infoUsuario" id="infoUsuario"></div>
+
+            <div class="descricao" id="descricaoUsuario"></div>
+
+            <div class="pontuacao" id="pontuacao"></div>
+
         </div>
     </section>
     
+    <!-- PSICÓLOGO -->
     <section class="card">
         <h2>Psicólogo</h2>
         <div class="conteudoCard">
-            <div class="fotoPsicologo"></div>
-            <div class="infoPsicologo">
-                <p><strong>Nome:</strong> Dr. João Silva</p>
-                <p><strong>Email:</strong> psicologo@email.com</p>
-                <p><strong>Número:</strong> (11) 4002-8922</p>
+
+            <div class="fotoPsicologo">
+                <img id="fotoPsicologo" src="" style="width:100px;">
             </div>
-            <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <p>Sei nao</p>
-            </div>
+
+            <div class="infoPsicologo" id="infoPsicologo"></div>
+
+            <div class="descricao" id="descricaoPsicologo"></div>
+
         </div>
     </section>
 </main>
@@ -71,7 +63,7 @@
 <hr>
 
 <footer>
-    <img src="../../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
+    <img src="../../Imagens/Home_page/mascote_sem_fundo.png">
 
     <div id="pag">
         <h4>Veja mais:</h4>
@@ -81,25 +73,99 @@
             <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
             <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
         </nav>
-
     </div>
 
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-            Lucas Oliveira Gomes (Gostoso) <br/>
+         <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+            Lucas Oliveira Gomes <br/>
             Murilo Miranda de Castro Silva <br/>
             Geovani Oshiro Correa
         </p>
     </div>
-
 </footer>
 
 <script>
-    function toggleMenu() {
-        document.getElementById("navMenu").classList.toggle("show");
+// MENU
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
+
+// ==========================
+// BANCO
+// ==========================
+function getUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
+
+// ==========================
+// PEGAR ID
+// ==========================
+function getIdURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+}
+
+// ==========================
+// CARREGAR PAINEL
+// ==========================
+function carregarPainel() {
+    const usuarios = getUsuarios();
+    const id = getIdURL();
+
+    const usuario = usuarios.find(u => u.id == id);
+
+    if (!usuario) {
+        document.body.innerHTML = "<h1>Usuário não encontrado</h1>";
+        return;
     }
+
+    // ==========================
+    // USUÁRIO
+    // ==========================
+    document.getElementById("infoUsuario").innerHTML = `
+        <p><strong>Nome:</strong> ${usuario.nome}</p>
+        <p><strong>Email:</strong> ${usuario.email}</p>
+        <p><strong>Telefone:</strong> ${usuario.telefone}</p>
+    `;
+
+    document.getElementById("descricaoUsuario").innerHTML = `
+        <p><strong>Descrição:</strong></p>
+        <p>Usuário ativo no sistema</p>
+    `;
+
+    document.getElementById("pontuacao").innerHTML = `
+        <div class="itemPontuacao">
+            <p><strong>${Math.floor(Math.random()*100)}</strong> Pontuação</p>
+        </div>
+        <div class="itemPontuacao">
+            <p><strong>${Math.floor(Math.random()*10)}</strong> Dias Seguidos</p>
+        </div>
+    `;
+
+    // ==========================
+    // PSICÓLOGO (simulação)
+    // ==========================
+    document.getElementById("infoPsicologo").innerHTML = `
+        <p><strong>Nome:</strong> ${usuario.nome}</p>
+        <p><strong>Email:</strong> ${usuario.email}</p>
+        <p><strong>Telefone:</strong> ${usuario.telefone}</p>
+    `;
+
+    document.getElementById("descricaoPsicologo").innerHTML = `
+        <p><strong>Descrição:</strong></p>
+        <p>Profissional cadastrado no sistema</p>
+    `;
+
+    document.getElementById("fotoPsicologo").src =
+        usuario.foto || "../../Imagens/Home_page/fim.png";
+}
+
+// ==========================
+// INICIAR
+// ==========================
+window.onload = carregarPainel;
 </script>
 
 </body>

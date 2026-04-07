@@ -6,172 +6,139 @@
     <title>Cadastrar Usuário</title>
     <link rel="stylesheet" href="../../Estilo/amd_css/adm_cadastro.css">
     <link rel="stylesheet" href="../../Estilo/amd_css/globaladmin.css">
-    <link rel="shortcut icon" href="../../Estilo/amd_css/adm_cadastro.css" type="image/x-icon">
 </head>
+
 <body>
-    <header>
-        <img src="../../Imagens/Login/logotipoSemfundo.png" alt="logotipoSemfundo" id="logoEvolua">
 
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <nav id="navMenu" class="nav-menu">
-            <a href="adm_index.html">Evolua+</a>
-            <a href="adm_cadastro.html">Cadastrar</a>
-            <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
-            <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
-        </nav>
-    </header>
+<header>
+    <img src="../../Imagens/Login/logotipoSemfundo.png" alt="logo" id="logoEvolua">
 
-    <main>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-        <form id="acesso">
+    <nav id="navMenu" class="nav-menu">
+        <a href="adm_index.html">Evolua+</a>
+        <a href="adm_cadastro.html">Cadastrar</a>
+        <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
+        <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
+    </nav>
+</header>
 
-            <div class="campo">
+<main>
 
-                <label for="nome">Nome:</label><br>
-                <input type="text" id="usuario" name="nome" placeholder="Nome do funcionario" required>
+<form id="acesso">
 
-            </div>
+    <div class="campo">
+        <label>Nome:</label><br>
+        <input type="text" id="usuario" required>
+    </div>
 
-            <br>
+    <div class="campo">
+        <label>Email:</label><br>
+        <input type="text" id="email" required>
+    </div>
 
-            <div class="campo">
+    <div class="campo">
+        <label>Telefone:</label><br>
+        <input type="text" id="telefone" required>
+    </div>
 
-                <label for="email">Email:</label><br>
-                <input type="text" id="email" name="email" placeholder="Qual o Email dele " required>
+    <div class="campo">
+        <label>CPF:</label><br>
+        <input type="text" id="cpf" required>
+    </div>
 
-            </div>
+    <div class="campo">
+        <label>Senha:</label><br>
+        <input type="text" id="senha" required>
+    </div>
 
-            <br>
+    <div class="campo">
+        <label>CRP:</label><br>
+        <input type="text" id="CRP">
+    </div>
 
-            <div class="campo">
+    <div class="campo">
+        <label>Foto:</label><br>
+        <input type="file" id="foto">
+    </div>
 
-                <label for="telefone">Telefone:</label><br>
-                <input type="text" id="telefone" name="telefone" placeholder="Qual o telefone dele" required>
+    <button type="submit" id="botao">Cadastrar</button>
 
-            </div>
+</form>
 
-            <br>
+</main>
 
-            <div class="campo">
-
-                <label for="cpf">CPF:</label><br>
-                <input type="text" id="cpf" name="cpf" placeholder="Qual o cpf" required>
-
-            </div>
-
-            <br>
-
-            <div class="campo">
-
-                <label for="senha">Senha:</label><br>
-                <input type="text" id="senha" name="senha" placeholder="Faça uma senha padrão" required>
-
-            </div>
-
-            <br>
-
-            <div class="campo">
-
-                <label for="crp">CRP:</label><br>
-                <input type="text" id="CRP" name="crp" placeholder="CRP" required>
-
-            </div>
-
-            <br>
-
-            <div class="campo">
-
-                <label for="foto">Foto:</label><br>
-                <input type="file" id="foto" name="foto" accept="image/">
-
-            </div>
-
-            <button id="botao" type="submit">Cadastrar</button>
-
-        </form>
-
-        <hr>
-
-        <footer>
-            <img src="../../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
-    
-            <div id="pag">
-                <h4>Veja mais:</h4>
-                <nav>
-                    <a href="adm_index.html">Evolua+</a>
-                    <a href="adm_cadastro.html">Cadastrar</a>
-                    <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
-                    <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
-                </nav>
-        
-            </div>
-    
-            <div id="rodape">
-                <h4>Feito Por:</h4>
-                <h5>Next Gen Devs</h5>
-                <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-                    Lucas Oliveira Gomes <br/>
-                    Murilo Miranda de Castro Silva <br/>
-                    Geovani Oshiro Correa
-                </p>
-            </div>
-    
-        </footer>
-
-        <script>
-            function toggleMenu() {
-                document.getElementById("navMenu").classList.toggle("show");
-            }
-        </script>
-
-    </main>
-
-</body>
 <script>
-    const form = document.getElementById("acesso");
+// MENU
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+}
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault(); // evita recarregar a página
+// ==========================
+// BANCO LOCAL
+// ==========================
+function getUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
 
-        // pegando os dados
-        const dados = {
-            nome: document.getElementById("usuario").value,
-            cargo: document.getElementById("cargo").value,
-            setor: document.getElementById("setor").value,
-            email: document.getElementById("email").value,
-            telefone: document.getElementById("telefone").value,
-            cpf: document.getElementById("cpf").value,
-            senha: document.getElementById("senha").value
+function salvarUsuarios(lista) {
+    localStorage.setItem("usuarios", JSON.stringify(lista));
+}
+
+// ==========================
+// CADASTRO
+// ==========================
+const form = document.getElementById("acesso");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const usuario = {
+        id: Date.now(),
+        nome: document.getElementById("usuario").value,
+        email: document.getElementById("email").value,
+        telefone: document.getElementById("telefone").value,
+        cpf: document.getElementById("cpf").value,
+        senha: document.getElementById("senha").value,
+        crp: document.getElementById("CRP").value,
+        foto: null
+    };
+
+    const file = document.getElementById("foto").files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            usuario.foto = reader.result;
+            salvar(usuario);
         };
 
-        try {
-            const resposta = await fetch("http://localhost:3000/auth/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dados)
-            });
+        reader.readAsDataURL(file);
+    } else {
+        salvar(usuario);
+    }
+});
 
-            const resultado = await resposta.json();
+// ==========================
+// SALVAR
+// ==========================
+function salvar(usuario) {
+    let lista = getUsuarios();
 
-            if (resposta.ok) {
-                alert("Usuário cadastrado com sucesso!");
-                form.reset();
-            } else {
-                alert("Erro: " + resultado.message);
-            }
+    lista.push(usuario);
 
-        } catch (erro) {
-            console.error("Erro:", erro);
-            alert("Erro ao conectar com o servidor");
-        }
-    });
+    salvarUsuarios(lista);
+
+    alert("Usuário cadastrado com sucesso!");
+
+    form.reset();
+}
 </script>
 
+</body>
 </html>

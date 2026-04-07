@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <script src="../../JS/perfis.js"></script>
 
     <header>
         <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
@@ -23,14 +22,18 @@
         
         <nav id="navMenu" class="nav-menu">
             <a href="adm_index.html">Evolua+</a>
-            <a href="adm_cadastro.html">Cadastrar</a>
+            <a href="#">Cadastrar</a>
             <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
         </nav>
     </header>
 
     <main>
         <h1>Perfis</h1>
-        <a class="botaoc" href="adm_cadastro.html">Cadastrar Funcionário</a>
+
+        <!-- BOTÕES DE CADASTRO -->
+        <button class="botaoc" onclick="cadastrarFuncionario()">Cadastrar Funcionário</button>
+        <button class="botaoc" onclick="cadastrarPsicologo()">Cadastrar Psicólogo</button>
+
         <div>
             <button onclick="mostrarFuncionarios()" id="botao">Funcionários</button>
             <button onclick="mostrarPsicologos()" id="botao">Psicólogos</button>
@@ -38,66 +41,9 @@
 
         <div class="container">
 
-            <section id="funcionarios" class="metade">
+            <section id="funcionarios" class="metade"></section>
 
-                <div class="barraBusca">
-                    <input type="text" placeholder="Buscar funcionário">
-                    <button class="lupa">
-                        <img src="../../Imagens/Home_page/64673.png" alt="lupa">
-                    </button>
-                  
-                </div>
-
-                <a href="adm_visualizar_perfil.html" class="perfil">
-                    <p>Carlos Eduardo Malheiro De Oliveira Almeida</p>
-                </a>
-
-                <div class="perfil">
-                    <p>Fulano</p>
-                    
-                </div>
-
-                <div class="perfil">
-                    <p>Fulano</p>
-                </div>
-
-                <div class="perfil">
-                    <p>Fulano</p>
-                </div>
-
-            </section>
-
-            
-            <section id="psicologos" class="metade">
-
-                <div class="barraBusca">
-                    <input type="text" placeholder="Buscar psicólogo">
-                    <button class="lupa">
-                        <img src="../../Imagens/Home_page/64673.png" alt="lupa">
-                    </button>
-                </div>
-
-                <div class="perfil">
-                    <p>Dr. João Silva</p>
-                    
-                </div>
-
-                <div class="perfil">
-                    <p>Dra. Maria Santos</p>
-                    
-                </div>
-
-                <div class="perfil">
-                    <p>Dr. Carlos Mendes</p>
-                    
-                </div>
-
-                <div class="perfil">
-                    <p>Dra. Ana Costa</p>
-                 
-                </div>
-
-            </section>
+            <section id="psicologos" class="metade"></section>
 
         </div>
     </main>
@@ -111,8 +57,8 @@
             <h4>Veja mais:</h4>
             <nav>
                 <a href="adm_index.html">Evolua+</a>
-                <a href="adm_cadastro.html">Cadastrar</a>
-                <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
+                <a href="#">Cadastrar</a>
+                <a href="#">Cadastrar psicólogo</a>
                 <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
             </nav>
     
@@ -121,7 +67,8 @@
         <div id="rodape">
             <h4>Feito Por:</h4>
             <h5>Next Gen Devs</h5>
-            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+            <p>
+                Carlos Eduardo Malheiro de Oliveira Almeida <br/>
                 Lucas Oliveira Gomes <br/>
                 Murilo Miranda de Castro Silva <br/>
                 Geovani Oshiro Correa
@@ -130,15 +77,110 @@
 
     </footer>
 
-    <script src="../../JS/perfis.js"></script>
-
     <script>
     function toggleMenu() {
         document.getElementById("navMenu").classList.toggle("show");
     }
-    </script>
 
-    
+    // ==========================
+    // BANCO (localStorage)
+    // ==========================
+    function getFuncionarios() {
+        return JSON.parse(localStorage.getItem("funcionarios")) || [];
+    }
+
+    function getPsicologos() {
+        return JSON.parse(localStorage.getItem("psicologos")) || [];
+    }
+
+    function salvarFuncionarios(lista) {
+        localStorage.setItem("funcionarios", JSON.stringify(lista));
+    }
+
+    function salvarPsicologos(lista) {
+        localStorage.setItem("psicologos", JSON.stringify(lista));
+    }
+
+    // ==========================
+    // CADASTRO
+    // ==========================
+    function cadastrarFuncionario() {
+        const nome = prompt("Digite o nome do funcionário:");
+        if (!nome) return;
+
+        let lista = getFuncionarios();
+        lista.push({ id: Date.now(), nome });
+
+        salvarFuncionarios(lista);
+        mostrarFuncionarios();
+    }
+
+    function cadastrarPsicologo() {
+        const nome = prompt("Digite o nome do psicólogo:");
+        if (!nome) return;
+
+        let lista = getPsicologos();
+        lista.push({ id: Date.now(), nome });
+
+        salvarPsicologos(lista);
+        mostrarPsicologos();
+    }
+
+    // ==========================
+    // RENDER
+    // ==========================
+    function render(lista, containerId) {
+        const container = document.getElementById(containerId);
+
+        container.innerHTML = `
+            <div class="barraBusca">
+                <input type="text" placeholder="Buscar..." oninput="buscar('${containerId}', this.value)">
+            </div>
+        `;
+
+        lista.forEach(item => {
+            container.innerHTML += `
+                <div class="perfil">
+                    <p>${item.nome}</p>
+                </div>
+            `;
+        });
+    }
+
+    // ==========================
+    // MOSTRAR
+    // ==========================
+    function mostrarFuncionarios() {
+        render(getFuncionarios(), "funcionarios");
+    }
+
+    function mostrarPsicologos() {
+        render(getPsicologos(), "psicologos");
+    }
+
+    // ==========================
+    // BUSCA
+    // ==========================
+    function buscar(tipo, texto) {
+        let lista = tipo === "funcionarios"
+            ? getFuncionarios()
+            : getPsicologos();
+
+        let filtrados = lista.filter(item =>
+            item.nome.toLowerCase().includes(texto.toLowerCase())
+        );
+
+        render(filtrados, tipo);
+    }
+
+    // ==========================
+    // INICIAR
+    // ==========================
+    window.onload = () => {
+        mostrarFuncionarios();
+        mostrarPsicologos();
+    };
+    </script>
 
 </body>
 </html>

@@ -1,14 +1,18 @@
-const mysql = require("mysql2/promise");
+const mysql = require('mysql2');
 
-const connection = mysql.createPool({ 
-host: process.env.DB_HOST,
-user: process.env.DB_USER,
-password: process.env.DB_PASSWORD,
-database: process.env.DB_NAME
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'evolua'
 });
 
-connection.getConnection()
-    .then(() => console.log("Conectado ao MySQL com Promises!"))
-    .catch(err => console.error("Erro ao conectar no banco:", err));
+connection.connect((err) => {
+    if (err) {
+        console.error('Erro ao conectar:', err);
+    } else {
+        console.log('Banco conectado!');
+    }
+});
 
 module.exports = connection;

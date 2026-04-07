@@ -97,4 +97,76 @@
     </script>
     
 </body>
+<script>
+// ==========================
+// BANCO
+// ==========================
+function getUsuarios() {
+    return JSON.parse(localStorage.getItem("usuarios")) || [];
+}
+
+function salvarCurtidas(lista) {
+    localStorage.setItem("curtidas", JSON.stringify(lista));
+}
+
+function getCurtidas() {
+    return JSON.parse(localStorage.getItem("curtidas")) || [];
+}
+
+// ==========================
+// RENDERIZAR POSSÍVEIS PACIENTES
+// ==========================
+function carregarPossiveis() {
+    const container = document.querySelector(".conteiner");
+    const usuarios = getUsuarios();
+
+    container.innerHTML = "";
+
+    usuarios.forEach(usuario => {
+
+        container.innerHTML += `
+            <section class="pacientes">
+                <h2>${usuario.nome}</h2>
+
+                <p>${usuario.email || "Sem descrição"}</p>
+
+                <div class="Vizualizar">
+                    <a href="psico_validar_formulario.html?id=${usuario.id}" class="icone">
+                        <img src="../../Imagens/Icone_sem_fundo.png">
+                        Vizualizar Formulario
+                    </a>
+
+                    <button class="botao" onclick="curtir(${usuario.id})">
+                        Curtir Colaborador
+                    </button>
+                </div>
+            </section>
+        `;
+    });
+
+    if (usuarios.length === 0) {
+        container.innerHTML = "<h2>Nenhum paciente disponível</h2>";
+    }
+}
+
+// ==========================
+// CURTIR PACIENTE
+// ==========================
+function curtir(id) {
+    let curtidas = getCurtidas();
+
+    if (!curtidas.includes(id)) {
+        curtidas.push(id);
+        salvarCurtidas(curtidas);
+        alert("Paciente curtido com sucesso!");
+    } else {
+        alert("Você já curtiu esse paciente!");
+    }
+}
+
+// ==========================
+// INICIAR
+// ==========================
+window.onload = carregarPossiveis;
+</script>
 </html>

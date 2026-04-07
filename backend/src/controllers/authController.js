@@ -1,32 +1,42 @@
-const authService = require('../services/authService');
+const db = require('../config/db');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-const authController = {
-    async login(req, res){
-        try{
-            const{ cpf, senha} = req.body;
-            const resultado = await authService.login(cpf, senha);
-            return res.status(200).json(resultado);
-        } 
-        
-        catch (error) {
-            return res.status(401).json({ erro: error.message});
-        }
-    },
+exports.register = async (req, res) => {
+    const { nome, email, senha } = req.body;
 
-    async cadastrar(req, res) {
-        try{
-            const{ nome, cpf, email, senha, cargo, setor} = req.body;
-            const resultado = await authService.cadastrar({ nome, cpf, email, senha, cargo, setor });
-            return res.status(201).json(resultado);
-        }
+    const hash = await bcrypt.hash(senha, 10);
 
-        catch(error) {
-            if (error.code === 'ER_DUP_ENTRY') {
-                return res.status(409).json({erro: 'CPF ou e-mail já cadastrado'});
-            }
-            return res.status(500).json({erro: 'Erro interno no servedor'});
+    db.query(
+        'INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)',
+        [nome, email, hash],
+        (err) => {
+            if (err) return res.status(500).json(err);
+
+            res.json({ message: 'Usuário criado!' });
         }
-    }
+    );
 };
 
-module.exports = authController;
+exports.login = (req, res) => {
+    const { email, senha } = req.body;
+
+    db.query(
+        'SELECT * FROM users WHERE email = ?',
+        [email],
+        async (err, result) => {
+            if (err) return res.status(500).json(err);
+            if (result.length === 0) return res.status(404).json({ msg: 'Usuário não encontrado' });
+
+            const user = result[0];
+
+            const valid = await bcrypt.compare(senha, user.senha);
+
+            if (!valid) return res.status(401).json({ msg: 'Senha incorreta' });
+
+            const token = jwt.sign({ id: user.id }, 'segredo', { expiresIn: '1d' });
+
+            res.json({ token, user });
+        }
+    );
+};
