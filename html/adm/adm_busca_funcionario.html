@@ -22,17 +22,14 @@
         
         <nav id="navMenu" class="nav-menu">
             <a href="adm_index.html">Evolua+</a>
-            <a href="#">Cadastrar</a>
+            <a href="adm_cadastro.html">Cadastrar</a>
+            <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
             <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
         </nav>
     </header>
 
     <main>
         <h1>Perfis</h1>
-
-        <!-- BOTÕES DE CADASTRO -->
-        <button class="botaoc" onclick="cadastrarFuncionario()">Cadastrar Funcionário</button>
-        <button class="botaoc" onclick="cadastrarPsicologo()">Cadastrar Psicólogo</button>
 
         <div>
             <button onclick="mostrarFuncionarios()" id="botao">Funcionários</button>
@@ -41,9 +38,29 @@
 
         <div class="container">
 
-            <section id="funcionarios" class="metade"></section>
+            <section id="funcionarios" class="metade">
+                <h2>Funcionários</h2>
+                <div class="barraBusca">
+                    <input type="text" placeholder="Buscar...">
+                    <div class="lupa"><img src="../../Imagens/64673.png" alt="lupa"></div>
+                </div>
+                
+                <div class="perfil">
+                    <p>Roberto Fenomeno</p>
+                </div>
+            </section>
 
-            <section id="psicologos" class="metade"></section>
+            <section id="psicologos" class="metade">
+                <h2>Psicólogos</h2>
+                <div class="barraBusca">
+                    <input type="text" placeholder="Buscar...">
+                    <div class="lupa"><img src="../../Imagens/64673.png" alt="lupa"></div>
+                </div>
+
+                <div class="perfil">
+                    <p>Cristiano Ronaldo</p>
+                </div>
+            </section>
 
         </div>
     </main>
@@ -57,11 +74,10 @@
             <h4>Veja mais:</h4>
             <nav>
                 <a href="adm_index.html">Evolua+</a>
-                <a href="#">Cadastrar</a>
-                <a href="#">Cadastrar psicólogo</a>
+                <a href="adm_cadastro.html">Cadastrar</a>
+                <a href="adm_cadastro_psicologo.html">Cadastrar psicólogo</a>
                 <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
             </nav>
-    
         </div>
 
         <div id="rodape">
@@ -74,112 +90,21 @@
                 Geovani Oshiro Correa
             </p>
         </div>
-
     </footer>
 
     <script>
     function toggleMenu() {
         document.getElementById("navMenu").classList.toggle("show");
     }
-
-    // ==========================
-    // BANCO (localStorage)
-    // ==========================
-    function getFuncionarios() {
-        return JSON.parse(localStorage.getItem("funcionarios")) || [];
-    }
-
-    function getPsicologos() {
-        return JSON.parse(localStorage.getItem("psicologos")) || [];
-    }
-
-    function salvarFuncionarios(lista) {
-        localStorage.setItem("funcionarios", JSON.stringify(lista));
-    }
-
-    function salvarPsicologos(lista) {
-        localStorage.setItem("psicologos", JSON.stringify(lista));
-    }
-
-    // ==========================
-    // CADASTRO
-    // ==========================
-    function cadastrarFuncionario() {
-        const nome = prompt("Digite o nome do funcionário:");
-        if (!nome) return;
-
-        let lista = getFuncionarios();
-        lista.push({ id: Date.now(), nome });
-
-        salvarFuncionarios(lista);
-        mostrarFuncionarios();
-    }
-
-    function cadastrarPsicologo() {
-        const nome = prompt("Digite o nome do psicólogo:");
-        if (!nome) return;
-
-        let lista = getPsicologos();
-        lista.push({ id: Date.now(), nome });
-
-        salvarPsicologos(lista);
-        mostrarPsicologos();
-    }
-
-    // ==========================
-    // RENDER
-    // ==========================
-    function render(lista, containerId) {
-        const container = document.getElementById(containerId);
-
-        container.innerHTML = `
-            <div class="barraBusca">
-                <input type="text" placeholder="Buscar..." oninput="buscar('${containerId}', this.value)">
-            </div>
-        `;
-
-        lista.forEach(item => {
-            container.innerHTML += `
-                <div class="perfil">
-                    <p>${item.nome}</p>
-                </div>
-            `;
-        });
-    }
-
-    // ==========================
-    // MOSTRAR
-    // ==========================
     function mostrarFuncionarios() {
-        render(getFuncionarios(), "funcionarios");
+        document.getElementById("funcionarios").style.display = "block";  
+        document.getElementById("psicologos").style.display = "none"; 
     }
-
+      
     function mostrarPsicologos() {
-        render(getPsicologos(), "psicologos");
+        document.getElementById("psicologos").style.display = "block";   
+        document.getElementById("funcionarios").style.display = "none";   
     }
-
-    // ==========================
-    // BUSCA
-    // ==========================
-    function buscar(tipo, texto) {
-        let lista = tipo === "funcionarios"
-            ? getFuncionarios()
-            : getPsicologos();
-
-        let filtrados = lista.filter(item =>
-            item.nome.toLowerCase().includes(texto.toLowerCase())
-        );
-
-        render(filtrados, tipo);
-    }
-
-    // ==========================
-    // INICIAR
-    // ==========================
-    window.onload = () => {
-        mostrarFuncionarios();
-        mostrarPsicologos();
-    };
     </script>
 
 </body>

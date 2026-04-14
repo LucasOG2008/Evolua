@@ -77,64 +77,9 @@
 </footer>
 
 <script>
-// MENU
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }
-
-// ==========================
-// PEGAR USUÁRIOS
-// ==========================
-function getUsuarios() {
-    return JSON.parse(localStorage.getItem("usuarios")) || [];
-}
-
-// ==========================
-// PEGAR ID DA URL
-// ==========================
-function getIdURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id");
-}
-
-// ==========================
-// CARREGAR PERFIL
-// ==========================
-function carregarPerfil() {
-    const id = getIdURL();
-    const usuarios = getUsuarios();
-
-    // pega o usuário pelo ID
-    const usuario = usuarios.find(u => u.id == id);
-
-    if (!usuario) {
-        document.body.innerHTML = "<h1>Usuário não encontrado</h1>";
-        return;
-    }
-
-    // preencher dados
-    document.getElementById("nomePsicologo").innerText = usuario.nome;
-
-    document.getElementById("fotoPerfil").src = usuario.foto || "../../Imagens/Home_page/fim.png";
-
-    document.getElementById("infoContato").innerHTML = `
-        <p><strong>Email:</strong> ${usuario.email}</p>
-        <p><strong>Telefone:</strong> ${usuario.telefone}</p>
-        <p><strong>CPF:</strong> ${usuario.cpf}</p>
-        <p><strong>CRP:</strong> ${usuario.crp || "Não informado"}</p>
-    `;
-
-    // exemplo de pacientes fake (pode evoluir depois)
-    document.getElementById("pacientes").innerHTML = `
-        <p>Paciente 1</p>
-        <p>Paciente 2</p>
-    `;
-}
-
-// ==========================
-// INICIAR
-// ==========================
-window.onload = carregarPerfil;
 </script>
 
 </body>

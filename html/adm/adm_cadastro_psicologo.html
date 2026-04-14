@@ -73,70 +73,8 @@
 </main>
 
 <script>
-// MENU
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
-}
-
-// ==========================
-// BANCO LOCAL
-// ==========================
-function getUsuarios() {
-    return JSON.parse(localStorage.getItem("usuarios")) || [];
-}
-
-function salvarUsuarios(lista) {
-    localStorage.setItem("usuarios", JSON.stringify(lista));
-}
-
-// ==========================
-// CADASTRO
-// ==========================
-const form = document.getElementById("acesso");
-
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const usuario = {
-        id: Date.now(),
-        nome: document.getElementById("usuario").value,
-        email: document.getElementById("email").value,
-        telefone: document.getElementById("telefone").value,
-        cpf: document.getElementById("cpf").value,
-        senha: document.getElementById("senha").value,
-        crp: document.getElementById("CRP").value,
-        foto: null
-    };
-
-    const file = document.getElementById("foto").files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function() {
-            usuario.foto = reader.result;
-            salvar(usuario);
-        };
-
-        reader.readAsDataURL(file);
-    } else {
-        salvar(usuario);
-    }
-});
-
-// ==========================
-// SALVAR
-// ==========================
-function salvar(usuario) {
-    let lista = getUsuarios();
-
-    lista.push(usuario);
-
-    salvarUsuarios(lista);
-
-    alert("Usuário cadastrado com sucesso!");
-
-    form.reset();
 }
 </script>
 
