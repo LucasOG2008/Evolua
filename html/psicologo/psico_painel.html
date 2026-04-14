@@ -70,68 +70,9 @@
 </footer>
 
 <script>
-// MENU
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }
-
-// ==========================
-// BANCO
-// ==========================
-function getUsuarios() {
-    return JSON.parse(localStorage.getItem("usuarios")) || [];
-}
-
-// ==========================
-// PEGAR ID
-// ==========================
-function getIdURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id");
-}
-
-// ==========================
-// CARREGAR PAINEL
-// ==========================
-function carregarPainel() {
-    const usuarios = getUsuarios();
-    const id = getIdURL();
-
-    const usuario = usuarios.find(u => u.id == id);
-
-    if (!usuario) {
-        document.body.innerHTML = "<h1>Usuário não encontrado</h1>";
-        return;
-    }
-
-    // ==========================
-    // USUÁRIO
-    // ==========================
-    document.getElementById("infoUsuario").innerHTML = `
-        <p><strong>Nome:</strong> ${usuario.nome}</p>
-        <p><strong>Email:</strong> ${usuario.email}</p>
-        <p><strong>Telefone:</strong> ${usuario.telefone}</p>
-    `;
-
-    document.getElementById("descricaoUsuario").innerHTML = `
-        <p><strong>Descrição:</strong></p>
-        <p>Paciente em acompanhamento psicológico</p>
-    `;
-
-    document.getElementById("pontuacao").innerHTML = `
-        <div class="itemPontuacao">
-            <p><strong>${Math.floor(Math.random()*100)}</strong> Pontuação</p>
-        </div>
-        <div class="itemPontuacao">
-            <p><strong>${Math.floor(Math.random()*7)}</strong> Dias Seguidos</p>
-        </div>
-    `;
-}
-
-// ==========================
-// INICIAR
-// ==========================
-window.onload = carregarPainel;
 </script>
 
 </body>
