@@ -25,7 +25,6 @@ const User = {
         return rows[0];
     },
 
-    // ✅ ESSE É O QUE ESTAVA FALTANDO
     async findFullProfileByCpf(cpf) {
         return User.findByCpf(cpf);
     },
@@ -38,7 +37,7 @@ const User = {
     },
 
     async create(user) {
-        const { nome, cpf, email, senha, cargo, setor } = user;
+        const { nome, cpf, email, senha, cargo, setor,  } = user;
         const cpfParaSalvar = cpf.replace(/\D/g, '');
         const [result] = await db.execute(
             'INSERT INTO usuarios (nome, cpf, email, senha, cargo, setor) VALUES (?, ?, ?, ?, ?, ?)',

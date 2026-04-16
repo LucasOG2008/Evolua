@@ -6,7 +6,7 @@ const authService = {
     async login(cpf, senha) {
         const cpfLimpo = String(cpf).replace(/\D/g, ''); 
 
-        const sql = `SELECT * FROM usuarios WHERE REPLACE(REPLACE(cpf, '.', ''), '-', '') = ?`;
+        const sql = `SELECT * FROM usuarios WHERE REPLACE(REPLACE(CPF, '.', ''), '-', '') = ?`;
         const [rows] = await db.execute(sql, [cpfLimpo]);
 
         if (rows.length === 0) {
@@ -23,7 +23,7 @@ const authService = {
 
         const token = jwt.sign(
             { 
-                id: usuario.ID || usuario.id, // 
+                id: usuario.ID,
                 cpf: cpfLimpo 
             }, 
             process.env.JWT_SECRET,
@@ -34,7 +34,7 @@ const authService = {
             mensagem: "Login realizado com sucesso",
             token,
             usuario: {
-                id: usuario.id,
+                id: usuario.ID,
                 nome: usuario.nome,
                 cargo: usuario.cargo,
                 setor: usuario.setor
@@ -49,8 +49,8 @@ const authService = {
 
         const sql = `
             INSERT INTO usuarios
-            (nome, cpf, email, senha, cargo, setor)
-            VALUES (?, ?, ?, ?, ?, ?)
+            (nome, CPF, email, senha, cargo, setor, tipo, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         const [result] = await db.execute(sql, [
@@ -59,7 +59,9 @@ const authService = {
             usuario.email,
             senhaHash,
             usuario.cargo,
-            usuario.setor
+            usuario.setor,
+            'comum', 
+            0         
         ]);
 
         return {
