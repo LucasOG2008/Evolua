@@ -1,7 +1,6 @@
 @font-face {
-    font-family: 'Corpo';
-    src: url(Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
-
+  font-family: 'Corpo';
+  src: url('/Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf');
 }
 
 #acesso {
