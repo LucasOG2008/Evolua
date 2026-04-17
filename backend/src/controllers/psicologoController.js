@@ -12,7 +12,7 @@ const psicologoController = {
                 Nome: p.Nome,
                 Email: p.Email,
                 Telefone: p.Telefone,
-                Descricao: p.Descricao, // ← estava faltando
+                Descricao: p.Descricao,
                 Foto: p.Foto ? `data:image/jpeg;base64,${Buffer.from(p.Foto).toString('base64')}` : null
             }));
 
@@ -22,34 +22,63 @@ const psicologoController = {
         }
     },
 
-   async curtir(req, res) {
-    try {
-        const idPsicologo = req.params.id;
-        const idUsuario = req.user.id;
+    async curtir(req, res) {
+        try {
+            const idPsicologo = req.params.id;
+            const idUsuario = req.user.id;
 
-        console.log("idPsicologo:", idPsicologo);
-        console.log("idUsuario:", idUsuario);
+            if (!idPsicologo || !idUsuario) {
+                return res.status(400).json({ erro: "Dados inválidos" });
+            }
 
-        if (!idPsicologo || !idUsuario) {
-            return res.status(400).json({ erro: "Dados inválidos" });
+            await db.execute(
+                'DELETE FROM usuario_psicologo WHERE ID_usuario = ?',
+                [idUsuario]
+            );
+
+            await db.execute(
+                `INSERT INTO usuario_psicologo (ID_psicologo, ID_usuario, Status, Data_inicio, Data_fim)
+                 VALUES (?, ?, 'ativo', NOW(), NULL)`,
+                [idPsicologo, idUsuario]
+            );
+
+            return res.status(201).json({ mensagem: 'Psicólogo vinculado com sucesso!' });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
         }
+    },
 
-        await db.execute(
-            'DELETE FROM usuario_psicologo WHERE ID_usuario = ?',
-            [idUsuario]
-        );
+    async cadastrar(req, res) {
+        try {
+            // REMOVIDA a verificação de admin
 
-        await db.execute(
-            `INSERT INTO usuario_psicologo (ID_psicologo, ID_usuario, Status, Data_inicio, Data_fim)
-             VALUES (?, ?, 'ativo', NOW(), NULL)`,
-            [idPsicologo, idUsuario]
-        );
+            const { nome, cpf, crp, senha, telefone, email } = req.body;
 
-        return res.status(201).json({ mensagem: 'Psicólogo vinculado com sucesso!' });
-    } catch (error) {
-        return res.status(500).json({ erro: error.message });
+            if (!nome || !cpf || !crp || !senha || !telefone || !email) {
+                return res.status(400).json({ erro: 'Todos os campos são obrigatórios' });
+            }
+
+            let fotoBuffer = null;
+            if (req.file) {
+                fotoBuffer = req.file.buffer;
+            }
+
+            const resultado = await Psicologo.create({
+                nome, cpf, crp, senha, telefone, email, foto: fotoBuffer
+            });
+
+            return res.status(201).json({
+                mensagem: 'Psicólogo cadastrado com sucesso',
+                id: resultado.insertId
+            });
+        } catch (error) {
+            console.error(error);
+            if (error.code === 'ER_DUP_ENTRY') {
+                return res.status(409).json({ erro: 'CPF, CRP ou Email já cadastrado' });
+            }
+            return res.status(500).json({ erro: 'Erro interno no servidor' });
+        }
     }
-}
 };
 
 module.exports = psicologoController;

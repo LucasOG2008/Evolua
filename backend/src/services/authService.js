@@ -24,8 +24,9 @@ const authService = {
         const token = jwt.sign(
             { 
                 id: usuario.ID,
-                cpf: cpfLimpo 
-            }, 
+                cpf: cpfLimpo,
+                tipo: usuario.tipo
+            },
             process.env.JWT_SECRET,
             { expiresIn: "24h" }
         );

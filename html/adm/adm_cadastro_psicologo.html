@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Usuário</title>
+    <title>Cadastrar Psicólogo</title>
     <link rel="stylesheet" href="../../Estilo/amd_css/adm_cadastro.css">
     <link rel="stylesheet" href="../../Estilo/amd_css/globaladmin.css">
 </head>
@@ -38,12 +38,12 @@
 
     <div class="campo">
         <label>Email:</label><br>
-        <input type="text" id="email" required>
+        <input type="email" id="email" required>
     </div>
 
     <div class="campo">
         <label>Telefone:</label><br>
-        <input type="text" id="telefone" required>
+        <input type="tel" id="telefone" required>
     </div>
 
     <div class="campo">
@@ -53,17 +53,17 @@
 
     <div class="campo">
         <label>Senha:</label><br>
-        <input type="text" id="senha" required>
+        <input type="password" id="senha" required>
     </div>
 
     <div class="campo">
         <label>CRP:</label><br>
-        <input type="text" id="CRP">
+        <input type="text" id="CRP" required>
     </div>
 
     <div class="campo">
         <label>Foto:</label><br>
-        <input type="file" id="foto">
+        <input type="file" id="foto" accept="image/*">
     </div>
 
     <button type="submit" id="botao">Cadastrar</button>
@@ -72,10 +72,14 @@
 
 </main>
 
+<!-- Função toggleMenu inline (mantida para o menu funcionar) -->
 <script>
-function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-}
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
 </script>
+
+<script src="../../Js/adm_cadastro_psicologo.js"></script>
+
 </body>
 </html>
