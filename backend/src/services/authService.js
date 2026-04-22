@@ -38,13 +38,13 @@ const authService = {
         }
 
         if (!usuario) {
-            throw new Error("Usuário não encontrado");
+            throw new Error("erro ao logar");
         }
 
         // Verifica a senha
         const senhaValida = await bcrypt.compare(senha, usuario.senha);
         if (!senhaValida) {
-            throw new Error("Senha inválida");
+            throw new Error("erro ao logar");
         }
 
         // Gera o token com as informações relevantes
@@ -74,7 +74,31 @@ const authService = {
     },
 
     async cadastrar(usuario) {
-        // ... (mantenha o cadastro de usuário comum como está)
+        const senhaHash = await bcrypt.hash(usuario.senha, 10);
+        
+        const cpfLimpo = String(usuario.cpf).replace(/\D/g, '');
+
+        const sql = `
+            INSERT INTO usuarios
+            (nome, CPF, email, senha, cargo, setor, tipo, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        const [result] = await db.execute(sql, [
+            usuario.nome,
+            cpfLimpo,
+            usuario.email,
+            senhaHash,
+            usuario.cargo,
+            usuario.setor,
+            'comum', 
+            0         
+        ]);
+
+        return {
+            mensagem: "Usuário cadastrado com sucesso",
+            id: result.insertId
+        };
     }
 };
 
