@@ -36,7 +36,7 @@ form.addEventListener("submit", async (e) => {
                 case 'psicologo':
                     window.location.href = "psicologo/psico_index.html";
                     break;
-                default: // 'comum'7
+                default: // 'comum'
                     window.location.href = "index.html";
             }
         } else {
