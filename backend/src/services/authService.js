@@ -52,6 +52,7 @@ const authService = {
             {
                 id: usuario.ID,
                 nome: usuario.nome,
+                cpf: cpfLimpo,   
                 tipo: tipo
             },
             process.env.JWT_SECRET,
