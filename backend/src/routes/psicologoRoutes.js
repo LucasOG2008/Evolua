@@ -2,16 +2,17 @@ const express = require('express');
 const router = express.Router();
 const psicologoController = require('../controllers/psicologoController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const roleMiddleware = require('../middlewares/roleMiddleware');
 const upload = require('../middlewares/upload');
 
-// Rotas existentes
-router.get('/', authMiddleware, psicologoController.listar);
-router.post('/:id/curtir', authMiddleware, psicologoController.curtir);
+router.get('/', authMiddleware, roleMiddleware('comum', 'admin'), psicologoController.listar);
 
-// NOVA ROTA para cadastro
+router.post('/:id/curtir', authMiddleware, roleMiddleware('comum'), psicologoController.curtir);
+
 router.post('/',
-    //authMiddleware,
-    upload.single('foto'),   // campo 'foto' do FormData
+    authMiddleware,
+    roleMiddleware('admin'),
+    upload.single('foto'),
     psicologoController.cadastrar
 );
 
