@@ -33,11 +33,17 @@
         <h2>Usuário</h2>
         <div class="conteudoCard">
 
-            <div class="infoUsuario" id="infoUsuario"></div>
+            <div class="infoUsuario">
+                <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
+                <p><strong>Email:</strong> <span id="email">Carregando...</span></p>
+                <p><strong>Telefone:</strong> <span id="telefone">Carregando...</span></p>
+                <p><strong>CRP:</strong> <span id="crp">Carregando...</span></p>
+            </div>
 
-            <div class="descricao" id="descricaoUsuario"></div>
-
-            <div class="pontuacao" id="pontuacao"></div>
+            <div class="descricao" id="descricaoUsuario">
+                <p><strong>Descrição:</strong></p>
+                <p id="descricaoTexto">Carregando...</p>
+            </div>
 
         </div>
     </section>
@@ -61,7 +67,7 @@
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-         <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
+        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
             Lucas Oliveira Gomes <br/>
             Murilo Miranda de Castro Silva <br/>
             Geovani Oshiro Correa
@@ -73,6 +79,38 @@
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        window.location.href = "../Login.html";
+        return;
+    }
+
+    try {
+        const res = await fetch("http://localhost:3000/psicologos/perfil", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "../Login.html";
+            return;
+        }
+
+        const data = await res.json();
+
+        document.getElementById("nome").innerText      = data.Nome      || "Não informado";
+        document.getElementById("email").innerText     = data.Email     || "Não informado";
+        document.getElementById("telefone").innerText  = data.Telefone  || "Não informado";
+        document.getElementById("crp").innerText       = data.CRP       || "Não informado";
+        document.getElementById("descricaoTexto").innerText = data.Descricao || "Sem descrição.";
+
+    } catch (error) {
+        console.error("Erro ao buscar perfil:", error);
+    }
+});
 </script>
 
 <script src="../../Js/Verificação.js"></script>

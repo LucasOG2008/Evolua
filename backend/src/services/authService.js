@@ -6,7 +6,6 @@ const authService = {
     async login(cpf, senha) {
         const cpfLimpo = String(cpf).replace(/\D/g, '');
 
-
         let sql = `SELECT ID, nome, tipo, senha, cargo, setor FROM usuarios WHERE REPLACE(REPLACE(CPF, '.', ''), '-', '') = ?`;
         let [rows] = await db.execute(sql, [cpfLimpo]);
 
@@ -16,13 +15,12 @@ const authService = {
 
         if (rows.length > 0) {
             usuario = rows[0];
-            tipo = usuario.tipo; // 'admin' ou 'comum'
+            tipo = usuario.tipo;
             dadosExtras = {
                 cargo: usuario.cargo,
                 setor: usuario.setor
             };
         } else {
-            // 2. Se não encontrou, tenta na tabela psicologo
             sql = `SELECT ID, Nome as nome, 'psicologo' as tipo, Senha as senha, CRP, Email, Telefone FROM psicologo WHERE REPLACE(REPLACE(CPF, '.', ''), '-', '') = ?`;
             [rows] = await db.execute(sql, [cpfLimpo]);
 
@@ -41,16 +39,15 @@ const authService = {
             throw new Error("erro ao logar");
         }
 
-        // Verifica a senha
         const senhaValida = await bcrypt.compare(senha, usuario.senha);
         if (!senhaValida) {
             throw new Error("erro ao logar");
         }
 
-        // Gera o token com as informações relevantes
         const token = jwt.sign(
             {
                 id: usuario.ID,
+                cpf: cpfLimpo,
                 nome: usuario.nome,
                 tipo: tipo
             },
@@ -58,7 +55,6 @@ const authService = {
             { expiresIn: "24h" }
         );
 
-        // Prepara o objeto de retorno
         const usuarioRetorno = {
             id: usuario.ID,
             nome: usuario.nome,

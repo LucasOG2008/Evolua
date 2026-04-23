@@ -5,9 +5,22 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 const upload = require('../middlewares/upload');
 
-router.get('/', authMiddleware, roleMiddleware('comum', 'admin'), psicologoController.listar);
+router.get('/',
+    authMiddleware,
+    roleMiddleware('comum', 'admin'),
+    psicologoController.listar
+);
 
-router.post('/:id/curtir', authMiddleware, roleMiddleware('comum'), psicologoController.curtir);
+router.post('/:id/curtir',
+    authMiddleware,
+    roleMiddleware('comum'),
+    psicologoController.curtir
+);
+
+router.get('/perfil',
+    authMiddleware,
+    psicologoController.perfil
+);
 
 router.post('/',
     authMiddleware,
