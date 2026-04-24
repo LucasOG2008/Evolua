@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function redirecionarLogin() {
         const nivelPasta = (window.location.pathname.match(/\//g) || []).length;
         const prefixo = nivelPasta <= 2 ? "../" : "../../";
-        window.location.href = prefixo + "Login.html";
+        window.location.href = prefixo + "html/Login.html";
     }
 
     function redirecionarPainelProprio(tipo) {

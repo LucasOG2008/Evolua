@@ -1,20 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('acesso');
-    // const token = localStorage.getItem('token');  // ← comente esta linha também, pois será usada no fetch
+    const token = localStorage.getItem('token');
 
-    /*
     if (!token) {
         alert('Você precisa estar logado como administrador.');
         window.location.href = '../../login.html';
         return;
     }
-    */
-
-    // Para teste, defina um token fictício ou capture de outro lugar
-    // Mas como vamos remover o authMiddleware do backend, não precisamos enviar token.
 
     form.addEventListener('submit', async (e) => {
-        // ... restante do código de envio ...
 
         const nome = document.getElementById('usuario').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -44,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('http://localhost:3000/psicologos', {
                 method: 'POST',
-                //headers: {
-                //    'Authorization': `Bearer ${token}`
-                //},
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
                 body: formData
             });
 
@@ -65,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Função global para toggleMenu (usada no header)
 window.toggleMenu = function() {
     document.getElementById("navMenu").classList.toggle("show");
 };
