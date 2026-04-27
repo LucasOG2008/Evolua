@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Oculta o botão finalizar, pois o psicólogo não envia o formulário
         
     });
 });

@@ -1,13 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');   // ← adicione esta linha
-
+const path = require('path');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Servir arquivos estáticos da raiz do projeto (Evolua-)
 app.use(express.static(path.join(__dirname, '../../')));
 
 const authRoutes = require('./routes/authRoutes');

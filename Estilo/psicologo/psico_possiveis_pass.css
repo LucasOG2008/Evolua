@@ -1,68 +1,127 @@
 html, body {
-    overscroll-behavior-y: none; 
-  }
-
-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    margin-bottom: 150px;
+    overscroll-behavior-y: none;
 }
 
-.conteiner {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-}
-
-
-.pacientes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+main {
+    font-family: Titulo, sans-serif;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
     text-align: center;
-    border: solid 1px;
-    width: 300px;
-    height: 500px;
-    min-height: 300px;
-    border-radius: 15px;
 }
 
-.Vizualizar{
-    width: 300px;
-    margin-top: 20px;
-    border-top: 1px solid ;
-    text-align: center;
-    margin-bottom: 15px;
-    padding-top: 20px;
+#titulo {
+    margin-bottom: 40px;
+}
 
-    flex-grow: 1;
+#carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pacientes {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.paciente {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
-.Vizualizar img{
-    width: 50px;
-    height: 50px;
+.nome {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.icone {
-    display: flex;          /* Faz o ícone e o texto ficarem lado a lado */
-    align-items: center;    /* Alinha o ícone verticalmente com o texto */
-    gap: 10px;              /* Espaço entre o ícone e o texto */
-    text-decoration: none;
-    color: #333;
-  }
+.descricao {
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-  .botao {
-    margin-top: 10px;
-    width: 100px;
+.principal .nome {
+    width: 250px;
+    height: auto;
+}
+
+.principal .descricao {
+    width: 250px;
+    min-height: 120px;
+}
+
+.pequeno .nome {
+    width: 200px;
+    height: auto;
+    opacity: 0.4;
+}
+
+.pequeno .descricao {
+    width: 200px;
+    min-height: 100px;
+    opacity: 0.4;
+}
+
+.seta {
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-curtir {
+    width: 120px;
     border-radius: 10px;
-    border: 1px solid #000000;
-    background-color: #ef476eb9;
+    border: 1px solid #073B4C;
+    background-color: #073B4C;
     color: white;
+    cursor: pointer;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.btn-curtir:hover {
+    opacity: 0.9;
+}
+
+.acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+.visualizar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #073B4C;
+    font-family: Corpo, sans-serif;
+    font-size: 14px;
+}
+
+.visualizar img {
+    width: 20px;
+    height: 20px;
+}
+
+.visualizar:hover {
+    opacity: 0.8;
+}
+
+.card {
+    background-color: #e5e5e5;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    padding: 15px;
+    text-align: center;
 }

@@ -23,8 +23,7 @@ async function carregarPsicologos() {
             return;
         }
 
-        psicologos = await res.json();
-        console.log("DADOS DOS PSICÓLOGOS:", psicologos); // remova depois de testar
+        psicologos = await res.json()
 
         if (psicologos.length === 0) {
             alert("Nenhum psicólogo encontrado.");
@@ -63,7 +62,6 @@ function mostrar(elemento, dados, mostrarBotao) {
 
     descricao.textContent = `${dados.Nome} — ${dados.Descricao || 'Sem descrição'}`;
 
-    // ✅ Usa o botão .btn-curtir que está dentro do card
     const btnCurtir = elemento.querySelector(".btn-curtir");
     if (mostrarBotao && btnCurtir) {
         btnCurtir.style.display = "block";

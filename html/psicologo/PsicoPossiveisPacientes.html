@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PossiveisPacientes</title>
+    <title>Possíveis Pacientes</title>
     <link rel="shortcut icon" href="../../Imagens/Home_page/mascote_sem_fundo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../Estilo/psicologo/psico_possiveis_pass.css">
     <link rel="stylesheet" href="../../Estilo/psicologo/globalpsico.css">
@@ -22,45 +22,53 @@
         <nav id="navMenu" class="nav-menu">
             <a href="psico_index.html">Evolua+</a>
             <a href="psicoPacientes.html">Pacientes</a>
-            <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
+            <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
             <a href="psico_painel.html">Painel</a>
         </nav>
     </header>
     
-    <main >
+    <main>
+        <h1>Possíveis Pacientes</h1>
 
-        <h1>Possiveis Pacientes</h1>
+        <section id="carrossel">
+            <button class="seta" id="anterior">&lt;</button>
 
-        <article class="conteiner">
-            <section class="pacientes">
-                <h2>Nome</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aliquid culpa natus ipsam consequatur sit at reiciendis laborum quae a rem voluptas quo id labore non, expedita iure quod. Voluptates!</p>
-                <div class="Vizualizar">
-                    <a href="psico_validar_formulario.html" class="icone"> <img src="../../Imagens/Icone_sem_fundo.png" alt="Icone arquivo">Vizualizar Formulario</a>
-                    <button class="botao">Curtir Colaborador</button>
+            <div class="pacientes">
+
+                <div class="paciente pequeno" id="pacienteAnterior">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
+                    </div>
                 </div>
-            </section>
 
+                <div class="paciente principal" id="pacienteAtual">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
 
-            <section class="pacientes">
-                <h2>Nome</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aliquid culpa natus ipsam consequatur sit at reiciendis laborum quae a rem voluptas quo id labore non, expedita iure quod. Voluptates!</p>
-                <div class="Vizualizar">
-                    <a href="psico_validar_formulario.html" class="icone"> <img src="../../Imagens/Icone_sem_fundo.png" alt="Icone arquivo">Vizualizar Formulario</a>
-                    <button class="botao">Curtir Colaborador</button>
+                        <div class="acoes">
+                            <a href="#" class="visualizar">
+                                <img src="../../Imagens/Icone_sem_fundo.png">
+                                <span>Visualizar Formulário</span>
+                            </a>
+
+                            <button class="btn-curtir">Curtir</button>
+                        </div>
+                    </div>
                 </div>
-            </section>
 
-            <section class="pacientes">
-                <h2>Nome</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur aliquid culpa natus ipsam consequatur sit at reiciendis laborum quae a rem voluptas quo id labore non, expedita iure quod. Voluptates!</p>
-                <div class="Vizualizar">
-                    <a href="psico_validar_formulario.html" class="icone"> <img src="../../Imagens/Icone_sem_fundo.png" alt="Icone arquivo">Vizualizar Formulario</a>
-                    <button class="botao">Curtir Colaborador</button>
+                <div class="paciente pequeno" id="pacienteProximo">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
+                    </div>
                 </div>
-            </section>
-        </article>
 
+            </div>
+
+            <button class="seta" id="proximo">&gt;</button>
+        </section>
     </main>
 
     <footer>
@@ -71,7 +79,7 @@
             <nav>
                 <a href="psico_index.html">Evolua+</a>
                 <a href="psicoPacientes.html">Pacientes</a>
-                <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
+                <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
                 <a href="psico_painel.html">Painel</a>
             </nav>
     
@@ -83,6 +91,7 @@
             <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
                 Lucas Oliveira Gomes <br/>
                 Murilo Miranda de Castro Silva <br/>
+                Geovani Oshiro Correa
             </p>
         </div>
 
@@ -93,7 +102,7 @@
             document.getElementById("navMenu").classList.toggle("show");
         }
     </script>
-    
+    <script src="../../Js/escolher_paciente.js"></script>
     <script src="../../Js/Verificação.js"></script>
 
 </body>

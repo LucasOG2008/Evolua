@@ -22,6 +22,18 @@ router.get('/perfil',
     psicologoController.perfil
 );
 
+router.get('/pacientes',
+    authMiddleware,
+    roleMiddleware('psicologo'),
+    psicologoController.listarPacientes
+);
+
+router.post('/pacientes/:id/curtir',
+    authMiddleware,
+    roleMiddleware('psicologo'),
+    psicologoController.curtirPaciente
+);
+
 router.post('/',
     authMiddleware,
     roleMiddleware('admin'),

@@ -67,6 +67,56 @@ const psicologoController = {
             return res.status(500).json({ erro: error.message });
         }
     },
+
+    async listarPacientes(req, res) {
+        try {
+            const [rows] = await db.execute(
+                `SELECT u.ID, u.Nome, u.Email, u.Cargo, u.Setor, u.Descricao
+                 FROM usuarios u
+                 LEFT JOIN usuario_psicologo up ON u.ID = up.ID_usuario AND up.Status = 'ativo'
+                 WHERE u.tipo = 'comum' AND up.ID_usuario IS NULL`
+            );
+
+            const resultado = rows.map(u => ({
+                ID: u.ID,
+                Nome: u.Nome,
+                Email: u.Email,
+                Cargo: u.Cargo,
+                Setor: u.Setor,
+                Descricao: u.Descricao
+            }));
+
+            return res.json(resultado);
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
+    async curtirPaciente(req, res) {
+        try {
+            const idPaciente = req.params.id;
+            const idPsicologo = req.user.id;
+
+            if (!idPaciente || !idPsicologo) {
+                return res.status(400).json({ erro: 'Dados inválidos' });
+            }
+
+            await db.execute(
+                'DELETE FROM usuario_psicologo WHERE ID_usuario = ?',
+                [idPaciente]
+            );
+
+            await db.execute(
+                `INSERT INTO usuario_psicologo (ID_psicologo, ID_usuario, Status, Data_inicio, Data_fim)
+                 VALUES (?, ?, 'ativo', NOW(), NULL)`,
+                [idPsicologo, idPaciente]
+            );
+
+            return res.status(201).json({ mensagem: 'Paciente vinculado com sucesso!' });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
  
     async cadastrar(req, res) {
         try {
