@@ -22,11 +22,10 @@ form.addEventListener("submit", async (e) => {
         });
 
         if (resposta.ok) {
-            alert("Cadastrado com sucesso!");
+            document.getElementById("Cadastrosucesso").style.display = "block";
         }
 
     } catch (erro) {
         console.error("Erro:", erro);
-        alert("Erro ao conectar com o servidor");
     }
 });

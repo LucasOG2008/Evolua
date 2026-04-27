@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
 
             if (res.ok) {
-                alert(data.mensagem); // "Desafio enviado com sucesso! +10 pontos"
+                alert(data.mensagem);
                 document.getElementById("resposta").value = "";
             } else {
                 alert("Erro: " + data.erro);

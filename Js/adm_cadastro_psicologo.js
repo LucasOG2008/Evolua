@@ -2,12 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('acesso');
     const token = localStorage.getItem('token');
 
-    if (!token) {
-        alert('Você precisa estar logado como administrador.');
-        window.location.href = '../../login.html';
-        return;
-    }
-
     form.addEventListener('submit', async (e) => {
 
         const nome = document.getElementById('usuario').value.trim();
@@ -50,7 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Psicólogo cadastrado com sucesso!');
                 form.reset();
             } else {
-                alert(`Erro: ${data.erro || 'Falha no cadastro'}`);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.erro || 'Falha no cadastro',
+                    confirmButtonColor: '#d33'
+                });
             }
         } catch (error) {
             console.error('Erro na requisição:', error);

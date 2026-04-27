@@ -46,6 +46,6 @@ form.addEventListener("submit", async (e) => {
         
     } catch (error) {
         console.error('Erro:', error);
-        alert('Erro de conexão com o servidor');
+        document.getElementById("meuModal").style.display = "block";
     }
 });

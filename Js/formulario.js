@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    // Envio do formulário
+
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
