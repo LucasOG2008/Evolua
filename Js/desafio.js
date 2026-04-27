@@ -23,17 +23,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Erro ao carregar desafio:", error);
     }
 
-    // Envia a resposta
     document.getElementById("botao").addEventListener("click", async () => {
         const resposta = document.getElementById("resposta").value.trim();
 
         if (!resposta) {
-            alert("Escreva sua reflexão antes de enviar.");
+            document.getElementById("erroSemReflexao").style.display = "block";
             return;
         }
 
         if (!desafioAtual) {
-            alert("Nenhum desafio carregado.");
+            document.getElementById("erroSemDesafio").style.display = "block";
             return;
         }
 
@@ -53,10 +52,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
 
             if (res.ok) {
-                alert(data.mensagem);
+                document.getElementById("desafioSucesso").style.display = "block";
                 document.getElementById("resposta").value = "";
             } else {
-                alert("Erro: " + data.erro);
+                document.getElementById("erroServidor").style.display = "block";
             }
         } catch (error) {
             console.error("Erro ao enviar desafio:", error);

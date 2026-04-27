@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         form.appendChild(div);
     });
 
-    // Navegação entre etapas
+
     const etapas = form.querySelectorAll("div");
     let etapaAtual = 0;
 
@@ -98,10 +98,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
 
             if (res.ok) {
-                alert("Formulário enviado com sucesso!");
                 window.location.href = "painel.html";
             } else {
-                alert("Erro: " + data.erro);
+                document.getElementById("erroFormulario").style.display = "block";
             }
         } catch (error) {
             console.error("Erro ao enviar formulário:", error);

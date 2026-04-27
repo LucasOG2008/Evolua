@@ -26,7 +26,7 @@ async function carregarPacientes() {
         pacientes = await res.json();
 
         if (pacientes.length === 0) {
-            alert("Nenhum paciente encontrado.");
+            document.getElementById("erroNenhumPaciente").style.display = "block";
             return;
         }
 

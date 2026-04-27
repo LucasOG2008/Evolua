@@ -77,7 +77,7 @@ async function salvarDescricao() {
       if (res.ok) {
           if (botao) botao.style.display = "none"; 
       } else {
-          alert("Erro ao salvar.");
+          document.getElementById("erroSalvar").style.display = "block";
       }
   } catch (error) {
       console.error("Erro:", error);

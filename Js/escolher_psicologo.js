@@ -23,10 +23,10 @@ async function carregarPsicologos() {
             return;
         }
 
-        psicologos = await res.json()
+        psicologos = await res.json();
 
         if (psicologos.length === 0) {
-            alert("Nenhum psicólogo encontrado.");
+            document.getElementById("erroNenhumPsicologo").style.display = "block";
             return;
         }
 
@@ -81,10 +81,9 @@ async function curtirPsicologo(id, nome) {
         });
 
         if (res.ok) {
-            alert(`${nome} foi vinculado ao seu perfil! Ele aparecerá no seu painel.`);
+            document.getElementById("psicologoVinculado").style.display = "block";
         } else {
-            const data = await res.json();
-            alert("Erro: " + data.erro);
+            document.getElementById("erroVincular").style.display = "block";
         }
     } catch (error) {
         console.error("Erro ao curtir:", error);

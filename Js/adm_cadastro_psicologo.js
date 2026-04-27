@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('acesso');
     const token = localStorage.getItem('token');
 
+    if (!token) {
+        alert('Você precisa estar logado como administrador.');
+        window.location.href = '../../login.html';
+        return;
+    }
+
     form.addEventListener('submit', async (e) => {
 
         const nome = document.getElementById('usuario').value.trim();
@@ -14,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fotoFile = fotoInput.files[0];
 
         if (!nome || !email || !telefone || !cpf || !senha || !crp) {
-            alert('Preencha todos os campos obrigatórios.');
+            document.getElementById("erroCampos").style.display = "block";
             return;
         }
 
@@ -41,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Psicólogo cadastrado com sucesso!');
+                document.getElementById("cadastroPsicologoSucesso").style.display = "block";
                 form.reset();
             } else {
                 Swal.fire({
@@ -53,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-            alert('Erro de conexão com o servidor.');
+            document.getElementById("erroConexao").style.display = "block";
         }
     });
 });
