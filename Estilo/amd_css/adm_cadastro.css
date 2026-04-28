@@ -6,12 +6,13 @@
 #acesso {
     position: relative; 
     width: 100%;
-    height: 900px;
+    height: 800px;
     overflow: hidden; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2px;
   }
   
 
@@ -58,7 +59,7 @@
   .campo {
     display: flex;
     margin-left: 10px;
-    max-width: 250px;
+    max-width: 350px;
     width: 100%;
     border: solid 1px;
     background: linear-gradient(to right, #FF9100 1px, #FEFCF3 60px);
