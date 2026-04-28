@@ -104,3 +104,13 @@ article{
     border-radius: 10px;
 }
 
+#botaosair {
+    margin-left: auto;          
+    padding: 8px 18px;
+    background-color: #ef476e78;  
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}

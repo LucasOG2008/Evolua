@@ -31,7 +31,11 @@ const psicologoController = {
             return res.status(500).json({ erro: error.message });
         }
     },
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 472066c0e2e1f6d00a0500495a5a0cb9cdb6681d
     async perfil(req, res) {
         try {
             const idPsicologo = req.user.id;
