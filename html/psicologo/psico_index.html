@@ -21,6 +21,8 @@
             <a href="psico_painel.html">Painel</a>
         </nav>
 
+        <button id="botaosair" onclick="deslogar()">Sair</button>
+
     </header>
 
 
@@ -102,6 +104,13 @@
     </footer>
 
     <script src="../../Js/Verificação.js"></script>
+
+    <script>
+        function deslogar() {
+            localStorage.removeItem('token');
+            window.location.href = '../Login.html';
+        }
+    </script>
 
 </body>
 </html>

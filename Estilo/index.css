@@ -109,4 +109,16 @@ article{
     margin-right: 100px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.303);
+
+}
+
+#botaosair {
+    margin-left: auto;          
+    padding: 8px 18px;
+    background-color: #073B4C;  
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
 }
