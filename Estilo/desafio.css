@@ -4,7 +4,10 @@ main{
 }
 
 #momento{
-    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    gap: 15px;
 }
 
 #momento h1{
@@ -12,17 +15,21 @@ main{
 }
 
 #tema{
-    background-color: #e6e6e6;
+    display: flex;
+    background-color: #bfefdb81;
     width: 70%;
     height: 250px;
     margin: auto;
     border-radius: 10px;
     margin-top: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 #temaTexto{
     padding: 30px;
     font-family: Corpo, sans-serif;
+    text-align: center;
 }
 
 #conteudo{
@@ -36,7 +43,7 @@ main{
     width: 70%;
     margin: auto;
     margin-top: 40px;
-    background-color: #bfe0ef54;
+    background-color: #bfefdba4;
     border-radius: 15px;
     padding: 20px;
 }
@@ -69,4 +76,12 @@ main{
     padding: 10px;
     font-family: Corpo, sans-serif;
     resize: none;
+}
+
+a{
+    color: #52695f;
+}
+
+#navMenu{
+    background-color: #bfefdb81;
 }

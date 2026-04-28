@@ -61,6 +61,7 @@ article{
     width: auto;
     margin-right: 100px;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.303);
 }
 
 #conteudos{
@@ -73,6 +74,7 @@ article{
     width: auto;
     margin-left: 100px;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.303);
 }
 
 #txt{
@@ -91,10 +93,6 @@ article{
     text-align: left;
 }
 
-#seguranca{
-    text-align: lef;
-}
-
 #tex{
     font-size: 1.10rem;
     margin-left: 100px;
@@ -110,4 +108,5 @@ article{
     width: auto;
     margin-right: 100px;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.303);
 }
