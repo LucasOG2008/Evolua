@@ -111,3 +111,14 @@ article{
 hr {
     margin-top: 100px;
 }
+
+#botaosair {
+    margin-left: auto;          
+    padding: 8px 18px;
+    background-color: #ff91007e;  
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}

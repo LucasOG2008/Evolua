@@ -22,6 +22,9 @@
             <a href="painel.html">Meu Painel</a>
         </nav>
 
+
+        <button id="botaosair" onclick="deslogar()">Sair</button>
+
     </header>
 
 
@@ -103,5 +106,12 @@
         </div>
         <script src="../Js/Verificação.js"></script>
     </footer>
+
+    <script>
+        function deslogar() {
+            localStorage.removeItem('token');
+            window.location.href = 'Login.html';
+        }
+    </script>
 </body>
 </html>

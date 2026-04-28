@@ -22,7 +22,6 @@ const psicologoController = {
         }
     },
  
-    // Retorna o perfil do psicólogo logado
     async perfil(req, res) {
         try {
             const idPsicologo = req.user.id;
