@@ -31,11 +31,6 @@ const psicologoController = {
             return res.status(500).json({ erro: error.message });
         }
     },
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 472066c0e2e1f6d00a0500495a5a0cb9cdb6681d
     async perfil(req, res) {
         try {
             const idPsicologo = req.user.id;
@@ -141,6 +136,25 @@ const psicologoController = {
             return res.status(201).json({ mensagem: 'Interesse registrado! Aguardando aceitação do paciente.' });
         } catch (error) {
             return res.status(500).json({ erro: error.message });
+        }
+    },
+
+    async atualizarDescricao(req, res) {
+        try {
+            const { descricao } = req.body;
+            const idPsicologo = req.user.id;
+
+            if (!idPsicologo) {
+                return res.status(401).json({ erro: "Psicólogo não autenticado" });
+            }
+
+            const sql = "UPDATE psicologo SET Descricao = ? WHERE ID = ?";
+            await db.execute(sql, [descricao, idPsicologo]);
+
+            return res.status(200).json({ mensagem: "Descrição atualizada com sucesso!" });
+        } catch (error) {
+            console.error("Erro no controller:", error);
+            return res.status(500).json({ erro: "Erro interno ao salvar no banco" });
         }
     },
 

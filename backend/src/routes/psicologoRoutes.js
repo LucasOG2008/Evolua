@@ -22,6 +22,12 @@ router.get('/perfil',
     psicologoController.perfil
 );
 
+router.patch('/perfil/descricao',
+    authMiddleware,
+    roleMiddleware('psicologo'),
+    psicologoController.atualizarDescricao
+);
+
 router.get('/pacientes',
     authMiddleware,
     roleMiddleware('psicologo'),
