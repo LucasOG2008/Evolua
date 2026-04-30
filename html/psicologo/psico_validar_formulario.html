@@ -12,13 +12,11 @@
 
     <header>
         <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-        
         <div class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        
         <nav id="navMenu" class="nav-menu">
             <a href="psico_index.html">Evolua+</a>
             <a href="psicoPacientes.html">Pacientes</a>
@@ -28,61 +26,83 @@
     </header>
 
     <main>
-
         <h1>Mapemamento Evolua+</h1>
-
         <section id="Perguntas">
             <p>Sua evolução começa com honestidade. Este diagnóstico é 100% confidencial e analisado apenas por nossa equipe clínica.</p>
-            <form id="meuFormulario" method="post">
+            <form id="meuFormulario">
+
                 <div id="Inicial">
-                    <label for="pergInicial" class="Borda" >
+                    <label for="pergInicial" class="Borda">
                         Primeira questão
-                        <br>
-                        <br>
-                        <p>Faça um breve resumo sobre você para que possamos te conhecer melhor</p>
+                        <br><br>
+                        <p>Primeira questão: Faça um breve resumo sobre você, incluindo nome, idade, ocupação e o que te motivou a buscar acompanhamento psicológico.</p>
                     </label>
                     <br>
-                    <textarea name="questaoUm" id="pergInicial" required placeholder="Digite sua resposta aqui" readonly></textarea>
+                    <textarea id="pergInicial" placeholder="Resposta do paciente" readonly></textarea>
+                    <div class="caixaObservacao">
+                        <label for="obs-1">Observação</label>
+                        <textarea id="obs-1" placeholder="Digite sua observação sobre esta resposta..."></textarea>
+                    </div>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
+
                 <div class="Secundaria">
-                    <label for="segPerg" class="Borda">Segunda questão</label>
+                    <label for="segPerg" class="Borda">Segunda questão: Como você tem avaliado seu estado emocional nas últimas semanas? Descreva sentimentos como ansiedade, tristeza, motivação ou estresse.</label>
                     <br>
-                    <textarea name="questaoDois" id="segPerg" required placeholder="Digite sua resposta aqui"1></textarea>
+                    <textarea id="segPerg" placeholder="Resposta do paciente" readonly></textarea>
+                    <div class="caixaObservacao">
+                        <label for="obs-2">Observação</label>
+                        <textarea id="obs-2" placeholder="Digite sua observação sobre esta resposta..."></textarea>
+                    </div>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
+
                 <div class="Secundaria">
-                    <label for="terPerg" class="Borda">Terceira questão</label>
+                    <label for="terPerg" class="Borda">Terceira questão: Como estão seus relacionamentos familiares, amorosos e de amizade? Sente que tem apoio emocional quando precisa?</label>
                     <br>
-                    <textarea name="questaoTres" id="terPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
+                    <textarea id="terPerg" placeholder="Resposta do paciente" readonly></textarea>
+                    <div class="caixaObservacao">
+                        <label for="obs-3">Observação</label>
+                        <textarea id="obs-3" placeholder="Digite sua observação sobre esta resposta..."></textarea>
+                    </div>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
+
                 <div class="Secundaria">
-                    <label for="quarPerg" class="Borda">Quarta questão</label>
+                    <label for="quarPerg" class="Borda">Quarta questão: Como estão seus hábitos de sono, alimentação e atividades físicas? Sente que sua rotina tem te ajudado ou prejudicado?</label>
                     <br>
-                    <textarea name="questaoQuatro" id="quarPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
+                    <textarea id="quarPerg" placeholder="Resposta do paciente" readonly></textarea>
+                    <div class="caixaObservacao">
+                        <label for="obs-4">Observação</label>
+                        <textarea id="obs-4" placeholder="Digite sua observação sobre esta resposta..."></textarea>
+                    </div>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
                     <button type="button" class="prox" id="botao" disabled>Próxima questão</button>
                 </div>
+
                 <div class="Secundaria">
-                    <label for="quinPerg" class="Borda">Quinta questão</label>
+                    <label for="quinPerg" class="Borda">Quinta questão: Quais são seus principais objetivos com o acompanhamento psicológico? O que você espera alcançar ou melhorar em sua vida?</label>
                     <br>
-                    <textarea name="questaoCinco" id="quinPerg" required placeholder="Digite sua resposta aqui" readonly></textarea>
+                    <textarea id="quinPerg" placeholder="Resposta do paciente" readonly></textarea>
+                    <div class="caixaObservacao">
+                        <label for="obs-5">Observação</label>
+                        <textarea id="obs-5" placeholder="Digite sua observação sobre esta resposta..."></textarea>
+                    </div>
                     <button type="button" class="prev" id="botao" disabled>Questão anterior</button>
-                    <button type="submit" id="botao" class="Finalizar" disabled>Validar</button>
-                    <button type="submit" id="botao" class="Finalizar" disabled>Invalidar</button>
+                    <button type="button" class="Finalizar" id="botao" disabled>Validar</button>
+                    <button type="button" class="Finalizar" id="botao" disabled>Invalidar</button>
                 </div>
+
             </form>
         </section>
-
     </main>
 
+    <hr>
 
     <footer>
         <img src="../../Imagens/Formulario/mascote_sem_fundo.png" alt="mascote">
-
         <div id="pag">
             <h4>Veja mais:</h4>
             <nav>
@@ -91,30 +111,23 @@
                 <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
                 <a href="psico_painel.html">Painel</a>
             </nav>
-    
         </div>
-
         <div id="rodape">
             <h4>Feito Por:</h4>
             <h5>Next Gen Devs</h5>
             <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-                Lucas Oliveira Gomes <br/>
-                Murilo Miranda de Castro Silva <br/>
+               Lucas Oliveira Gomes <br/>
+               Murilo Miranda de Castro Silva <br/>
             </p>
         </div>
-
     </footer>
-    
-    <script src="../Js/formulario.js"></script>
 
     <script>
         function toggleMenu() {
             document.getElementById("navMenu").classList.toggle("show");
         }
     </script>
-
     <script src="../../Js/formularioPsico.js"></script>
-
     <script src="../../Js/Verificação.js"></script>
 
 </body>

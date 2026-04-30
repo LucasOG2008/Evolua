@@ -1,57 +1,36 @@
 @font-face {
     font-family: 'Corpo';
     src: url(../Fontes/Inclusive_Sans/InclusiveSans-VariableFont_wght.ttf);
-
 }
 @font-face {
     font-family: 'Titulo';
     src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
 }
 
-#Perguntas div {
+#Perguntas form > div {
     display: none;
 }
 
-#pergInicial{
-    border-radius: 10px;
-}
-
-#segPerg{
-    border-radius: 10px;
-}
-
-#terPerg{
-    border-radius: 10px;
-}
-
-#quarPerg{
-    border-radius: 10px;
-}
-
-#quinPerg{
-    border-radius: 10px;
-}
-
-.Borda{
-
-    border-radius: 100px;
-}
-
-#Perguntas div.ativa {
+#Perguntas form > div.ativa {
     display: block;
     animation: fadeIn 0.4s ease;
 }
 
-main{
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+main {
     text-align: center;
 }
 
-section{
+section {
     background-color: #ef476e6e;
     margin-left: auto;
     margin-right: auto;
@@ -60,37 +39,12 @@ section{
     min-width: 300px;
 }
 
-section > p{
+section > p {
     padding-bottom: 70px;
     padding-top: 45px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-textarea{
-    margin-top: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 800px;
-    height: 300px;
-    resize: none;
-    overflow-y: auto;
-    border-radius: 0px 0px 15px 15px;
-    font-family: Corpo, sans-serif;
-    background-color: #FEFCF3;
-    display: block;
-    border: solid 0.5px;
-}
-
-#botao{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-label{
+label {
     display: block;
     background-color: #FEFCF3;
     color: black;
@@ -106,7 +60,59 @@ label > p {
     color: #2D2D2D;
 }
 
-.Finalizar{
+.Borda {
+    border-radius: 100px;
+}
+
+textarea {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 300px;
+    resize: none;
+    overflow-y: auto;
+    border-radius: 0px 0px 15px 15px;
+    font-family: Corpo, sans-serif;
+    background-color: #FEFCF3;
+    display: block;
+    border: solid 0.5px;
+}
+
+#pergInicial { border-radius: 10px; }
+#segPerg     { border-radius: 10px; }
+#terPerg     { border-radius: 10px; }
+#quarPerg    { border-radius: 10px; }
+#quinPerg    { border-radius: 10px; }
+
+#botao {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.Finalizar {
     height: 35px;
     margin-bottom: 30px;
+}
+
+/* ── Campo de observação do psicólogo ── */
+.caixaObservacao {
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+
+.caixaObservacao label {
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: none;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caixaObservacao textarea {
+    height: 100px;
+    background-color: #e8f4ff;
+    border-radius: 0px 0px 15px 15px;
 }
