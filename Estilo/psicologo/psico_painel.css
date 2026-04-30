@@ -105,3 +105,66 @@ main{
     width: 25%;
 }
     
+
+.foto-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.foto-wrapper img#fotoPerfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+    background-color: #ef476e78;
+}
+
+.foto-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: #fff;
+    font-size: 0.75rem;
+    font-family: Corpo, sans-serif;
+    gap: 4px;
+}
+
+.foto-overlay svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+
+.foto-wrapper:hover .foto-overlay {
+    opacity: 1;
+}
+
+#inputFoto {
+    display: none;
+}
+
+#msgFoto {
+    font-size: 0.8rem;
+    margin-top: 6px;
+    text-align: center;
+    min-height: 18px;
+    font-family: Corpo, sans-serif;
+}
+
+.foto-coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}

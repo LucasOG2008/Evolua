@@ -36,7 +36,7 @@ const psicologoController = {
             const idPsicologo = req.user.id;
 
             const [rows] = await db.execute(
-                'SELECT ID, Nome, Email, Telefone, CRP, Descricao FROM psicologo WHERE ID = ?',
+                'SELECT ID, Nome, Email, Telefone, CRP, Descricao, Foto FROM psicologo WHERE ID = ?',
                 [idPsicologo]
             );
 
@@ -44,7 +44,11 @@ const psicologoController = {
                 return res.status(404).json({ erro: 'Psicólogo não encontrado' });
             }
 
-            return res.json(rows[0]);
+            const p = rows[0];
+            return res.json({
+                ...p,
+                Foto: p.Foto ? `data:image/jpeg;base64,${Buffer.from(p.Foto).toString('base64')}` : null
+            });
         } catch (error) {
             return res.status(500).json({ erro: error.message });
         }
@@ -139,6 +143,26 @@ const psicologoController = {
         }
     },
 
+    async atualizarFoto(req, res) {
+        try {
+            const idPsicologo = req.user.id;
+
+            if (!req.file) {
+                return res.status(400).json({ erro: 'Nenhuma imagem enviada' });
+            }
+
+            await db.execute(
+                'UPDATE psicologo SET Foto = ? WHERE ID = ?',
+                [req.file.buffer, idPsicologo]
+            );
+
+            return res.status(200).json({ mensagem: 'Foto atualizada com sucesso!' });
+        } catch (error) {
+            console.error('Erro ao atualizar foto:', error);
+            return res.status(500).json({ erro: 'Erro interno ao salvar foto' });
+        }
+    },
+
     async atualizarDescricao(req, res) {
         try {
             const { descricao } = req.body;
@@ -193,6 +217,26 @@ const psicologoController = {
                 ...p,
                 Foto: p.Foto ? `data:image/jpeg;base64,${Buffer.from(p.Foto).toString('base64')}` : null
             });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
+    async listarMeusPacientes(req, res) {
+        try {
+            const idPsicologo = req.user.id;
+
+            const [rows] = await db.execute(
+                `SELECT u.ID, u.nome AS Nome, u.email AS Email, u.cargo AS Cargo,
+                        u.setor AS Setor, u.descricao AS Descricao, up.Data_inicio AS DataInicio
+                 FROM usuarios u
+                 INNER JOIN usuario_psicologo up ON u.ID = up.ID_usuario
+                 WHERE up.ID_psicologo = ?
+                   AND up.Status = 'ativo'`,
+                [idPsicologo]
+            );
+
+            return res.json(rows);
         } catch (error) {
             return res.status(500).json({ erro: error.message });
         }

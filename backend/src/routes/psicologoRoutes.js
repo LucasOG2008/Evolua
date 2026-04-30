@@ -3,7 +3,7 @@ const router = express.Router();
 const psicologoController = require('../controllers/psicologoController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
-const upload = require('../middlewares/upload');
+const { upload, uploadSingle } = require('../middlewares/upload');
 
 router.get('/',
     authMiddleware,
@@ -29,15 +29,28 @@ router.post('/:id/curtir',
     psicologoController.curtir
 );
 
-router.get('/perfil',
+router.patch('/perfil/foto',
     authMiddleware,
-    psicologoController.perfil
+    uploadSingle('foto'),
+    roleMiddleware('psicologo'),
+    psicologoController.atualizarFoto
 );
 
 router.patch('/perfil/descricao',
     authMiddleware,
     roleMiddleware('psicologo'),
     psicologoController.atualizarDescricao
+);
+
+router.get('/perfil',
+    authMiddleware,
+    psicologoController.perfil
+);
+
+router.get('/meus-pacientes',
+    authMiddleware,
+    roleMiddleware('psicologo'),
+    psicologoController.listarMeusPacientes
 );
 
 router.get('/pacientes',
@@ -55,7 +68,7 @@ router.post('/pacientes/:id/curtir',
 router.post('/',
     authMiddleware,
     roleMiddleware('admin'),
-    upload.single('foto'),
+    uploadSingle('foto'),
     psicologoController.cadastrar
 );
 

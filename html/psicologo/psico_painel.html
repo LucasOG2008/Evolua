@@ -33,6 +33,17 @@
         <h2>Usuário</h2>
         <div class="conteudoCard">
 
+            <div class="foto-coluna">
+                <div class="foto-wrapper" onclick="document.getElementById('inputFoto').click()" title="Clique para alterar a foto">
+                    <img id="fotoPerfil" src="../../Imagens/64673.png" alt="Foto de perfil">
+                    <div class="foto-overlay">
+                        Alterar foto
+                    </div>
+                </div>
+                <p id="msgFoto"></p>
+                <input type="file" id="inputFoto" accept="image/*">
+            </div>
+
             <div class="infoUsuario">
                 <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
                 <p><strong>Email:</strong> <span id="email">Carregando...</span></p>
@@ -50,7 +61,6 @@
         </div>
     </section>
 </main>
-
 
 <footer>
     <img src="../../Imagens/Home_page/mascote_sem_fundo.png">
@@ -75,75 +85,7 @@
     </div>
 </footer>
 
-<script>
-function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-        window.location.href = "../Login.html";
-        return;
-    }
-
-    try {
-        const res = await fetch("http://localhost:3000/psicologos/perfil", {
-            headers: { "Authorization": `Bearer ${token}` }
-        });
-
-        if (res.status === 401) {
-            localStorage.removeItem("token");
-            window.location.href = "../Login.html";
-            return;
-        }
-
-        const data = await res.json();
-
-        document.getElementById("nome").innerText      = data.Nome      || "Não informado";
-        document.getElementById("email").innerText     = data.Email     || "Não informado";
-        document.getElementById("telefone").innerText  = data.Telefone  || "Não informado";
-        document.getElementById("crp").innerText       = data.CRP       || "Não informado";
-        document.getElementById("descricaoTexto").value = data.Descricao || "";
-        document.getElementById("btnSalvarDescricao").style.display = "none";
-
-    } catch (error) {
-        console.error("Erro ao buscar perfil:", error);
-    }
-});
-
-function mostrarBotaoSalvar() {
-    const botao = document.getElementById("btnSalvarDescricao");
-    if (botao) botao.style.display = "block";
-}
-
-async function salvarDescricao() {
-    const descricao = document.getElementById("descricaoTexto").value;
-    const token = localStorage.getItem("token");
-    const botao = document.getElementById("btnSalvarDescricao");
-
-    try {
-        const res = await fetch("http://localhost:3000/psicologos/perfil/descricao", {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({ descricao })
-        });
-
-        if (res.ok) {
-            if (botao) botao.style.display = "none";
-        } else {
-            document.getElementById("erroSalvar").style.display = "block";
-        }
-    } catch (error) {
-        console.error("Erro:", error);
-    }
-}
-</script>
-
+<script src="../../Js/psicoPainel.js"></script>
 <script src="../../Js/Verificação.js"></script>
 
 </body>
