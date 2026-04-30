@@ -158,6 +158,46 @@ const psicologoController = {
         }
     },
 
+    async listarTodos(req, res) {
+        try {
+            const [rows] = await db.execute(
+                `SELECT p.ID, p.Nome, p.Email, p.Telefone, p.CRP, p.Descricao,
+                        COUNT(up.ID_usuario) AS TotalPacientes
+                 FROM psicologo p
+                 LEFT JOIN usuario_psicologo up ON p.ID = up.ID_psicologo AND up.Status = 'ativo'
+                 GROUP BY p.ID`
+            );
+            return res.json(rows);
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
+    async buscarPorId(req, res) {
+        try {
+            const { id } = req.params;
+            const [rows] = await db.execute(
+                `SELECT p.ID, p.Nome, p.Email, p.Telefone, p.CRP, p.Descricao, p.Foto,
+                        COUNT(up.ID_usuario) AS TotalPacientes
+                 FROM psicologo p
+                 LEFT JOIN usuario_psicologo up ON p.ID = up.ID_psicologo AND up.Status = 'ativo'
+                 WHERE p.ID = ?
+                 GROUP BY p.ID`,
+                [id]
+            );
+            if (rows.length === 0) {
+                return res.status(404).json({ erro: 'Psicólogo não encontrado' });
+            }
+            const p = rows[0];
+            return res.json({
+                ...p,
+                Foto: p.Foto ? `data:image/jpeg;base64,${Buffer.from(p.Foto).toString('base64')}` : null
+            });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
     async cadastrar(req, res) {
         try {
             const { nome, cpf, crp, senha, telefone, email } = req.body;

@@ -7,6 +7,10 @@ const User = require('../models/User');
 
 router.get('/', authMiddleware, roleMiddleware('admin'), userController.listar);
 
+router.get('/admin/todos', authMiddleware, roleMiddleware('admin'), userController.listar);
+
+router.get('/admin/:id', authMiddleware, roleMiddleware('admin'), userController.buscarPorId);
+
 router.get('/perfil', authMiddleware, async (req, res) => {
     try {
         const user = await User.findFullProfileByCpf(req.user.cpf);

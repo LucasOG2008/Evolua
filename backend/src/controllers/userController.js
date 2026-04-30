@@ -13,6 +13,28 @@ const userController = {
         }
     },
     
+    async buscarPorId(req, res) {
+        try {
+            const { id } = req.params;
+            const [rows] = await db.execute(
+                `SELECT u.id, u.nome, u.email, u.cargo, u.setor, u.descricao, u.Pontos,
+                        p.Nome as psi_nome, p.Email as psi_email,
+                        p.Telefone as psi_telefone, p.Descricao as psi_descricao
+                 FROM usuarios u
+                 LEFT JOIN usuario_psicologo up ON u.id = up.ID_usuario AND up.Status = 'ativo'
+                 LEFT JOIN psicologo p ON up.ID_psicologo = p.ID
+                 WHERE u.id = ?`,
+                [id]
+            );
+            if (rows.length === 0) {
+                return res.status(404).json({ erro: 'Usuário não encontrado' });
+            }
+            return res.json(rows[0]);
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
     async atualizarDescricao(req, res) {
         try {
             const { descricao } = req.body;

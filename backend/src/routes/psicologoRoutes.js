@@ -11,6 +11,18 @@ router.get('/',
     psicologoController.listar
 );
 
+router.get('/admin/todos',
+    authMiddleware,
+    roleMiddleware('admin'),
+    psicologoController.listarTodos
+);
+
+router.get('/admin/:id',
+    authMiddleware,
+    roleMiddleware('admin'),
+    psicologoController.buscarPorId
+);
+
 router.post('/:id/curtir',
     authMiddleware,
     roleMiddleware('comum'),
