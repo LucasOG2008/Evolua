@@ -41,24 +41,24 @@
             <section id="funcionarios" class="metade">
                 <h2>Funcionários</h2>
                 <div class="barraBusca">
-                    <input type="text" placeholder="Buscar...">
+                    <input type="text" id="buscaFuncionario" placeholder="Buscar...">
                     <div class="lupa"><img src="../../Imagens/64673.png" alt="lupa"></div>
                 </div>
                 
-                <div class="perfil">
-                    <p>Roberto Fenomeno</p>
+                <div id="listaFuncionarios">
+                    <p class="vazio">Carregando...</p>
                 </div>
             </section>
 
             <section id="psicologos" class="metade">
                 <h2>Psicólogos</h2>
                 <div class="barraBusca">
-                    <input type="text" placeholder="Buscar...">
+                    <input type="text" id="buscaPsicologo" placeholder="Buscar...">
                     <div class="lupa"><img src="../../Imagens/64673.png" alt="lupa"></div>
                 </div>
 
-                <div class="perfil">
-                    <p>Cristiano Ronaldo</p>
+                <div id="listaPsicologos">
+                    <p class="vazio">Carregando...</p>
                 </div>
             </section>
 
@@ -90,22 +90,6 @@
         </div>
     </footer>
 
-    <script>
-    function toggleMenu() {
-        document.getElementById("navMenu").classList.toggle("show");
-    }
-    function mostrarFuncionarios() {
-        document.getElementById("funcionarios").style.display = "block";  
-        document.getElementById("psicologos").style.display = "none"; 
-    }
-      
-    function mostrarPsicologos() {
-        document.getElementById("psicologos").style.display = "block";   
-        document.getElementById("funcionarios").style.display = "none";   
-    }
-    </script>
-
-    <script src="../../Js/Verificação.js"></script>
-
+    <script src="../../Js/adm_busca_funcionario.js"></script>
 </body>
 </html>
