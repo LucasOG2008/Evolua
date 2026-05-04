@@ -29,7 +29,8 @@ router.get('/perfil', authMiddleware, async (req, res) => {
             psi_nome: user.psi_nome,
             psi_email: user.psi_email,
             psi_telefone: user.psi_telefone,
-            psi_descricao: user.psi_descricao
+            psi_descricao: user.psi_descricao,
+            psi_foto: user.psi_foto ? `data:image/jpeg;base64,${Buffer.from(user.psi_foto).toString('base64')}` : null
         });
     } catch (error) {
         res.status(500).json({ erro: error.message });

@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("meuFormulario");
     let perguntas = [];
 
-    // Busca as perguntas do banco
     try {
         const res = await fetch("http://localhost:3000/desafios/formulario", {
             headers: { "Authorization": `Bearer ${token}` }
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // Renderiza as perguntas no formulário
     form.innerHTML = "";
     perguntas.forEach((p, i) => {
         const isFirst = i === 0;

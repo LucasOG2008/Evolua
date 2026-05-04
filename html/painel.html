@@ -12,102 +12,100 @@
 
 <header>
     <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
-    
     <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
-    
     <nav id="navMenu" class="nav-menu">
         <a href="Index.html">Evolua+</a>
         <a href="escolher_psiocologo.html">Psicólogos</a>
         <a href="desafio.html">Desafio Diário</a>
-        <a href="Formulario.html">Formulario</a>
+        <a href="Formulario.html">Formulário</a>
         <a href="painel.html">Meu Painel</a>
     </nav>
 </header>
 
-<main>
-    <h1 id="tituloPainel">Quadro Geral</h1>
-    
-    <section class="card">
-        <h2>Usuário</h2>
-        <div class="conteudoCard">
-            <div class="infoUsuario">
-                <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
-                <p><strong>Cargo:</strong> <span id="cargo">Carregando...</span></p>
-                <p><strong>Setor:</strong> <span id="setor">Carregando...</span></p>
-            </div>
+<main class="painel-layout">
 
-            <div class="descricao">
-                <p><strong>Sua Descrição:</strong></p>
-                <textarea id="descricaoUsuario" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
-                
-                <button id="btnSalvarDescricao" onclick="salvarDescricao()" class="btn-acao" style="display: none; margin-top: 10px;">
-                    Salvar Alterações
-                </button>
-            </div>
+    <aside class="sidebar">
 
-            <div class="pontuacao">
-                <div class="itemPontuacao">
-                    <p>
-                        <span class="numero">
-                            <img src="../Imagens/Chama.png" alt="Ícone de Pontuação">
-                            <span class="valor" id="pontuacaoValor">0</span>
-                        </span>
-                        Pontuação
-                    </p>
-                </div>
-            </div>
+        <div class="pontos-circulo">
+            <img src="../Imagens/Chama.png" alt="Fogo">
+            <span id="pontuacaoValor">0</span>
+            <small>pontos</small>
         </div>
-    </section>
-    
-    <section class="card" id="secaoPsicologo" style="display: none;">
-        <h2>Psicólogo</h2>
-        <div class="conteudoCard">
-            <img src="../Imagens/Home_page/fim.png" class="fotoPsicologo" alt="Foto do Psicólogo">
-            <div class="infoPsicologo">
-                <p><strong>Nome:</strong> <span id="psiNome"></span></p>
-                <p><strong>Email:</strong> <span id="psiEmail"></span></p>
-                <p><strong>Número:</strong> <span id="psiNumero"></span></p>
-            </div>
-            <div class="descricao">
-                <p><strong>Sobre o Profissional:</strong></p>
+
+        <h2 id="nome">Carregando...</h2>
+        <p class="cargo" id="cargo">—</p>
+        <p class="setor" id="setor">—</p>
+
+        <hr>
+
+        <textarea id="descricaoUsuario" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
+        <button id="btnSalvarDescricao" onclick="salvarDescricao()" style="display:none;">Salvar</button>
+
+    </aside>
+
+
+    <section class="conteudo">
+
+        <div class="abas">
+            <button class="aba ativa" onclick="trocarAba('perfil', this)">Perfil</button>
+            <button class="aba" onclick="trocarAba('psicologo', this)">Psicólogo</button>
+        </div>
+
+        <div id="aba-perfil" class="painel-card">
+            <p><span class="rotulo">Nome</span> <span id="nome-info">—</span></p>
+            <p><span class="rotulo">Cargo</span> <span id="cargo-info">—</span></p>
+            <p><span class="rotulo">Setor</span> <span id="setor-info">—</span></p>
+            <p><span class="rotulo">Pontuação</span> <span id="pontuacao-info">0</span> pts </p>
+        </div>
+
+        <div id="aba-psicologo" class="painel-card" style="display:none;">
+
+            <div id="secaoPsicologo" style="display:none;">
+                <div class="psico-topo">
+                    <img src="../Imagens/Home_page/fim.png" class="psico-foto" alt="Foto do Psicólogo">
+                    <div>
+                        <p class="psico-nome" id="psiNome"></p>
+                        <p><span class="rotulo">Email</span> <span id="psiEmail"></span></p>
+                        <p><span class="rotulo">Telefone</span> <span id="psiNumero"></span></p>
+                    </div>
+                </div>
+                <hr>
+                <p class="rotulo">Sobre o profissional</p>
                 <p id="psiDescricao"></p>
             </div>
-        </div>
-    </section>
 
-    <div id="avisoSemPsi" style="text-align: center; margin-top: 20px; display: none;">
-        <p>Você ainda não possui um psicólogo vinculado.</p>
-        <a href="escolher_psiocologo.html" class="btn-link" style="color: #4f46e5; font-weight: bold;">Escolher Psicólogo agora</a>
-    </div>
-    <div id="erroSalvar" style="display:none;"><p>Erro ao salvar descrição.</p></div>
+            <div id="avisoSemPsi" style="display:none;" class="aviso">
+                <p>Você ainda não tem um psicólogo vinculado.</p>
+                <a href="escolher_psiocologo.html">Escolher Psicólogo</a>
+            </div>
+
+        </div>
+
+    </section>
 </main>
 
+<div id="erroSalvar" style="display:none;"><p>Erro ao salvar.</p></div>
 
 <footer>
     <img src="../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
-
     <div id="pag">
         <h4>Veja mais:</h4>
         <nav>
             <a href="Index.html">Evolua+</a>
             <a href="escolher_psiocologo.html">Psicólogos</a>
             <a href="desafio.html">Desafio Diário</a>
-            <a href="Formulario.html">Formulario</a>
+            <a href="Formulario.html">Formulário</a>
             <a href="painel.html">Meu Painel</a>
         </nav>
     </div>
-
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-            Lucas Oliveira Gomes <br/>
-            Murilo Miranda de Castro Silva <br/>
-        </p>
+        <p>Carlos Eduardo Malheiro de Oliveira Almeida<br>
+           Lucas Oliveira Gomes<br>
+           Murilo Miranda de Castro Silva</p>
     </div>
 </footer>
 
@@ -118,6 +116,5 @@
 </script>
 
 <script src="../Js/perfis.js"></script>
-
 </body>
 </html>

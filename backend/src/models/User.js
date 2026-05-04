@@ -15,7 +15,8 @@ const User = {
                 p.Nome as psi_nome, 
                 p.Email as psi_email, 
                 p.Telefone as psi_telefone,
-                p.Descricao as psi_descricao
+                p.Descricao as psi_descricao,
+                p.Foto as psi_foto
             FROM usuarios u
             LEFT JOIN usuario_psicologo up ON u.id = up.ID_usuario AND up.Status = 'ativo'
             LEFT JOIN psicologo p ON up.ID_psicologo = p.ID
@@ -48,3 +49,4 @@ const User = {
 };
 
 module.exports = User;
+
