@@ -46,6 +46,22 @@ main{
 .descricao{
     width: 40%;
 }
+
+#descricaoTexto{
+    width: 300px;
+    height: 90px;
+    border: 1px solid #b0c4cc;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: Corpo, sans-serif;
+    font-size: 0.875rem;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.2s;
+}
     
 .pontuacao{
     

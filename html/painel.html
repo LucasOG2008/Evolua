@@ -34,15 +34,6 @@
             <small>pontos</small>
         </div>
 
-        <h2 id="nome">Carregando...</h2>
-        <p class="cargo" id="cargo">—</p>
-        <p class="setor" id="setor">—</p>
-
-        <hr>
-
-        <textarea id="descricaoUsuario" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
-        <button id="btnSalvarDescricao" onclick="salvarDescricao()" style="display:none;">Salvar</button>
-
     </aside>
 
 
@@ -54,10 +45,14 @@
         </div>
 
         <div id="aba-perfil" class="painel-card">
-            <p><span class="rotulo">Nome</span> <span id="nome-info">—</span></p>
-            <p><span class="rotulo">Cargo</span> <span id="cargo-info">—</span></p>
-            <p><span class="rotulo">Setor</span> <span id="setor-info">—</span></p>
-            <p><span class="rotulo">Pontuação</span> <span id="pontuacao-info">0</span> pts </p>
+            <p id="nome">Carregando...</p>
+            <br>
+            <p class="cargo" id="cargo">—</p>
+            <br>
+            <p class="setor" id="setor">—</p>
+            <br>
+            <textarea id="descricaoUsuario" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
+            <button id="btnSalvarDescricao" onclick="salvarDescricao()" style="display:none;">Salvar</button>
         </div>
 
         <div id="aba-psicologo" class="painel-card" style="display:none;">

@@ -49,23 +49,39 @@
     color: #5a7a87;
 }
 
-.sidebar h2 {
+#nome {
     font-size: 1.3rem;
     color: #073B4C;
     margin: 0;
     font-family: Titulo, sans-serif;
 }
 
-.sidebar .cargo {
+#nome::before {
+    content: "Nome: ";
+    color: #7a9baa;
+}
+
+#cargo {
     font-size: 0.95rem;
     color: #5a7a87;
     margin: 0;
+    content: "Cargo:";
 }
 
-.sidebar .setor {
-    font-size: 0.88rem;
+#cargo::before {
+    content: "Cargo: ";
+    color: #7a9baa;
+}
+
+#setor {
+    font-size: 0.95rem;
     color: #7a9baa;
     margin: 0;
+}
+
+#setor::before {
+    content: "Setor: ";
+    color: #7a9baa;
 }
 
 .sidebar hr {
@@ -76,6 +92,22 @@
 }
 
 .sidebar textarea {
+    width: 100%;
+    height: 90px;
+    border: 1px solid #b0c4cc;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: Corpo, sans-serif;
+    font-size: 0.875rem;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+#descricaoUsuario{
     width: 100%;
     height: 90px;
     border: 1px solid #b0c4cc;
@@ -117,9 +149,7 @@
 }
 
 .abas {
-    display: flex;
     gap: 4px;
-    border-bottom: 2px solid #cfe3eb;
     margin-bottom: 20px;
 }
 
