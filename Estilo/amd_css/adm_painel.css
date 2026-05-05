@@ -1,83 +1,191 @@
-main{
-    font-family: Titulo, sans-serif;
-    width: 70%;
-    margin: auto;
-    margin-top: 40px;
-}
-    
-#tituloPainel{
-    text-align: left;
-    margin-bottom: 20px;
-}
-    
-.card{
-    
-    background-color: #ff910080;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
-    
-}
-    
-.card h2{
-    
-    background-color: #ff910044;
-    padding: 10px 20px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    
-}
-    
-.conteudoCard{
-    
+/* ── Layout principal ── */
+.painel-layout {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    font-family: Corpo, sans-serif;
-    
+    gap: 32px;
+    width: 88%;
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    align-items: flex-start;
 }
-    
-.infoUsuario{
-    width: 20%;
-}
-    
-.descricao{
-    width: 40%;
-}
-    
-.pontuacao{
-    
+
+/* ── Sidebar ── */
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    
-}
-    
-.itemPontuacao{
-    
-    display: flex;
-    align-items: center;
     gap: 10px;
+}
+
+.pontos-circulo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d9e7ec, #eaf3f7);
+    border: 3px solid #BFE0EF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.pontos-circulo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.pontos-circulo span {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #073B4C;
+    line-height: 1;
+    font-family: Titulo, sans-serif;
+}
+
+.pontos-circulo small {
+    font-size: 0.85rem;
+    color: #5a7a87;
+}
+
+/* ── Conteúdo ── */
+.conteudo {
+    flex: 1;
+    min-width: 0;
+}
+
+.conteudo h1 {
+    font-family: Titulo, sans-serif;
+    color: #073B4C;
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+}
+
+/* ── Abas ── */
+.abas {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.aba {
+    padding: 8px 18px;
+    background-color: #073B4C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Corpo, sans-serif;
+    font-size: 0.92rem;
+    transition: background-color 0.2s;
+}
+
+.aba:hover    { background-color: #0a4f66; }
+.aba.ativa    { background-color: #0a4f66; }
+
+/* ── Painel card ── */
+.painel-card {
+    background: #fff;
+    border: 1px solid #cfe3eb;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.painel-card p {
+    margin: 0 0 14px 0;
+    font-size: 0.95rem;
+    color: #073B4C;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.painel-card p:last-child { margin-bottom: 0; }
+
+.painel-card hr {
+    border: none;
+    border-top: 1px solid #eaf3f7;
+    margin: 16px 0;
+}
+
+/* ── IDs do perfil do usuário ── */
+#nomeUsuario {
+    font-size: 1.3rem;
+    color: #073B4C;
+    font-family: Titulo, sans-serif;
+    margin: 0;
+}
+#nomeUsuario::before  { content: "Nome: ";    color: #7a9baa; }
+#emailUsuario::before { content: "Email: ";   color: #7a9baa; }
+#cargoUsuario::before { content: "Cargo: ";   color: #7a9baa; }
+#setorUsuario::before { content: "Setor: ";   color: #7a9baa; }
+
+#emailUsuario, #cargoUsuario, #setorUsuario {
+    font-size: 0.95rem;
+    color: #5a7a87;
+    margin: 0;
+}
+
+/* ── Bloco descrição ── */
+.descricao-bloco {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.descricao-bloco p {
+    font-size: 0.95rem;
+    color: #5a7a87;
+    display: block;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Rótulo ── */
+.rotulo {
+    font-size: 0.82rem;
+    color: #7a9baa;
+    font-weight: 600;
+    min-width: 80px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ── Seção psicólogo ── */
+.psico-topo {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.psico-foto {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #BFE0EF;
+    background: #d9e7ec;
+    flex-shrink: 0;
+}
+
+.psico-nome {
     font-size: 1.1rem;
-    
+    font-weight: 700;
+    color: #073B4C;
+    margin: 0 0 8px 0 !important;
 }
-    
-.icone{
-    font-size: 30px;
+
+/* ── Aviso sem psicólogo ── */
+.aviso {
+    text-align: center;
+    padding: 32px 16px;
+    color: #5a7a87;
 }
-    
-.fotoPsicologo{
-    
-    width: 120px;
-    height: 120px;
-    background-color: #cfd8dc;
-    border-radius: 15px;
-    
+
+.aviso p {
+    margin-bottom: 16px;
+    justify-content: center;
 }
-    
-.infoPsicologo{
-    width: 25%;
-}
-    

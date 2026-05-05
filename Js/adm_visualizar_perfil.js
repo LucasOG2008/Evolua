@@ -8,6 +8,13 @@ function toggleMenu() {
     document.getElementById('navMenu').classList.toggle('show');
 }
 
+function trocarAba(id, btn) {
+    document.querySelectorAll('.painel-card').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.aba').forEach(b => b.classList.remove('ativa'));
+    document.getElementById('aba-' + id).style.display = 'block';
+    btn.classList.add('ativa');
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const token = getToken();
     if (!token) {
@@ -40,49 +47,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const data = await res.json();
 
-
+        // Título e pontuação
         document.getElementById('tituloPainel').textContent = `Painel de ${data.nome || 'Usuário'}`;
+        document.getElementById('pontuacaoValor').textContent = data.Pontos || 0;
 
+        // Dados do perfil
+        document.getElementById('nomeUsuario').innerText  = data.nome    || 'Não informado';
+        document.getElementById('emailUsuario').innerText = data.email   || 'Não informado';
+        document.getElementById('cargoUsuario').innerText = data.cargo   || 'Não informado';
+        document.getElementById('setorUsuario').innerText = data.setor   || 'Não informado';
+        document.getElementById('descricaoTexto').textContent = data.descricao || 'Sem descrição cadastrada.';
 
-        document.getElementById('infoUsuario').innerHTML = `
-            <p><strong>Nome:</strong> ${data.nome || 'Não informado'}</p>
-            <p><strong>Email:</strong> ${data.email || 'Não informado'}</p>
-            <p><strong>Cargo:</strong> ${data.cargo || 'Não informado'}</p>
-            <p><strong>Setor:</strong> ${data.setor || 'Não informado'}</p>
-        `;
-
-
-        document.getElementById('descricaoUsuario').innerHTML = `
-            <h3>Sobre</h3>
-            <p>${data.descricao || 'Sem descrição cadastrada.'}</p>
-        `;
-
-
-        document.getElementById('pontuacao').innerHTML = `
-            <h3>Pontuação</h3>
-            <span style="font-size:2rem; font-weight:bold;">${data.Pontos || 0} pts</span>
-        `;
-
-        const infoPsicologo = document.getElementById('infoPsicologo');
-        const descricaoPsicologo = document.getElementById('descricaoPsicologo');
-        const fotoPsicologo = document.getElementById('fotoPsicologo');
+        // Psicólogo
+        const secaoPsicologo = document.getElementById('secaoPsicologo');
+        const avisoSemPsi    = document.getElementById('avisoSemPsi');
 
         if (data.psi_nome) {
-            if (fotoPsicologo) fotoPsicologo.style.display = 'none'; // sem foto nesta rota
-            infoPsicologo.innerHTML = `
-                <p><strong>Nome:</strong> ${data.psi_nome}</p>
-                <p><strong>Email:</strong> ${data.psi_email || 'Não informado'}</p>
-                <p><strong>Telefone:</strong> ${data.psi_telefone || 'Não informado'}</p>
-            `;
-            descricaoPsicologo.innerHTML = `
-                <h3>Sobre o Psicólogo</h3>
-                <p>${data.psi_descricao || 'Sem descrição.'}</p>
-            `;
+            secaoPsicologo.style.display = 'block';
+            avisoSemPsi.style.display    = 'none';
+
+            document.getElementById('psiNome').innerText    = data.psi_nome;
+            document.getElementById('psiEmail').innerText   = data.psi_email    || 'Não informado';
+            document.getElementById('psiNumero').innerText  = data.psi_telefone || 'Não informado';
+            document.getElementById('psiDescricao').innerText = data.psi_descricao || 'Sem descrição.';
+
+            const fotoPsi = document.getElementById('fotoPsicologo');
+            if (fotoPsi && data.psi_foto) {
+                fotoPsi.src = data.psi_foto;
+            }
         } else {
-            document.querySelector('section.card:last-of-type').innerHTML = `
-                <h2>Psicólogo</h2>
-                <p style="padding:1rem;">Este usuário ainda não possui psicólogo vinculado.</p>
-            `;
+            secaoPsicologo.style.display = 'none';
+            avisoSemPsi.style.display    = 'block';
         }
 
     } catch (error) {

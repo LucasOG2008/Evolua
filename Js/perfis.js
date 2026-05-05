@@ -15,10 +15,14 @@ function mostrarBotaoSalvar() {
   }
   
   function syncInfo() {
-    document.getElementById('nome-info').textContent = document.getElementById('nome').textContent;
-    document.getElementById('cargo-info').textContent = document.getElementById('cargo').textContent;
-    document.getElementById('setor-info').textContent = document.getElementById('setor').textContent;
-    document.getElementById('pontuacao-info').textContent = document.getElementById('pontuacaoValor').textContent;
+    const nomeEl = document.getElementById('nome-info');
+    const cargoEl = document.getElementById('cargo-info');
+    const setorEl = document.getElementById('setor-info');
+    const pontuacaoEl = document.getElementById('pontuacao-info');
+    if (nomeEl) nomeEl.textContent = document.getElementById('nome').textContent;
+    if (cargoEl) cargoEl.textContent = document.getElementById('cargo').textContent;
+    if (setorEl) setorEl.textContent = document.getElementById('setor').textContent;
+    if (pontuacaoEl) pontuacaoEl.textContent = document.getElementById('pontuacaoValor').textContent;
   }
   
   document.addEventListener("DOMContentLoaded", async () => {
@@ -108,4 +112,3 @@ function mostrarBotaoSalvar() {
         console.error("Erro:", error);
     }
   }
-  

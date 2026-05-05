@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel</title>
+    <title>Painel do Funcionário</title>
     <link rel="stylesheet" href="../../Estilo/amd_css/globaladmin.css">
     <link rel="stylesheet" href="../../Estilo/amd_css/adm_painel.css">
 </head>
@@ -11,13 +11,13 @@
 
 <header>
     <img src="../../Imagens/Home_page/logotipoSemfundo.png" id="logoEvolua">
-    
+
     <div class="hamburger" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
     </div>
-    
+
     <nav id="navMenu" class="nav-menu">
         <a href="adm_index.html">Evolua+</a>
         <a href="adm_cadastro.html">Cadastrar</a>
@@ -26,44 +26,69 @@
     </nav>
 </header>
 
-<main>
-    <h1 id="tituloPainel">Quadro Geral</h1>
-    
-    <!-- USUÁRIO -->
-    <section class="card">
-        <h2>Usuário</h2>
-        <div class="conteudoCard">
+<main class="painel-layout">
 
-            <div class="infoUsuario" id="infoUsuario"></div>
-
-            <div class="descricao" id="descricaoUsuario"></div>
-
-            <div class="pontuacao" id="pontuacao"></div>
-
+    <aside class="sidebar">
+        <div class="pontos-circulo">
+            <img src="../../Imagens/Chama.png" alt="Fogo">
+            <span id="pontuacaoValor">0</span>
+            <small>pontos</small>
         </div>
-    </section>
-    
-    <!-- PSICÓLOGO -->
-    <section class="card">
-        <h2>Psicólogo</h2>
-        <div class="conteudoCard">
+    </aside>
 
-            <div class="fotoPsicologo">
-                <img id="fotoPsicologo" src="" style="width:100px;">
+    <section class="conteudo">
+
+        <h1 id="tituloPainel">Carregando...</h1>
+
+        <div class="abas">
+            <button class="aba ativa" onclick="trocarAba('perfil', this)">Perfil</button>
+            <button class="aba" onclick="trocarAba('psicologo', this)">Psicólogo</button>
+        </div>
+
+        <!-- ABA PERFIL -->
+        <div id="aba-perfil" class="painel-card">
+            <p id="nomeUsuario">Carregando...</p>
+            <br>
+            <p id="emailUsuario">—</p>
+            <br>
+            <p id="cargoUsuario">—</p>
+            <br>
+            <p id="setorUsuario">—</p>
+            <br>
+            <div id="descricaoUsuario" class="descricao-bloco">
+                <span class="rotulo">Sobre</span>
+                <p id="descricaoTexto">Sem descrição cadastrada.</p>
+            </div>
+        </div>
+
+        <!-- ABA PSICÓLOGO -->
+        <div id="aba-psicologo" class="painel-card" style="display:none;">
+
+            <div id="secaoPsicologo" style="display:none;">
+                <div class="psico-topo">
+                    <img src="../../Imagens/Home_page/fim.png" class="psico-foto" id="fotoPsicologo" alt="Foto do Psicólogo">
+                    <div>
+                        <p class="psico-nome" id="psiNome"></p>
+                        <p><span class="rotulo">Email</span> <span id="psiEmail"></span></p>
+                        <p><span class="rotulo">Telefone</span> <span id="psiNumero"></span></p>
+                    </div>
+                </div>
+                <hr>
+                <p class="rotulo">Sobre o profissional</p>
+                <p id="psiDescricao"></p>
             </div>
 
-            <div class="infoPsicologo" id="infoPsicologo"></div>
-
-            <div class="descricao" id="descricaoPsicologo"></div>
+            <div id="avisoSemPsi" class="aviso" style="display:none;">
+                <p>Este usuário ainda não tem um psicólogo vinculado.</p>
+            </div>
 
         </div>
+
     </section>
 </main>
 
-
 <footer>
     <img src="../../Imagens/Home_page/mascote_sem_fundo.png">
-
     <div id="pag">
         <h4>Veja mais:</h4>
         <nav>
@@ -73,20 +98,25 @@
             <a href="adm_busca_funcionario.html">Buscar Funcionário</a>
         </nav>
     </div>
-
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-         <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-            Lucas Oliveira Gomes <br/>
-            Murilo Miranda de Castro Silva <br/>
-        </p>
+        <p>Carlos Eduardo Malheiro de Oliveira Almeida<br>
+           Lucas Oliveira Gomes<br>
+           Murilo Miranda de Castro Silva</p>
     </div>
 </footer>
 
 <script>
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
+}
+
+function trocarAba(id, btn) {
+    document.querySelectorAll('.painel-card').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.aba').forEach(b => b.classList.remove('ativa'));
+    document.getElementById('aba-' + id).style.display = 'block';
+    btn.classList.add('ativa');
 }
 </script>
 

@@ -40,31 +40,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const data = await res.json();
 
-     
-        document.getElementById('nomePsicologo').textContent = data.Nome || 'Psicólogo';
+        document.getElementById('nomePsicologo').innerText    = data.Nome      || 'Não informado';
+        document.getElementById('crpPsicologo').innerText     = data.CRP       || 'Não informado';
+        document.getElementById('emailPsicologo').innerText   = data.Email     || 'Não informado';
+        document.getElementById('telefonePsicologo').innerText = data.Telefone || 'Não informado';
+        document.getElementById('descricaoPsicologo').textContent = data.Descricao || 'Sem descrição cadastrada.';
+        document.getElementById('totalPacientes').textContent = data.TotalPacientes || 0;
 
         const fotoEl = document.getElementById('fotoPerfil');
         if (data.Foto) {
             fotoEl.src = data.Foto;
             fotoEl.alt = `Foto de ${data.Nome}`;
-        } else {
-            fotoEl.style.display = 'none';
         }
-
-       
-        document.getElementById('descricao').textContent = data.Descricao || 'Sem descrição cadastrada.';
-
-        document.getElementById('infoContato').innerHTML = `
-            <p><strong>Email:</strong> ${data.Email || 'Não informado'}</p>
-            <p><strong>Telefone:</strong> ${data.Telefone || 'Não informado'}</p>
-            <p><strong>CRP:</strong> ${data.CRP || 'Não informado'}</p>
-        `;
-
-
-        document.getElementById('pacientes').innerHTML = `
-            <span style="font-size:2rem; font-weight:bold;">${data.TotalPacientes || 0}</span>
-            <p>paciente(s) ativo(s)</p>
-        `;
 
     } catch (error) {
         console.error('Erro ao carregar perfil do psicólogo:', error);

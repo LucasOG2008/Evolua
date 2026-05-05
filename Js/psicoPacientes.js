@@ -6,7 +6,7 @@ async function carregarMeusPacientes() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        window.location.href = "../../html/Login.html";
+        window.location.href = "../Login.html";
         return;
     }
 
@@ -18,7 +18,7 @@ async function carregarMeusPacientes() {
         document.getElementById("loading").style.display = "none";
 
         if (res.status === 401) {
-            window.location.href = "../../html/Login.html";
+            window.location.href = "../Login.html";
             return;
         }
 

@@ -157,13 +157,12 @@
 .sidebar button:hover,
 #btnSalvarDescricao:hover { background-color: #c73058; }
 
-/* ---------- Conteúdo (igual ao painel do usuário) ---------- */
 .conteudo {
     flex: 1;
     min-width: 0;
 }
 
-/* ---------- Abas (igual ao painel do usuário, cor rosa) ---------- */
+
 .abas {
     display: flex;
     gap: 4px;
@@ -185,7 +184,7 @@
 .aba:hover           { background-color: #c73058; color: #fff; }
 .aba.ativa           { background-color: #c73058; color: #fff; }
 
-/* ---------- Painel-card (igual ao painel do usuário, borda rosa) ---------- */
+
 .painel-card {
     background: #fff;
     border: 1px solid #f5c0cc;

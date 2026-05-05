@@ -1,96 +1,149 @@
-main{
-    width: 80%;
-    margin: auto;
-    margin-top: 40px;
+/* ── Layout principal ── */
+.painel-layout {
+    display: flex;
+    gap: 32px;
+    width: 88%;
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Foto circular igual ao psico_painel */
+.foto-circulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.foto-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ef476e;
+    background: linear-gradient(145deg, #f9d0d9, #fdeaed);
+    flex-shrink: 0;
+}
+
+.foto-wrapper img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+/* Círculo de pacientes (equivalente ao círculo de pontos do usuário) */
+.pacientes-circulo {
+    width: 200px;
+    height: 120px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f9d0d9, #fdeaed);
+    border: 3px solid #ef476e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pacientes-circulo span {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #3b0011;
+    line-height: 1;
     font-family: Titulo, sans-serif;
 }
 
-#nomePsicologo{
+.pacientes-circulo small {
+    font-size: 0.85rem;
+    color: #7a3040;
     text-align: center;
-    margin-bottom: 40px;
 }
 
-#editar{
-    margin-left: auto;
-    font-family: Corpo, sans-serif;
-    text-decoration: underline;
-}
-
-header{
-    display: flex;
-    align-items: center;
-}
-
-#perfilTopo{
-    display: flex;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.imagem{
-
-    width: 300px;
-    height: 300px;
-
-    background-color: #ff91007e;
-    border-radius: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-
-    overflow: hidden;
-}
-
-.imagem img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-.descricao{
-
+/* ── Conteúdo ── */
+.conteudo {
     flex: 1;
-    height: 300px;
+    min-width: 0;
+}
 
-    background-color: #ff91007e;
-    border-radius: 15px;
+/* ── Painel card ── */
+.painel-card {
+    background: #fff;
+    border: 1px solid #f5c0cc;
+    border-radius: 12px;
+    padding: 24px;
+}
 
+.painel-card p {
+    margin: 0 0 14px 0;
+    font-size: 0.95rem;
+    color: #3b0011;
     display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: Corpo, sans-serif;
-    font-size: 22px;
-
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    align-items: baseline;
+    gap: 10px;
 }
 
-.card{
+.painel-card p:last-child { margin-bottom: 0; }
 
-    background-color: #ff91007e;
-
-    border-radius: 15px;
-
-    padding: 30px;
-
-    margin-bottom: 40px;
-
-    text-align: center;
-
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+.painel-card hr {
+    border: none;
+    border-top: 1px solid #fdeaed;
+    margin: 16px 0;
 }
 
-.info{
-    margin-top: 20px;
-    font-family: Corpo, sans-serif;
+/* ── IDs do perfil do psicólogo ── */
+#nomePsicologo {
+    font-size: 1.3rem;
+    color: #3b0011;
+    font-family: Titulo, sans-serif;
+    margin: 0;
+}
+#nomePsicologo::before    { content: "Nome: ";  color: #ef476e; }
+#crpPsicologo::before     { content: "CRP: ";   color: #ef476e; }
+#emailPsicologo::before   { content: "Email: "; color: #ef476e; }
+#telefonePsicologo::before { content: "Tel: ";  color: #ef476e; }
+
+#crpPsicologo, #emailPsicologo, #telefonePsicologo {
+    font-size: 0.95rem;
+    color: #7a3040;
+    margin: 0;
 }
 
-.pacientes{
-    margin-top: 20px;
-    font-family: Corpo, sans-serif;
-    font-size: 20px;
+/* ── Bloco descrição ── */
+.descricao-bloco {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.descricao-bloco p {
+    font-size: 0.95rem;
+    color: #7a3040;
+    display: block;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Rótulo ── */
+.rotulo {
+    font-size: 0.82rem;
+    color: #ef476e;
+    font-weight: 600;
+    min-width: 80px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
