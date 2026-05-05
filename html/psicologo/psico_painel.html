@@ -3,90 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Psicólogo</title>
+    <title>Meu Painel - Evolua+</title>
     <link rel="stylesheet" href="../../Estilo/psicologo/globalpsico.css">
     <link rel="stylesheet" href="../../Estilo/psicologo/psico_painel.css">
+    <link rel="shortcut icon" href="../../Imagens/Home_page/mascote_sem_fundo.png" type="image/x-icon">
 </head>
 <body>
 
 <header>
-    <img src="../../Imagens/Home_page/logotipoSemfundo.png" id="logoEvolua">
-    
+    <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
     <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
-    
     <nav id="navMenu" class="nav-menu">
         <a href="psico_index.html">Evolua+</a>
-        <a href="psicoPacientes.html">Pacientes</a>
+        <a href="psicoPacientes.html">Meus Pacientes</a>
         <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
-        <a href="psico_painel.html">Painel</a>
+        <a href="psico_validar_desafio.html">Desafios</a>
+        <a href="psico_painel.html">Meu Painel</a>
     </nav>
 </header>
 
-<main>
-    <h1 id="tituloPainel">Quadro Geral</h1>
-    
-    <section class="card">
-        <h2>Usuário</h2>
-        <div class="conteudoCard">
+<main class="painel-layout">
 
-            <div class="foto-coluna">
-                <div class="foto-wrapper" onclick="document.getElementById('inputFoto').click()" title="Clique para alterar a foto">
-                    <img id="fotoPerfil" src="../../Imagens/64673.png" alt="Foto de perfil">
-                    <div class="foto-overlay">
-                        Alterar foto
-                    </div>
-                </div>
-                <p id="msgFoto"></p>
+    <aside class="sidebar">
+
+        <div class="foto-circulo">
+            <div class="foto-wrapper">
+                <img id="fotoPerfil" src="../../Imagens/Home_page/fim.png" alt="Foto do Psicólogo">
+                <label for="inputFoto" class="foto-overlay">
+                    Alterar foto
+                </label>
                 <input type="file" id="inputFoto" accept="image/*">
             </div>
-
-            <div class="infoUsuario">
-                <p><strong>Nome:</strong> <span id="nome">Carregando...</span></p>
-                <p><strong>Email:</strong> <span id="email">Carregando...</span></p>
-                <p><strong>Telefone:</strong> <span id="telefone">Carregando...</span></p>
-                <p><strong>CRP:</strong> <span id="crp">Carregando...</span></p>
-            </div>
-
-            <div class="descricao">
-                <p><strong>Descrição:</strong></p>
-                <textarea id="descricaoTexto" rows="4" oninput="mostrarBotaoSalvar()"></textarea>
-                <button id="btnSalvarDescricao" onclick="salvarDescricao()" style="display:none;">Salvar</button>
-                <p id="erroSalvar" style="display:none; color:red;">Erro ao salvar.</p>
-            </div>
-
+            <span id="msgFoto"></span>
         </div>
+
+    </aside>
+
+    <section class="conteudo">
+
+
+
+        <div id="aba-perfil" class="painel-card">
+            <p id="nome">Carregando...</p>
+            <br>
+            <p id="crp">—</p>
+            <br>
+            <p id="email">—</p>
+            <br>
+            <p id="telefone">—</p>
+            <br>
+            <textarea id="descricaoTexto" oninput="mostrarBotaoSalvar()" placeholder="Escreva algo sobre você..."></textarea>
+            <button id="btnSalvarDescricao" onclick="salvarDescricao()" style="display:none;">Salvar</button>
+        </div>
+
     </section>
 </main>
 
-<footer>
-    <img src="../../Imagens/Home_page/mascote_sem_fundo.png">
+<div id="erroSalvar" style="display:none;"><p>Erro ao salvar.</p></div>
 
+<footer>
+    <img src="../../Imagens/Home_page/mascote_sem_fundo.png" alt="mascote">
     <div id="pag">
         <h4>Veja mais:</h4>
         <nav>
             <a href="psico_index.html">Evolua+</a>
-            <a href="psicoPacientes.html">Pacientes</a>
+            <a href="psicoPacientes.html">Meus Pacientes</a>
             <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
-            <a href="psico_painel.html">Painel</a>
+            <a href="psico_validar_desafio.html">Desafios</a>
+            <a href="psico_painel.html">Meu Painel</a>
         </nav>
     </div>
-
     <div id="rodape">
         <h4>Feito Por:</h4>
         <h5>Next Gen Devs</h5>
-        <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-            Lucas Oliveira Gomes <br/>
-            Murilo Miranda de Castro Silva <br/>
-        </p>
+        <p>Carlos Eduardo Malheiro de Oliveira Almeida<br>
+           Lucas Oliveira Gomes<br>
+           Murilo Miranda de Castro Silva</p>
     </div>
 </footer>
 
-<script src="../../Js/psicoPainel.js"></script>
-<script src="../../Js/Verificação.js"></script>
+<script>
+    function toggleMenu() {
+        document.getElementById("navMenu").classList.toggle("show");
+    }
 
+    function mostrarBotaoSalvar() {
+        document.getElementById('btnSalvarDescricao').style.display = 'inline-block';
+    }
+</script>
+
+<script src="../../Js/psicoPainel.js"></script>
 </body>
 </html>

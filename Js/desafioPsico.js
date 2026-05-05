@@ -4,7 +4,6 @@ const idPaciente = params.get("id");
 document.addEventListener("DOMContentLoaded", async () => {
 
     if (!idPaciente) {
-        alert("Nenhum paciente selecionado.");
         window.location.href = "PsicoPossiveisPacientes.html";
         return;
     }

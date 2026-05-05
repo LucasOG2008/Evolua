@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        alert('Você precisa estar logado como administrador.');
         window.location.href = '../../login.html';
         return;
     }

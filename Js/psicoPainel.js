@@ -115,12 +115,10 @@ async function salvarDescricao() {
         if (res.ok) {
             if (botao) botao.style.display = "none";
             if (erroMsg) erroMsg.style.display = "none";
-            alert("Descrição atualizada com sucesso!");
         } else {
             if (erroMsg) erroMsg.style.display = "block";
         }
     } catch (error) {
         console.error("Erro:", error);
-        alert("Erro ao conectar com o servidor.");
     }
 }
