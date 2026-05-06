@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "html/psicologo/psico_index.html":              ["psicologo"],
         "html/psicologo/psico_painel.html":             ["psicologo"],
         "html/psicologo/psicopacientes.html":           ["psicologo"],
-        "html/psicologo/psicopossiveispacientes.html":  ["psicologo"],
+        "html/psicologo/PsicoPossiveisPacientes.html":  ["psicologo"],
         "html/psicologo/psico_validar_desafio.html":    ["psicologo"],
         "html/psicologo/psico_validar_formulario.html": ["psicologo"],
 
