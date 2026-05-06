@@ -3,69 +3,55 @@ const idPaciente = params.get("id");
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    if (!idPaciente) {
-        window.location.href = "PsicoPossiveisPacientes.html";
-        return;
-    }
+    if (!idPaciente) { window.location.href = "PsicoPossiveisPacientes.html"; return; }
 
     const token = localStorage.getItem("token");
     if (!token) { window.location.href = "../Login.html"; return; }
 
-    let respostaDesafio = null;
     try {
-        const res = await fetch(`http://localhost:3000/respostas/paciente/${idPaciente}`, {
+        const res = await fetch(`http://localhost:3000/respostas/paciente/${idPaciente}?tipo=desafio`, {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (res.status === 401) { window.location.href = "../Login.html"; return; }
+        if (res.status === 403) { console.error("Sem vínculo com este paciente."); return; }
+        if (!res.ok) { console.error("Erro API:", res.status); return; }
 
         const todas = await res.json();
-        respostaDesafio = todas.find(r => r.Tipo === "desafio");
-    } catch (e) {
-        console.error("Erro ao buscar desafio:", e);
-    }
+        const respostaDesafio = todas.find(r => r.Tipo === "desafio");
 
-    if (!respostaDesafio) {
-        document.getElementById("caixaResposta").innerHTML =
-            "<p>Este paciente ainda não respondeu nenhum desafio.</p>";
-        return;
-    }
-
-    const temaTexto = document.getElementById("temaTexto");
-    if (temaTexto && respostaDesafio.Pergunta) {
-        temaTexto.textContent = respostaDesafio.Pergunta;
-    }
-
-    const textarea = document.getElementById("resposta");
-    if (textarea) {
-        textarea.value = respostaDesafio.Resposta;
-    }
-
-    const botoes = document.querySelectorAll("#botaoval");
-    const btnValidar   = botoes[0];
-    const btnInvalidar = botoes[1];
-
-    if (respostaDesafio.Status !== "enviado") {
-        const msg = document.createElement("p");
-        msg.textContent = `Status atual: ${respostaDesafio.Status}`;
-        msg.style.fontWeight = "bold";
-        document.getElementById("reflexao").appendChild(msg);
-        if (btnValidar)   btnValidar.disabled   = true;
-        if (btnInvalidar) btnInvalidar.disabled = true;
-    } else {
-        if (btnValidar) {
-            btnValidar.addEventListener("click", () => avaliar("analisado"));
+        if (!respostaDesafio) {
+            document.getElementById("caixaResposta").innerHTML =
+                "<p>Este paciente ainda não respondeu nenhum desafio.</p>";
+            return;
         }
-        if (btnInvalidar) {
-            btnInvalidar.addEventListener("click", () => avaliar("invalido"));
+
+        // Preenche tema e resposta
+        const temaTexto = document.getElementById("temaTexto");
+        if (temaTexto && respostaDesafio.Pergunta) {
+            temaTexto.textContent = respostaDesafio.Pergunta;
         }
-    }
 
-    async function avaliar(status) {
-        const obs = prompt("Observação para o paciente (opcional):", "") || null;
+        const textarea = document.getElementById("resposta");
+        if (textarea) textarea.value = respostaDesafio.Resposta;
 
-        try {
-            const res = await fetch(`http://localhost:3000/respostas/${respostaDesafio.ID}/validar`, {
+        // Corrigido: botões pelo id correto
+        const btnValidar   = document.getElementById("btnValidar");
+        const btnInvalidar = document.getElementById("btnInvalidar");
+
+        if (respostaDesafio.Status !== "enviado") {
+            if (btnValidar)   { btnValidar.disabled   = true; btnValidar.textContent   = "Já validado"; }
+            if (btnInvalidar) { btnInvalidar.disabled = true; btnInvalidar.textContent = "Já avaliado"; }
+        } else {
+            if (btnValidar)   btnValidar.addEventListener("click",   () => avaliar("analisado"));
+            if (btnInvalidar) btnInvalidar.addEventListener("click", () => avaliar("invalido"));
+        }
+
+        async function avaliar(status) {
+            const obsEl = document.getElementById("observacaoDesafio");
+            const obs   = obsEl ? obsEl.value.trim() || null : null;
+
+            const r = await fetch(`http://localhost:3000/respostas/${respostaDesafio.ID}/validar`, {
                 method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -74,8 +60,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 body: JSON.stringify({ status, observacao: obs })
             });
 
-        } catch (e) {
-            console.error("Erro ao avaliar:", e);
+            if (r.ok) window.history.back();
+            else console.error("Erro ao avaliar:", await r.json());
         }
+
+    } catch (e) {
+        console.error("Erro:", e);
     }
 });

@@ -21,27 +21,24 @@ const respostaController = {
         }
     },
 
-    async salvarDesafio(req, res) {
-        try {
-            const idUsuario = req.user.id;
-            const { id_pergunta, resposta } = req.body;
+        async salvarDesafio(req, res) {
+            try {
+                const idUsuario = req.user.id;
+                const { id_pergunta, resposta } = req.body;
 
-            await db.execute(
-                `INSERT INTO resposta (ID_usuario, ID_pergunta, Resposta, Status, Data_resposta, Tipo)
-                 VALUES (?, ?, ?, 'enviado', NOW(), 'desafio')`,
-                [idUsuario, id_pergunta, resposta]
-            );
+                await db.execute(
+                    `INSERT INTO resposta (ID_usuario, ID_pergunta, Resposta, Status, Data_resposta, Tipo)
+                    VALUES (?, ?, ?, 'enviado', NOW(), 'desafio')`,
+                    [idUsuario, id_pergunta, resposta]
+                );
 
-            await db.execute(
-                'UPDATE usuarios SET Pontos = Pontos + 10 WHERE ID = ?',
-                [idUsuario]
-            );
+                // Pontos removidos daqui — agora só ganham quando o psicólogo validar
 
-            return res.status(201).json({ mensagem: 'Desafio enviado com sucesso! +10 pontos' });
-        } catch (error) {
-            return res.status(500).json({ erro: error.message });
-        }
-    },
+                return res.status(201).json({ mensagem: 'Desafio enviado com sucesso!' });
+            } catch (error) {
+                return res.status(500).json({ erro: error.message });
+            }
+        },
 
     async listarPorPaciente(req, res) {
     try {
@@ -95,9 +92,8 @@ const respostaController = {
                 return res.status(400).json({ erro: "Status deve ser 'analisado' ou 'invalido'" });
             }
 
-            // Verifica se a resposta existe e pega o Tipo
             const [respostaInfo] = await db.execute(
-                'SELECT ID, Tipo FROM resposta WHERE ID = ?',
+                'SELECT ID, Tipo, ID_usuario FROM resposta WHERE ID = ?',
                 [idResposta]
             );
 
@@ -121,6 +117,14 @@ const respostaController = {
                 'UPDATE resposta SET Status = ?, Observacao_psicologo = ? WHERE ID = ?',
                 [status, observacao || null, idResposta]
             );
+
+            // Só dá pontos se for desafio e for validado (analisado)
+            if (respostaInfo[0].Tipo === 'desafio' && status === 'analisado') {
+                await db.execute(
+                    'UPDATE usuarios SET Pontos = Pontos + 10 WHERE ID = ?',
+                    [respostaInfo[0].ID_usuario]
+                );
+            }
 
             return res.json({ mensagem: `Resposta marcada como ${status} com sucesso.` });
         } catch (error) {
