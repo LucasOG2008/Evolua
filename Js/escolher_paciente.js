@@ -9,7 +9,7 @@ async function carregarPacientes() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-        window.location.href = "login.html";
+       window.location.href = "../Login.html";
         return;
     }
 
@@ -19,7 +19,7 @@ async function carregarPacientes() {
         });
 
         if (res.status === 401) {
-            window.location.href = "login.html";
+            window.location.href = "../Login.html";
             return;
         }
 
