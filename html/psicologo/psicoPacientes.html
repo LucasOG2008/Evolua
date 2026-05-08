@@ -33,6 +33,25 @@
         <p id="mensagemVazio" style="display:none;">Você ainda não possui pacientes ativos.</p>
 
         <article class="conteiner" id="listaPacientes">
+
+
+            <template id="templatePaciente">
+                <section class="pacientes">
+                    <h2 class="paciente-nome"></h2>
+                    <p class="paciente-descricao"></p>
+                    <p class="paciente-cargo" style="display:none;"><strong>Cargo:</strong> <span></span></p>
+                    <p class="paciente-setor" style="display:none;"><strong>Setor:</strong> <span></span></p>
+                    <div class="Vizualizar">
+                        <a class="icone link-desafio" href="#">
+                            <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Desafio
+                        </a>
+                        <a class="icone link-formulario" href="#">
+                            <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Formulário
+                        </a>
+                    </div>
+                </section>
+            </template>
+
         </article>
     </main>
 

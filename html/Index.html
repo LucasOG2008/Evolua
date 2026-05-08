@@ -14,16 +14,30 @@
     <header>
         <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logotipo sem fundo" id="logoEvolua">
 
-        <nav>
+        <nav id="navDesktop">
             <a href="Index.html">Evolua+</a>
             <a href="escolher_psiocologo.html">Psicólogos</a>
             <a href="desafio.html">Reflita+</a>
-            <a href="Formulario.html">Mapeamento Evolua+</a>
+            <a href="Formulario.html">Formulario</a>
             <a href="painel.html">Painel</a>
         </nav>
 
-
         <button id="botaosair" onclick="deslogar()">Sair</button>
+
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="navMenu" class="nav-menu">
+            <a href="Index.html">Evolua+</a>
+            <a href="escolher_psiocologo.html">Psicólogos</a>
+            <a href="desafio.html">Reflita+</a>
+            <a href="Formulario.html">Formulario</a>
+            <a href="painel.html">Painel</a>
+            <a href="#" onclick="deslogar()">Sair</a>
+        </nav>
 
     </header>
 
@@ -90,7 +104,7 @@
                 <a href="Index.html">Evolua+</a>
                 <a href="escolher_psiocologo.html">Psicólogos</a>
                 <a href="desafio.html">Reflita+</a>
-                <a href="Formulario.html">Mapeamento Evolua+</a>
+                <a href="Formulario.html">Formulario</a>
                 <a href="painel.html">Painel</a>
             </nav>
     
@@ -111,6 +125,10 @@
         function deslogar() {
             localStorage.removeItem('token');
             window.location.href = 'Login.html';
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
         }
     </script>
 </body>

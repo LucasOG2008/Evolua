@@ -29,36 +29,40 @@ async function carregarMeusPacientes() {
             return;
         }
 
-        const lista = document.getElementById("listaPacientes");
-        lista.innerHTML = "";
+        const lista     = document.getElementById("listaPacientes");
+        const template  = document.getElementById("templatePaciente");
 
         pacientes.forEach(p => {
-            const secao = document.createElement("section");
-            secao.className = "pacientes";
+            const clone = template.content.cloneNode(true);
 
-            secao.innerHTML = `
-                <h2>${p.Nome}</h2>
-                <p>${p.Descricao || 'Sem descrição cadastrada.'}</p>
-                ${p.Cargo ? `<p><strong>Cargo:</strong> ${p.Cargo}</p>` : ''}
-                ${p.Setor ? `<p><strong>Setor:</strong> ${p.Setor}</p>` : ''}
-                <div class="Vizualizar">
-                    <a href="psico_validar_desafio.html?id=${p.ID}" class="icone">
-                        <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Desafio
-                    </a>
-                    <a href="psico_validar_formulario.html?id=${p.ID}" class="icone">
-                        <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Formulário
-                    </a>
-                </div>
-            `;
+            clone.querySelector(".paciente-nome").textContent = p.Nome;
+            clone.querySelector(".paciente-descricao").textContent = p.Descricao || "Sem descrição cadastrada.";
 
-            lista.appendChild(secao);
+            if (p.Cargo) {
+                const elCargo = clone.querySelector(".paciente-cargo");
+                elCargo.querySelector("span").textContent = p.Cargo;
+                elCargo.style.display = "block";
+            }
+
+            if (p.Setor) {
+                const elSetor = clone.querySelector(".paciente-setor");
+                elSetor.querySelector("span").textContent = p.Setor;
+                elSetor.style.display = "block";
+            }
+
+            clone.querySelector(".link-desafio").href    = `psico_validar_desafio.html?id=${p.ID}`;
+            clone.querySelector(".link-formulario").href = `psico_validar_formulario.html?id=${p.ID}`;
+
+            lista.appendChild(clone);
         });
 
     } catch (error) {
         document.getElementById("loading").style.display = "none";
         console.error("Erro ao carregar pacientes:", error);
-        document.getElementById("mensagemVazio").textContent = "Erro ao carregar pacientes. Tente novamente.";
-        document.getElementById("mensagemVazio").style.display = "block";
+
+        const aviso = document.getElementById("mensagemVazio");
+        aviso.textContent   = "Erro ao carregar pacientes. Tente novamente.";
+        aviso.style.display = "block";
     }
 }
 

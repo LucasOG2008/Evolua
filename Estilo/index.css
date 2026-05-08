@@ -122,3 +122,77 @@ article{
     font-size: 0.95rem;
     cursor: pointer;
 }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+    z-index: 1000;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+
+ 
+    #navDesktop {
+        display: none;
+    }
+
+    #botaosair {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+
+    #apresentacao,
+    #conteudos,
+    #seguranca {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+    }
+
+  
+    #conteudos {
+        flex-direction: column-reverse;
+    }
+
+
+    #textos,
+    #txt,
+    #tex {
+        margin: 0 16px;
+        width: auto;
+    }
+
+    #apresentacao img,
+    #conteudos img,
+    #seguranca img {
+        height: auto;
+        width: 90%;
+        max-width: 380px;
+        margin: 16px auto 0;
+    }
+
+ 
+    main h1 {
+        font-size: 1.4rem;
+        padding: 0 16px;
+    }
+
+    main h2 {
+        font-size: 1.1rem;
+        padding: 0 16px;
+    }
+}
