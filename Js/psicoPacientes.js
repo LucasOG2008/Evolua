@@ -1,3 +1,10 @@
+let pacientes = [];
+let indice = 0;
+
+const atual    = document.querySelector("#pacienteAtual");
+const anterior = document.querySelector("#pacienteAnterior");
+const proximo  = document.querySelector("#pacienteProximo");
+
 function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("show");
 }
@@ -22,48 +29,86 @@ async function carregarMeusPacientes() {
             return;
         }
 
-        const pacientes = await res.json();
+        const dados = await res.json();
 
-        if (!Array.isArray(pacientes) || pacientes.length === 0) {
+        if (!Array.isArray(dados) || dados.length === 0) {
             document.getElementById("mensagemVazio").style.display = "block";
+            // Esconde carrossel se não há pacientes
+            document.getElementById("carrossel").style.display = "none";
             return;
         }
 
-        const lista     = document.getElementById("listaPacientes");
-        const template  = document.getElementById("templatePaciente");
-
-        pacientes.forEach(p => {
-            const clone = template.content.cloneNode(true);
-
-            clone.querySelector(".paciente-nome").textContent = p.Nome;
-            clone.querySelector(".paciente-descricao").textContent = p.Descricao || "Sem descrição cadastrada.";
-
-            if (p.Cargo) {
-                const elCargo = clone.querySelector(".paciente-cargo");
-                elCargo.querySelector("span").textContent = p.Cargo;
-                elCargo.style.display = "block";
-            }
-
-            if (p.Setor) {
-                const elSetor = clone.querySelector(".paciente-setor");
-                elSetor.querySelector("span").textContent = p.Setor;
-                elSetor.style.display = "block";
-            }
-
-            clone.querySelector(".link-desafio").href    = `psico_validar_desafio.html?id=${p.ID}`;
-            clone.querySelector(".link-formulario").href = `psico_validar_formulario.html?id=${p.ID}`;
-
-            lista.appendChild(clone);
-        });
+        pacientes = dados;
+        atualizar();
 
     } catch (error) {
         document.getElementById("loading").style.display = "none";
         console.error("Erro ao carregar pacientes:", error);
 
         const aviso = document.getElementById("mensagemVazio");
-        aviso.textContent   = "Erro ao carregar pacientes. Tente novamente.";
+        aviso.textContent = "Erro ao carregar pacientes. Tente novamente.";
         aviso.style.display = "block";
+        document.getElementById("carrossel").style.display = "none";
     }
 }
+
+function atualizar() {
+    let ant  = indice - 1;
+    let prox = indice + 1;
+
+    if (ant < 0) ant = pacientes.length - 1;
+    if (prox >= pacientes.length) prox = 0;
+
+    mostrar(atual,    pacientes[indice], true);
+    mostrar(anterior, pacientes[ant],   false);
+    mostrar(proximo,  pacientes[prox],  false);
+}
+
+function mostrar(elemento, dados, principal) {
+    elemento.querySelector(".nome").textContent      = dados.Nome;
+    elemento.querySelector(".descricao").textContent = dados.Descricao || "Sem descrição cadastrada.";
+
+    // Cargo e Setor só existem no card principal
+    if (principal) {
+        const elCargo = elemento.querySelector(".paciente-cargo");
+        const elSetor = elemento.querySelector(".paciente-setor");
+
+        if (elCargo) {
+            if (dados.Cargo) {
+                elemento.querySelector(".cargo-valor").textContent = dados.Cargo;
+                elCargo.style.display = "block";
+            } else {
+                elCargo.style.display = "none";
+            }
+        }
+
+        if (elSetor) {
+            if (dados.Setor) {
+                elemento.querySelector(".setor-valor").textContent = dados.Setor;
+                elSetor.style.display = "block";
+            } else {
+                elSetor.style.display = "none";
+            }
+        }
+
+        const linkDesafio    = elemento.querySelector(".link-desafio");
+        const linkFormulario = elemento.querySelector(".link-formulario");
+
+        if (linkDesafio)    linkDesafio.href    = `psico_validar_desafio.html?id=${dados.ID}`;
+        if (linkFormulario) linkFormulario.href = `psico_validar_formulario.html?id=${dados.ID}`;
+    }
+}
+
+document.getElementById("proximo").onclick = function () {
+    if (pacientes.length === 0) return;
+    indice = (indice + 1) % pacientes.length;
+    atualizar();
+};
+
+document.getElementById("anterior").onclick = function () {
+    if (pacientes.length === 0) return;
+    indice = (indice - 1 + pacientes.length) % pacientes.length;
+    atualizar();
+};
 
 carregarMeusPacientes();

@@ -1,73 +1,152 @@
 html, body {
-    overscroll-behavior-y: none; 
-  }
-
-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    margin-bottom: 150px;
+    overscroll-behavior-y: none;
 }
 
-.conteiner {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-}
-
-
-.pacientes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+main {
+    font-family: Titulo, sans-serif;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
     text-align: center;
-    border: solid 1px;
-    width: 300px;
-    height: 500px;
-    min-height: 300px;
-    border-radius: 15px;
 }
 
-.Vizualizar{
-    width: 300px;
-    margin-top: 20px;
-    border-top: 1px solid ;
+#titulo {
+    margin-bottom: 40px;
+}
+
+/* ── LOADING / VAZIO ── */
+#loading {
     text-align: center;
-    margin-bottom: 15px;
-    padding-top: 20px;
-
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    color: #ef476e;
+    font-size: 1rem;
+    margin-top: 40px;
 }
 
-.Vizualizar img{
-    width: 50px;
-    height: 50px;
-}
-
-.icone {
-    display: flex;          
-    align-items: center;    
-    gap: 10px;              
-    text-decoration: none;
-    color: #333;
-  }
-
-  #mensagemVazio {
+#mensagemVazio {
     display: none;
     text-align: center;
     color: #ef476e;
     font-size: 1.1rem;
     margin-top: 40px;
 }
-#loading {
+
+/* ── CARROSSEL ── */
+#carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pacientes {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.paciente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ── CARD ── */
+.card {
+    background-color: #f1a7b8bd;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 15px;
     text-align: center;
-    color: #ef476e;
-    font-size: 1rem;
-    margin-top: 40px;
+}
+
+/* ── TAMANHOS: PRINCIPAL e PEQUENO ── */
+.nome {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.descricao {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: Corpo, sans-serif;
+    font-size: 14px;
+    color: #073B4C;
+}
+
+.principal .nome {
+    width: 250px;
+    height: auto;
+}
+
+.principal .descricao {
+    width: 250px;
+    min-height: 60px;
+}
+
+.pequeno .nome {
+    width: 200px;
+    height: auto;
+    opacity: 0.4;
+}
+
+.pequeno .descricao {
+    width: 200px;
+    min-height: 60px;
+    opacity: 0.4;
+}
+
+/* ── INFO EXTRA (cargo/setor) ── */
+.info-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+    font-family: Corpo, sans-serif;
+    font-size: 13px;
+    color: #073B4C;
+}
+
+.info-extra p {
+    margin: 0;
+}
+
+/* ── SETAS ── */
+.seta {
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ── LINKS DE AÇÃO ── */
+.acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.visualizar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #073B4C;
+    font-family: Corpo, sans-serif;
+    font-size: 14px;
+}
+
+.visualizar img {
+    width: 20px;
+    height: 20px;
+}
+
+.visualizar:hover {
+    opacity: 0.8;
 }

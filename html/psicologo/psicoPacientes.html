@@ -11,7 +11,7 @@
 <body>
     <header>
         <a href="psico_index.html">
-            <img src="../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua" >
+            <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
         </a>
 
         <div class="hamburger" onclick="toggleMenu()">
@@ -19,41 +19,64 @@
             <span></span>
             <span></span>
         </div>
-        
+
         <nav id="navMenu" class="nav-menu">
             <a href="psicoPacientes.html">Pacientes</a>
-            <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
+            <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
             <a href="psico_painel.html">Painel</a>
         </nav>
     </header>
-    
+
     <main>
-        <h1>Meus Pacientes</h1>
+        <h1 id="titulo">Meus Pacientes</h1>
 
         <p id="loading">Carregando pacientes...</p>
         <p id="mensagemVazio" style="display:none;">Você ainda não possui pacientes ativos.</p>
 
-        <article class="conteiner" id="listaPacientes">
+        <section id="carrossel">
+            <button class="seta" id="anterior">&lt;</button>
 
+            <div class="pacientes">
 
-            <template id="templatePaciente">
-                <section class="pacientes">
-                    <h2 class="paciente-nome"></h2>
-                    <p class="paciente-descricao"></p>
-                    <p class="paciente-cargo" style="display:none;"><strong>Cargo:</strong> <span></span></p>
-                    <p class="paciente-setor" style="display:none;"><strong>Setor:</strong> <span></span></p>
-                    <div class="Vizualizar">
-                        <a class="icone link-desafio" href="#">
-                            <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Desafio
-                        </a>
-                        <a class="icone link-formulario" href="#">
-                            <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Icone arquivo">Visualizar Formulário
-                        </a>
+                <div class="paciente pequeno" id="pacienteAnterior">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
                     </div>
-                </section>
-            </template>
+                </div>
 
-        </article>
+                <div class="paciente principal" id="pacienteAtual">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
+                        <div class="info-extra">
+                            <p class="paciente-cargo" style="display:none;"><strong>Cargo:</strong> <span class="cargo-valor"></span></p>
+                            <p class="paciente-setor" style="display:none;"><strong>Setor:</strong> <span class="setor-valor"></span></p>
+                        </div>
+                        <div class="acoes">
+                            <a href="#" class="visualizar link-desafio">
+                                <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Ícone">
+                                <span>Visualizar Desafio</span>
+                            </a>
+                            <a href="#" class="visualizar link-formulario">
+                                <img src="../../Imagens/Icone_Sem_Fundo.png" alt="Ícone">
+                                <span>Visualizar Formulário</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paciente pequeno" id="pacienteProximo">
+                    <div class="card">
+                        <div class="nome"></div>
+                        <div class="descricao"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="seta" id="proximo">&gt;</button>
+        </section>
     </main>
 
     <footer>
@@ -64,7 +87,7 @@
             <nav>
                 <a href="psico_index.html">Evolua+</a>
                 <a href="psicoPacientes.html">Pacientes</a>
-                <a href="PsicoPossiveisPacientes.html">Possiveis Pacientes</a>
+                <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
                 <a href="psico_painel.html">Painel</a>
             </nav>
         </div>
@@ -72,9 +95,10 @@
         <div id="rodape">
             <h4>Feito Por:</h4>
             <h5>Next Gen Devs</h5>
-            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
-                Lucas Oliveira Gomes <br/>
-                Murilo Miranda de Castro Silva <br/>
+            <p>Carlos Eduardo Malheiro de Oliveira Almeida <br>
+               Lucas Oliveira Gomes <br>
+               Murilo Miranda de Castro Silva <br>
+               Geovani Oshiro Correa
             </p>
         </div>
     </footer>
