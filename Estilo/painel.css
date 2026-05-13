@@ -272,3 +272,14 @@
 
 .aviso a:hover { background: #0a4f66; }
 
+#btnDesvincularPS{
+        padding: 7px 18px;
+    background-color: #073B4C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Corpo, sans-serif;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
