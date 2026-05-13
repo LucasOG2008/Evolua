@@ -12,6 +12,11 @@ body{
     overscroll-behavior-y: none;
 }
 
+/* No index, o hambúrguer fica oculto no desktop e só aparece no mobile */
+.hamburger {
+    display: none;
+}
+
 header > nav{
     padding-top: 80px;
     padding-left: 275px;
@@ -43,7 +48,7 @@ article{
 }
 
 #apresentacao{
-    text-align: lef;
+    text-align: left;
 }
 
 #textos{
@@ -123,25 +128,13 @@ article{
     cursor: pointer;
 }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    margin-left: auto;
-    z-index: 1000;
-}
-
-.hamburger span {
-    width: 30px;
-    height: 3px;
-    background-color: #333;
-    margin: 3px 0;
-    border-radius: 3px;
-}
-
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
 
- 
+    .hamburger {
+        display: flex;
+    }
+
     #navDesktop {
         display: none;
     }
@@ -149,11 +142,6 @@ article{
     #botaosair {
         display: none;
     }
-
-    .hamburger {
-        display: flex;
-    }
-
 
     #apresentacao,
     #conteudos,
@@ -163,11 +151,9 @@ article{
         padding-top: 30px;
     }
 
-  
     #conteudos {
         flex-direction: column-reverse;
     }
-
 
     #textos,
     #txt,
@@ -185,7 +171,6 @@ article{
         margin: 16px auto 0;
     }
 
- 
     main h1 {
         font-size: 1.4rem;
         padding: 0 16px;

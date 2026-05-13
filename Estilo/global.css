@@ -5,10 +5,10 @@
 
 @font-face {
     font-family: 'Titulo';
-    src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
+    src: url(../Fontes/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
 }
 
-html, body{
+html, body {
     overscroll-behavior-y: none;
 }
 
@@ -32,6 +32,7 @@ header {
     height: auto;
 }
 
+/* ===== HAMBURGER MENU ===== */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -67,28 +68,36 @@ header {
 
 .nav-menu a {
     text-decoration: none;
-    color: #333;
+    color: #073B4C;
     padding: 10px 0;
-    border-bottom: 1px solid #9fc5d9;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .nav-menu a:last-child {
     border-bottom: none;
 }
 
+.nav-menu a:hover {
+    color: #000;
+}
+
+/* ===== FOOTER ===== */
 footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 20px;
-    background-image: linear-gradient(to bottom, #FEFCF3 ,#BFE0EF 60%); 
+    background-image: linear-gradient(to bottom, #FEFCF3, #BFE0EF 60%);
     flex-wrap: wrap;
     text-align: center;
     font-family: Corpo, sans-serif;
+    gap: 16px;
 }
 
-footer img{
-    height: 300px;
+footer img {
+    height: 200px;
     width: auto;
     margin-bottom: 0px;
 }
@@ -96,7 +105,7 @@ footer img{
 #pag nav {
     display: flex;
     flex-direction: column;
-    text-align: justify; 
+    text-align: justify;
 }
 
 #pag h4 {
@@ -107,11 +116,7 @@ footer img{
     text-align: center;
 }
 
-#rodape {
-    text-align: justify;
-}
-
-#rodape > h4, h5 {
+#rodape > h4, #rodape > h5 {
     text-align: center;
 }
 
@@ -128,4 +133,33 @@ hr {
     border: 1px solid #ccc;
     background-color: #073B4C;
     color: white;
+    cursor: pointer;
+    padding: 6px;
+}
+
+@media (max-width: 768px) {
+
+    #logoEvolua {
+        width: 150px;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    footer img {
+        height: 120px;
+    }
+
+    #pag nav {
+        text-align: center;
+    }
+
+    #pag nav a {
+        color: #073B4C;
+        text-decoration: none;
+        display: block;
+        padding: 4px 0;
+    }
 }

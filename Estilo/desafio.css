@@ -85,3 +85,20 @@ a{
 #navMenu{
     background-color: #bfefdb81;
 }
+
+header {
+    background-image: linear-gradient(to bottom, #bfefdb, #FEFCF3 60%);
+}
+
+footer{
+    background-image: linear-gradient(to bottom, #FEFCF3 ,#bfefdb 60%);
+}
+
+#botao {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #073B4C;
+    color: white;
+}
