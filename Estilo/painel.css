@@ -272,3 +272,74 @@
 
 .aviso a:hover { background: #0a4f66; }
 
+/* responsividade*/
+
+@media (max-width: 768px) {
+
+  
+    .painel-layout {
+        flex-direction: column;
+        width: 50%;
+        align-items: center;
+        gap: 30px;
+        margin: 24px auto 40px;
+    }
+
+
+    .sidebar {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+   
+    .pontos-circulo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .pontos-circulo span {
+        font-size: 2rem;
+    }
+
+ 
+    #nome, #cargo, #setor {
+        text-align: center;
+    }
+
+    
+    .sidebar textarea,
+    #descricaoUsuario {
+        width: 100%;
+    }
+
+
+    .abas {
+        display: flex;
+        width: 100%;
+    }
+
+    .aba {
+        flex: 1;
+    }
+
+   
+    .painel-card {
+        padding: 40px;
+    }
+
+    .psico-topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+   
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        padding: 24px 16px;
+    }
+}
