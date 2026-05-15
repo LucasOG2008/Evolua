@@ -279,7 +279,7 @@
   
     .painel-layout {
         flex-direction: column;
-        width: 50%;
+        width: 92%;
         align-items: center;
         gap: 30px;
         margin: 24px auto 40px;
@@ -288,6 +288,7 @@
 
     .sidebar {
         width: 100%;
+        display: flex;
         align-items: center;
         text-align: center;
     }
@@ -342,4 +343,16 @@
         gap: 16px;
         padding: 24px 16px;
     }
+
+#btnDesvincularPS{
+        padding: 7px 18px;
+    background-color: #073B4C;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Corpo, sans-serif;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
 }

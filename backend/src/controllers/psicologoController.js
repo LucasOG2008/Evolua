@@ -270,6 +270,61 @@ const psicologoController = {
             }
             return res.status(500).json({ erro: 'Erro interno no servidor' });
         }
+    },
+
+    async desvincularPaciente(req, res) {
+        try {
+            const idPsicologo = req.user.id;
+            const idPaciente  = req.params.id;
+ 
+            const [rows] = await db.execute(
+                `SELECT ID FROM usuario_psicologo
+                 WHERE ID_psicologo = ? AND ID_usuario = ? AND Status = 'ativo'`,
+                [idPsicologo, idPaciente]
+            );
+ 
+            if (rows.length === 0) {
+                return res.status(404).json({ erro: 'Vínculo ativo não encontrado.' });
+            }
+ 
+            await db.execute(
+                `UPDATE usuario_psicologo
+                 SET Status = 'encerrado', Data_fim = CURDATE()
+                 WHERE ID_psicologo = ? AND ID_usuario = ? AND Status = 'ativo'`,
+                [idPsicologo, idPaciente]
+            );
+ 
+            return res.status(200).json({ mensagem: 'Paciente desvinculado com sucesso.' });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+ 
+    async desvincularPsicologo(req, res) {
+        try {
+            const idPaciente = req.user.id;
+ 
+            const [rows] = await db.execute(
+                `SELECT ID FROM usuario_psicologo
+                 WHERE ID_usuario = ? AND Status = 'ativo'`,
+                [idPaciente]
+            );
+ 
+            if (rows.length === 0) {
+                return res.status(400).json({ erro: 'Você não está vinculado a nenhum psicólogo.' });
+            }
+ 
+            await db.execute(
+                `UPDATE usuario_psicologo
+                 SET Status = 'encerrado', Data_fim = CURDATE()
+                 WHERE ID_usuario = ? AND Status = 'ativo'`,
+                [idPaciente]
+            );
+ 
+            return res.status(200).json({ mensagem: 'Desvinculado do psicólogo com sucesso.' });
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
     }
 };
 

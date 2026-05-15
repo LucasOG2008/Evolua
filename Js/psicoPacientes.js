@@ -96,6 +96,49 @@ function mostrar(elemento, dados, principal) {
 
         if (linkDesafio)    linkDesafio.href    = `psico_validar_desafio.html?id=${dados.ID}`;
         if (linkFormulario) linkFormulario.href = `psico_validar_formulario.html?id=${dados.ID}`;
+
+        const btnDesvincular = elemento.querySelector("#btnDesvincularU");
+        if (btnDesvincular) {
+            btnDesvincular.onclick = () => confirmarDesvincular(dados.ID, dados.Nome);
+        }
+    }
+}
+
+async function confirmarDesvincular(id, nome) {
+    const confirmado = confirm(`Tem certeza que deseja desvincular o paciente "${nome}"?\nEsta ação não pode ser desfeita.`);
+    if (!confirmado) return;
+
+    const token = localStorage.getItem("token");
+
+    try {
+        const res = await fetch(`http://localhost:3000/psicologos/pacientes/${id}/desvincular`, {
+            method: "DELETE",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (res.ok) {
+            // Remove o paciente da lista local e reatualiza o carrossel
+            pacientes.splice(indice, 1);
+
+            if (pacientes.length === 0) {
+                document.getElementById("carrossel").style.display = "none";
+                const aviso = document.getElementById("mensagemVazio");
+                aviso.textContent = "Você não possui mais pacientes ativos.";
+                aviso.style.display = "block";
+                return;
+            }
+
+            // Ajusta índice se estava no último
+            if (indice >= pacientes.length) indice = pacientes.length - 1;
+            atualizar();
+        } else {
+            const dados = await res.json();
+            alert("Erro ao desvincular: " + (dados.erro || "Tente novamente."));
+        }
+
+    } catch (error) {
+        console.error("Erro ao desvincular paciente:", error);
+        alert("Erro de conexão ao tentar desvincular.");
     }
 }
 

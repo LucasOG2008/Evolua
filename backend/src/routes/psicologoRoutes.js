@@ -65,6 +65,20 @@ router.post('/pacientes/:id/curtir',
     psicologoController.curtirPaciente
 );
 
+// Psicólogo desvincula um paciente seu
+router.delete('/pacientes/:id/desvincular',
+    authMiddleware,
+    roleMiddleware('psicologo'),
+    psicologoController.desvincularPaciente
+);
+
+// Paciente se desvincula do próprio psicólogo
+router.delete('/desvincular',
+    authMiddleware,
+    roleMiddleware('comum'),
+    psicologoController.desvincularPsicologo
+);
+
 router.post('/',
     authMiddleware,
     roleMiddleware('admin'),
