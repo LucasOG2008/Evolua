@@ -60,7 +60,7 @@ header nav {
     position: absolute;
     top: 60%;
     right: 0;
-    background-color: #ef476e63;
+    background-color: #f1708e;
     width: 200px;
     padding: 20px;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
@@ -74,13 +74,19 @@ header nav {
 
 .nav-menu a {
     text-decoration: none;
-    color: #333;
+    color: #702738;
     padding: 10px 0;
-    border-bottom: 1px solid #ef476e78;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .nav-menu a:last-child {
     border-bottom: none;
+}
+
+.nav-menu a:hover {
+    color: #000;
 }
 
 footer {

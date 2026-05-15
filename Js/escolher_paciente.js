@@ -9,13 +9,13 @@ async function carregarPacientes() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-       window.location.href = "../Login.html";
+        window.location.href = "../Login.html";
         return;
     }
 
     try {
         const res = await fetch("http://localhost:3000/psicologos/pacientes", {
-        headers: { "Authorization": `Bearer ${token}` }
+            headers: { "Authorization": `Bearer ${token}` }
         });
 
         if (res.status === 401) {
@@ -79,9 +79,31 @@ async function curtirPaciente(id, nome) {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
+        if (res.ok) {
+            mostrarNotificacao(`Você curtiu ${nome}! Aguardando aceitação.`, "sucesso");
+        } else {
+            const dados = await res.json();
+            mostrarNotificacao(dados.erro || "Não foi possível curtir.", "erro");
+        }
     } catch (error) {
         console.error("Erro ao curtir:", error);
+        mostrarNotificacao("Erro de conexão ao tentar curtir.", "erro");
     }
+}
+
+function mostrarNotificacao(mensagem, tipo) {
+    const notif = document.getElementById("notificacaoCurtir");
+
+    notif.textContent = mensagem;
+    notif.className = tipo;
+    notif.style.opacity = "1";
+    notif.style.display = "block";
+
+    clearTimeout(notif._timeout);
+    notif._timeout = setTimeout(function () {
+        notif.style.opacity = "0";
+        setTimeout(function () { notif.style.display = "none"; }, 400);
+    }, 3000);
 }
 
 document.getElementById("proximo").onclick = function () {

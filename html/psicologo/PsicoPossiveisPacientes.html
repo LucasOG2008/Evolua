@@ -7,12 +7,13 @@
     <link rel="shortcut icon" href="../../Imagens/Home_page/mascote_sem_fundo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../Estilo/psicologo/psico_possiveis_pass.css">
     <link rel="stylesheet" href="../../Estilo/psicologo/globalpsico.css">
+    <link rel="stylesheet" href="../../Estilo/psicologo/notificacao-curtir.css">
 </head>
 <body>
 
     <header>
         <a href="psico_index.html">
-            <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua" >
+            <img src="../../Imagens/Home_page/logotipoSemfundo.png" alt="Logo Evolua+" id="logoEvolua">
         </a>
 
         <div class="hamburger" onclick="toggleMenu()">
@@ -20,14 +21,16 @@
             <span></span>
             <span></span>
         </div>
-        
+
         <nav id="navMenu" class="nav-menu">
             <a href="psicoPacientes.html">Pacientes</a>
             <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
             <a href="psico_painel.html">Painel</a>
         </nav>
     </header>
-    
+
+    <div id="notificacaoCurtir"></div>
+
     <main>
         <h1>Possíveis Pacientes</h1>
 
@@ -84,7 +87,6 @@
                 <a href="PsicoPossiveisPacientes.html">Possíveis Pacientes</a>
                 <a href="psico_painel.html">Painel</a>
             </nav>
-    
         </div>
 
         <div id="rodape">
@@ -93,20 +95,18 @@
             <p>Carlos Eduardo Malheiro de Oliveira Almeida <br/>
                 Lucas Oliveira Gomes <br/>
                 Murilo Miranda de Castro Silva <br/>
-                Geovani Oshiro Correa
             </p>
         </div>
-
     </footer>
 
-    <script>
+    <script >
         function toggleMenu() {
             document.getElementById("navMenu").classList.toggle("show");
         }
     </script>
-
-<script src="../../Js/escolher_paciente.js"></script>
+    <script src="../../Js/escolher_paciente.js"></script>
     <script src="../../Js/Verificação.js"></script>
+
 
 </body>
 </html>
