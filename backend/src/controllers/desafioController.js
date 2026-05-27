@@ -2,6 +2,17 @@ const Desafio = require('../models/Desafio');
 
 const desafioController = {
 
+    async listarDiario(req, res) {
+        try {
+            const desafios = await Desafio.findAll();
+            if (!desafios.length) return res.status(404).json({ erro: 'Nenhum desafio cadastrado' });
+            const indiceDia = Math.floor(Date.now() / 86400000) % desafios.length;
+            return res.json(desafios[indiceDia]);
+        } catch (error) {
+            return res.status(500).json({ erro: error.message });
+        }
+    },
+
     async listar(req, res) {
         try {
             const desafios = await Desafio.findAll();

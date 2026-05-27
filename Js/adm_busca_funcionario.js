@@ -31,7 +31,11 @@ function renderizarUsuarios(lista) {
     lista.forEach(u => {
         const div = document.createElement('div');
         div.className = 'perfil';
-        div.innerHTML = `<p>${u.nome || u.Nome}</p>`;
+        const pontos = u.Pontos ?? u.pontos ?? 0;
+        div.innerHTML = `
+            <p>${u.nome || u.Nome}</p>
+            <span style="font-size:0.85em; color:#666;">⭐ ${pontos} pts</span>
+        `;
         div.style.cursor = 'pointer';
         div.onclick = () => {
             window.location.href = `adm_visualizar_perfil.html?id=${u.id || u.ID}`;
